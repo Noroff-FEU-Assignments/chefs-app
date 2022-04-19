@@ -2,7 +2,8 @@
     "version": 3,
     "mappings": "",
     "sources": [
-        "../src/sass/style.scss"
+        "../src/sass/style.scss",
+        "../src/sass/partials/_navigation.scss"
     ],
     "names": [],
     "file": "style.css"
