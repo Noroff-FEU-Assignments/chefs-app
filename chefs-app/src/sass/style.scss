@@ -1,6 +1,14 @@
-// Custom Variables
+// Font imports
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
 
+// Custom Global Variables
+$colours: ("primary": #FFFCE8, "secondary": #BA2126, "text": #4c362c, "light-primary": #fffef6, "details": #f2b32a);
+$coloursAlerts: ("success": #40ab21, "error": #ff0007, "warning": #ff8000);
 
+$font-main: "muli", sans-serif;
+$font-secondary: "Poppins", sans-serif;
+$font-extra: 'Playfair Display', serif;
 
 
 // Bootstrap variables
@@ -9,3 +17,5 @@
 
 // Imports
 @import "./partials/_navigation.scss";
+@import "./partials/_typography.scss";
+@import "./partials/_layout.scss";

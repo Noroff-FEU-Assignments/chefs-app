@@ -1,9 +1,11 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AACA,OAAO,CAAC,yFAAI;AACZ,OAAO,CAAC,0FAAI;AGFZ,AAAA,MAAM,CAAC;EACL,gBAAgB,EHII,OAAO;CGH5B",
     "sources": [
         "../src/sass/style.scss",
-        "../src/sass/partials/_navigation.scss"
+        "../src/sass/partials/_navigation.scss",
+        "../src/sass/partials/_typography.scss",
+        "../src/sass/partials/_layout.scss"
     ],
     "names": [],
     "file": "style.css"

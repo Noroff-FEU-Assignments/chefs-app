@@ -1,5 +1,5 @@
 import Navigation from "./components/layout/Navigation.js";
-import { BrowserRouter as Router, Routes, Route, NAvLink } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./sass/style.scss";
 
 function App() {
