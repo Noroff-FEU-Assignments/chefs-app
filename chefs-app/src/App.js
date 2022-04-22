@@ -1,4 +1,5 @@
 import Navigation from "./components/layout/Navigation.js";
+import Footer from "./components/layout/Footer.js";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./sass/style.scss";
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <Router>
         <Navigation />
+        <Footer />
       </Router>
     </>
   );

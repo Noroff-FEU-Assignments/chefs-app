@@ -16,6 +16,8 @@ $font-extra: 'Playfair Display', serif;
 
 
 // Imports
-@import "./partials/_navigation.scss";
-@import "./partials/_typography.scss";
-@import "./partials/_layout.scss";
+@import "./partials/layout/_navigation.scss";
+@import "./partials/layout/_footer.scss";
+@import "./partials/layout/_layout.scss";
+@import "./partials/typography/_typography.scss";
+@import "./partials/pages/_recipes.scss";

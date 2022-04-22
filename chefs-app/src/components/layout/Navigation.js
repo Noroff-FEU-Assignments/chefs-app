@@ -5,7 +5,7 @@ import { useState } from "react";
 // import Navbar from "react-bootstrap/Navbar";
 // import Nav from "react-bootstrap/Nav";
 import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
+import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Announcements from "../../pages/announcements/Announcements";
 import Contact from "../../pages/contact/Contact";
@@ -44,9 +44,13 @@ function Navigation() {
           </NavLink>
           <div className="user-burger">
             <div id="userIcons">
-              <FontAwesomeIcon icon={solid('user')} id="userFigure" />
-              <FontAwesomeIcon icon={solid('message')} id="messageIcon" />
-              <NavLink to="login" className="nav-link" id="loginLink">Login</NavLink>
+              <div>
+                <FontAwesomeIcon icon={solid('user')} id="userFigure" />
+                <FontAwesomeIcon icon={solid('message')} id="messageIcon" />
+              </div>
+              <div>
+                <NavLink to="login" className="nav-link" id="loginLink">Login</NavLink>
+              </div>
             </div>
             <img src={Hamburger} id="burgerBtn" onClick={fadeInMenu} alt="burger icon for menu"/>
             {/* <FontAwesomeIcon icon={solid('burger') } className="burger-menu" /> */}
@@ -73,6 +77,9 @@ function Navigation() {
                   <NavLink to="#" className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Admin Panel<FontAwesomeIcon icon={solid('chevron-circle-down')} id="circleArrowDown"/>
                   </NavLink>
+                  {/* <div  className="nav-link" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Admin Panel<FontAwesomeIcon icon={solid('chevron-circle-down')} id="circleArrowDown"/>
+                  </div> */}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <ul>
@@ -88,22 +95,27 @@ function Navigation() {
                     <NavLink to="/write-announcement" className="nav-link">
                       Write Announcement
                     </NavLink>
-                    <NavLink to="/logout" className="nav-link">
+                    <Button className="nav-link" id="logoutBtn">
                       Logout
-                    </NavLink>
+                    </Button>
                   </ul>
                 </Dropdown.Menu>
               {/* <h2 className="nav-heading">Admin Panel</h2> */}
               </Dropdown>
             </div>
-            <div className="nav-separator"></div>
+            <div className="nav-separator" id="navSeparatorRemove"></div>
             <h2 className="nav-heading" id="externalLinksHeading">Press to connect:</h2>
             <div className="external-links">
-                <a href="https://secure.e-smiley.dk/">E-smiley <img src={Esmiley} alt="Esmiley logo"/></a>
-                <a href="https://id.planday.com/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Db116846e-8ff0-42dc-83b6-5392543ca73c%26redirect_uri%3Dhttps%253A%252F%252Fdbb.planday.com%252Fauth-callback%26response_type%3Dcode%26scope%3Dopenid%2520impersonate%2520plandayid%26state%3D26911e29e99243c189b9fb0bac7360ed%26code_challenge%3DA0yoEKZBDJpSdpLLXgp7kdGcRbivgLDRKZTTihWHIj4%26code_challenge_method%3DS256%26acr_values%3Dtenant%253Adbb.planday.com%26response_mode%3Dquery">Planday <img src={Planday} alt="Planday logo"/></a>
+                <a href="https://secure.e-smiley.dk/" className="ext-link-individual">E-smiley <img src={Esmiley} alt="Esmiley logo"/></a>
+                <a href="https://id.planday.com/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Db116846e-8ff0-42dc-83b6-5392543ca73c%26redirect_uri%3Dhttps%253A%252F%252Fdbb.planday.com%252Fauth-callback%26response_type%3Dcode%26scope%3Dopenid%2520impersonate%2520plandayid%26state%3D26911e29e99243c189b9fb0bac7360ed%26code_challenge%3DA0yoEKZBDJpSdpLLXgp7kdGcRbivgLDRKZTTihWHIj4%26code_challenge_method%3DS256%26acr_values%3Dtenant%253Adbb.planday.com%26response_mode%3Dquery" className="ext-link-individual">Planday <img src={Planday} alt="Planday logo"/></a>
                 <a href="https://motimate.app/dognvill/">Motimate <img src={Motimate} alt="Motimate logo" /></a>
             </div>
           </div>
+          <div className="external-links-desktop">
+                <a href="https://secure.e-smiley.dk/" className="ext-link-individual">E-smiley <img src={Esmiley} alt="Esmiley logo"/></a>
+                <a href="https://id.planday.com/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Db116846e-8ff0-42dc-83b6-5392543ca73c%26redirect_uri%3Dhttps%253A%252F%252Fdbb.planday.com%252Fauth-callback%26response_type%3Dcode%26scope%3Dopenid%2520impersonate%2520plandayid%26state%3D26911e29e99243c189b9fb0bac7360ed%26code_challenge%3DA0yoEKZBDJpSdpLLXgp7kdGcRbivgLDRKZTTihWHIj4%26code_challenge_method%3DS256%26acr_values%3Dtenant%253Adbb.planday.com%26response_mode%3Dquery" className="ext-link-individual">Planday <img src={Planday} alt="Planday logo"/></a>
+                <a href="https://motimate.app/dognvill/">Motimate <img src={Motimate} alt="Motimate logo" /></a>
+            </div>
         </nav>
       </header>
           <Container>

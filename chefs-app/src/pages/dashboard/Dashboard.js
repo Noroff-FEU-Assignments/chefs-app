@@ -1,10 +1,13 @@
-import React from 'react'
+import HeadingPage from "../../components/layout/HeadingPage.js";
+import HeadTitle from "../../components/layout/HeadTitle.js";
 
 function Dashboard() {
+  HeadTitle("Dashboard | Chef's App")
+
   return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
+    <>
+      <HeadingPage>Dashboard</HeadingPage>
+    </>
   )
 }
 
