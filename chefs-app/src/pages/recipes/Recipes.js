@@ -4,7 +4,7 @@ import { api } from "../../constants/api.js";
 import RecipeLink from "./RecipeLink.js";
 import { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import Container from "react-bootstrap/Container";
+// import Container from "react-bootstrap/Container";
 
 
 
@@ -36,7 +36,7 @@ function Recipes() {
     getRecipes();
   }, [])
 
-  console.log(recipe[0])
+  console.log(recipe)
 
 
   if(loading) {
@@ -47,12 +47,18 @@ function Recipes() {
   return (
     <>
       <HeadingPage>Recipes</HeadingPage>
-
+      <div className="search-sort">
+        <input type="text" id="searchRecipe" className="search-input" placeholder="Search recipe" />
+        <select>
+          <option>A-Z</option>
+          <option>Z-A</option>
+        </select>
+      </div>
       <div id="recipeListContainer">
         {recipe.map( (recipeInfo) => {
           const {id, attributes} = recipeInfo
           return (
-            <RecipeLink key={id} name={attributes.Name}/>
+            <RecipeLink key={id} id={id} name={attributes.Name}/>
           )
         })}
       </div>

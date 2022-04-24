@@ -25,7 +25,6 @@ import  Motimate from "../../images/motimate-logo.svg";
 import  Hamburger from "../../images/hamburger.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 
 
 function Navigation() {
@@ -128,7 +127,7 @@ function Navigation() {
               <Route path="/messages" element={<Messages />} />
               <Route path="/add-inventory-item" element={<NewInventoryItem />} />
               <Route path="/add-recipe" element={<NewRecipe />} />
-              <Route path="/details/:id" element={<RecipeDetails />} />
+              <Route path="/recipes/details/:id" element={<RecipeDetails />} />
               <Route path="/recipes" element={<Recipes />} />
             </Routes>
           </Container>

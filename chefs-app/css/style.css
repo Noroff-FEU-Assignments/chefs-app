@@ -44,6 +44,7 @@ nav .nav-list {
   transition: -webkit-transform 0.4s ease-in;
   transition: transform 0.4s ease-in;
   transition: transform 0.4s ease-in, -webkit-transform 0.4s ease-in;
+  z-index: 2;
 }
 
 nav .nav-list ul {
@@ -75,6 +76,7 @@ nav .nav-visible {
   transition: -webkit-transform 0.4s ease-in;
   transition: transform 0.4s ease-in;
   transition: transform 0.4s ease-in, -webkit-transform 0.4s ease-in;
+  z-index: 2;
 }
 
 nav .nav-visible ul {
@@ -523,24 +525,88 @@ h1 {
   }
 }
 
-a {
-  font-family: "muli", sans-serif;
-  color: #4c362c;
-  text-decoration: none;
+#recipeListContainer {
+  margin-top: 30px;
 }
 
-h1 {
-  text-align: center;
-  margin: 20px auto 10px auto;
-  color: #4c362c;
-  border-bottom: 1px solid #4c362c;
-  width: 40%;
+.link-container {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 90% 10%;
+      grid-template-columns: 90% 10%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 0 8px #4c362c;
+          box-shadow: 0 0 8px #4c362c;
+  background-color: #FFFCE8;
+  border-radius: 10px;
+  height: 40px;
+  margin: 15px auto;
+  -webkit-transition: .15s ease-in;
+  transition: .15s ease-in;
+}
+
+.link-container:hover {
+  -webkit-transform: scale(1.015);
+          transform: scale(1.015);
+}
+
+.recipe-list-links {
+  -ms-grid-column: 1;
+  grid-column: 1;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 15% 85%;
+      grid-template-columns: 15% 85%;
+  width: 90%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px 3px;
+}
+
+.recipe-list-links img {
+  width: 25px;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  margin-right: 10px;
+  -ms-grid-column: 1;
+  grid-column: 1;
+}
+
+.recipe-list-links h4 {
+  margin: 0;
   position: relative;
+  -ms-grid-column: 2;
+  grid-column: 2;
+}
+
+.recipe-list-links:hover {
+  color: #4c362c;
+}
+
+.recipe-list-links h4:before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 40px;
+  top: -8px;
+  left: -10px;
+  background-color: #BA2126;
+}
+
+.pen-icon {
+  color: #BA2126;
+  position: relative;
+  -ms-grid-column: 2;
+  grid-column: 2;
 }
 
 @media only screen and (min-width: 1000px) {
-  h1 {
-    margin-top: 40px;
+  .link-container {
+    width: 70%;
   }
 }
 /*# sourceMappingURL=style.css.map */
