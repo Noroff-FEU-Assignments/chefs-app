@@ -1,4 +1,4 @@
-import HeadingPage from "../../components/layout/HeadingPage.js"
+import HeadingPage from "../../components/layout/HeadingPage.jsx"
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";

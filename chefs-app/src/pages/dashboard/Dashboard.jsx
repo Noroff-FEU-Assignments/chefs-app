@@ -1,4 +1,4 @@
-import HeadingPage from "../../components/layout/HeadingPage.js";
+import HeadingPage from "../../components/layout/HeadingPage.jsx";
 import { Helmet } from "react-helmet";
 import { Parser } from "marked";
 import { useState, useEffect} from "react";

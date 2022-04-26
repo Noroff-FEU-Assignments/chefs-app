@@ -1,5 +1,5 @@
-import Navigation from "./components/layout/Navigation.js";
-import Footer from "./components/layout/Footer.js";
+import Navigation from "./components/layout/Navigation.jsx";
+import Footer from "./components/layout/Footer.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./sass/style.scss";
 

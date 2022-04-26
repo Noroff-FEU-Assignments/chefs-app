@@ -1,7 +1,7 @@
-import HeadingPage from "../../components/layout/HeadingPage.js";
+import HeadingPage from "../../components/layout/HeadingPage.jsx";
 import { Helmet } from "react-helmet";
 import { api } from "../../constants/api.js";
-import RecipeLink from "./RecipeLink.js";
+import RecipeLink from "./RecipeLink.jsx";
 import { useState, useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
