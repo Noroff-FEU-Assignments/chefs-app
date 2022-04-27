@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { api } from "../../constants/api.js";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Spinner from "react-bootstrap/Spinner";
+import Spinner from "../../utilities/Spinner.jsx";
 import { marked } from "marked";
 
 
@@ -38,7 +38,7 @@ function RecipeDetails() {
   
   console.log(details);
   if (loading) {
-    return <Spinner animation="grow" />
+    return <Spinner />
   }
 
   const getMarkdownText = (text) => {

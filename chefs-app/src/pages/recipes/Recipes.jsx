@@ -3,7 +3,10 @@ import { Helmet } from "react-helmet";
 import { api } from "../../constants/api.js";
 import RecipeLink from "./RecipeLink.jsx";
 import { useState, useEffect } from "react";
-import Spinner from "react-bootstrap/Spinner";
+import Spinner from "../../utilities/Spinner.jsx";
+import SystemMessage from "../../utilities/SystemMessage.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
 
@@ -30,7 +33,8 @@ function Recipes() {
         }
 
       } catch(error) {
-        console.log(error)
+        console.log(error);
+        <SystemMessage type={"message error"} content={"Something went wrong"} />
 
       } finally {
         setLoading(false);
@@ -39,12 +43,9 @@ function Recipes() {
     getRecipes();
   }, [url])
 
-  // console.log(recipes)
-
-
-
+  
   if(loading) {
-    return <Spinner animation="grow" />
+    return <Spinner />
   };
 
   const searchItems = (searchValue) => {
@@ -68,12 +69,9 @@ function Recipes() {
         <title>Recipes | Chef's App</title>
       </Helmet>
       <HeadingPage>Recipes</HeadingPage>
-      <div className="search-sort">
+      <div className="search">
         <input onChange={(e) => searchItems(e.target.value)} type="text" id="searchRecipe" className="search-input" placeholder="Search recipe" />
-        <select>
-          <option>A-Z</option>
-          <option>Z-A</option>
-        </select>
+        <FontAwesomeIcon icon={solid('search')} className="search-icon" />
       </div>
       <div id="recipeListContainer">
         {search.length >= 1 ? (

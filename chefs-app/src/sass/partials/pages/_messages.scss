@@ -1,0 +1,66 @@
+.modalbtn {
+  width: 90%;
+  margin: 15px auto;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  justify-items: start;
+  box-shadow: 0 0 5px map-get($colours, "text");
+  background-color: map-get($colours, "primary");
+  border-radius: 10px;
+  border: none;
+  color: map-get($colours, "text");
+  position: relative;
+  transform: translateY(0%);
+  transition:  all .1s ease-in;
+
+
+  &:hover {
+    background-color: map-get($colours, "primary");
+    color: map-get($colours, "text");
+    transform: translateY(-5%);
+    box-shadow: 0 3px 5px map-get($colours, "text");
+  }
+
+  & .from, .subject {
+    font-weight: 600;
+  }
+
+  & .from {
+    grid-column: 1;
+  }
+
+  & .subject {
+    grid-column: 2;
+    
+  }
+
+   
+  & .subject:before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 36px;
+    top: 0px;
+    margin-left: -10px;
+    background-color: map-get($colours, "secondary");
+  } 
+  
+}
+
+@media only screen and (min-width: 1000px) {
+  .modalbtn {
+    width: 700px;
+
+  }
+}
+
+
+@media only screen and (min-width: 1300px) {
+  .modalbtn {
+    width: 850px;
+
+  }
+  
+
+}
+

@@ -1,18 +1,24 @@
 import HeadingPage from "../../components/layout/HeadingPage.jsx";
 import { Helmet } from "react-helmet";
 import { api } from "../../constants/api.js";
-import { useState, useEffect } from "react";
-import SystemMessage from "../../utilities/SystemMessage.js";
-import Spinner from "react-bootstrap/Spinner";
+import { React, useState, useEffect } from "react";
+import SystemMessage from "../../utilities/SystemMessage.jsx";
+import Spinner from "../../utilities/Spinner.jsx";
+import Button from "react-bootstrap/Button";
+import MessageModal from "./MessageModal.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
-
-const messages_URL = api + "/messages";
 
 
 function Messages() {
+  const messages_URL = api + "/messages";
+
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(true);
-  
+  const [search, setSearch] = useState("");
+  const [filteredMessages, setFilteredMessages] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
 
 
   useEffect( () => {
@@ -40,12 +46,22 @@ function Messages() {
   }, [messages_URL])
 
   if (loading) {
-    <Spinner animation="grow" />
+    <Spinner />
   }
 
+  const searchItems = (searchValue) => {
+    setSearch(searchValue)
 
+    if (search !== "") {
+      const filteredData = messages.filter( (message) => {      
+      return Object.values(message.attributes.Title).join("").toLowerCase().includes(search.toLowerCase()) || Object.values(message.attributes.Chefs_name).join("").toLowerCase().includes(search.toLowerCase());
+      })
+      setFilteredMessages(filteredData);
 
-
+    } else {
+      setFilteredMessages(messages)
+    }
+  }
 
   return (
     <>
@@ -53,8 +69,96 @@ function Messages() {
         <title>Messages | Chef's App</title>
       </Helmet>
       <HeadingPage>Messages</HeadingPage>
+      <div className="search">
+        <input onChange={(e) => searchItems(e.target.value)} type="text" id="searchMessage" className="search-input" placeholder="Search" />
+        <FontAwesomeIcon icon={solid('search')} className="search-icon" />
+      </div>
+      <div id="recipeListContainer">
+        {search.length >= 1 ? (
+          filteredMessages.map( (message) => {
+            const {id, attributes} = message
+            return (
+              <div key={id}>
+              <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
+              <div>
+                <span className="from">From:</span> <span className="chefs-name">{attributes.Chefs_name} | {attributes.Title}</span>
+              </div> 
+              <div className="subject">
+                <span >{attributes.Subject}</span>
+              </div>
+              </Button>
+                
 
-    
+              <MessageModal 
+                title={attributes.Title}
+                name={attributes.Chefs_name}
+                subject={attributes.Subject}
+                message={attributes.Message}
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              />
+            </div>
+          )  
+          }) 
+          ) : (
+              messages.map( (message) => {
+                const {id, attributes} = message
+                return (
+                  <div key={id}>
+                <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
+                <div>
+                  <span className="from">From:</span> <span className="chefs-name">{attributes.Chefs_name} | {attributes.Title}</span>
+                </div> 
+                <div className="subject">
+                  <span >{attributes.Subject}</span>
+                </div>
+                </Button>
+                  
+
+                <MessageModal 
+                  title={attributes.Title}
+                  name={attributes.Chefs_name}
+                  subject={attributes.Subject}
+                  message={attributes.Message}
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                />
+              </div>
+                )
+              })
+            
+            )
+      } 
+      </div>
+
+
+      {/* {
+        messages.map( (message) => {
+          const {id, attributes} = message
+          return (
+              <div key={id}>
+                <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
+                <div>
+                  <span className="from">From:</span> <span className="chefs-name">{attributes.Chefs_name}</span>
+                </div> 
+                <div className="subject">
+                  <span >{attributes.Subject}</span>
+                </div>
+                </Button>
+                  
+
+                <MessageModal 
+                  title={attributes.Title}
+                  name={attributes.Chefs_name}
+                  subject={attributes.Subject}
+                  message={attributes.Message}
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                />
+              </div>
+        )  
+        }) 
+      } */}
     </>
   )
 }
