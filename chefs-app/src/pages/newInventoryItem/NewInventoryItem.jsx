@@ -15,21 +15,39 @@ const schema = yup.object().shape({
   product: yup.string().required("Product's name").min(3, "Minimum 3 characters"),
   price: yup.number(),
   discount: yup.number(),
-  finalprice: yup.string(),
+  finalprice: yup.number(),
   unit: yup.string().required("Please choose a unit").oneOf(unitChoice),
   area: yup.string().required("Please choose an area").oneOf(areaChoice),
 })
 
 
 function NewInventoryItem() {
-  const { register, handleSubmit, reset, formState: {errors}} = useForm({
+  const [productPrice, setProductPrice] = useState(0);
+  const [discount, setDiscount] = useState(0);
+
+
+  const { register, handleSubmit, setValue, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
+
+  useEffect( () => {
+    let finalPrice = 0
+
+    if(productPrice !== 0) {
+      if(discount === 0) {
+        finalPrice = productPrice;
+      } else {
+        finalPrice = (productPrice - (productPrice * (discount / 100)) );
+      }
+    }
+
+    setValue("finalprice", finalPrice);
+  }, [productPrice, discount, setValue]);
 
 
   function onSubmit(data) {
     console.log(data)
-    showMessage = <SystemMessage content={`${data.product} was added succesfully to recipes`} type={"message success"} />;
+    showMessage = <SystemMessage content={`${data.product} was added succesfully to inventory`} type={"message success"} />;
   };
 
   const unitOptions = unitChoice.map( (unit, key) => (
@@ -44,30 +62,16 @@ function NewInventoryItem() {
     </option>
   ))
 
-  // let justNum = 3;
-  // let valueSum = "";
 
-  const [input, setInput] = useState({
-    num1: 0,
-    num2: 0,
-  });
+  function handleDiscount(event) {
 
-  const [result, setResult] = useState("");
-  
-  // console.log(result)
+    if(event.target.name === "price") {
+      setProductPrice(event.target.value);
+    }
 
-  // useEffect( () => {
-  //   setResult(input.num1 + input.num2)
-  // }, [input]);
-  useEffect( () => {
-    setResult(parseFloat(input.num1) + parseFloat(input.num2))
-  }, [input]);
-
-  const handleInput = (event) => {
-    setInput({
-      ...input,
-      [event.target.name]: event.target.value
-    });
+    if(event.target.name === "discount") {
+      setDiscount(event.target.value);
+    }
   }
 
 
@@ -89,19 +93,19 @@ function NewInventoryItem() {
 
         <Form.Group className="mb-3">
           <Form.Label>Price (kr.)</Form.Label>
-          <Form.Control {...register("price")} onChange={handleInput} type="number" name="num1" value={input.num1} required/>
+          <Form.Control {...register("price")} onChange={handleDiscount} type="number" name="price" />
           {errors.price && <span className="form-error">{errors.price.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Discount (%)</Form.Label>
-          <Form.Control {...register("discount")} onChange={handleInput} type="number" name="num2" value={input.num2}/>
+          <Form.Control {...register("discount")} onChange={handleDiscount}  name="discount" />
           {errors.discount && <span className="form-error">{errors.discount.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Final Price</Form.Label>
-          <Form.Control {...register("finalprice")} value={result} disabled/>
+          <Form.Control {...register("finalprice")} disabled/>
           {errors.finalprice && <span className="form-error">{errors.finalprice.message}</span>}
         </Form.Group>
 

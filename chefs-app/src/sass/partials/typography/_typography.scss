@@ -12,9 +12,9 @@ h1 {
   margin: 20px auto 10px auto;
   color: map-get($colours, "text");
   border-bottom: 1px solid map-get($colours, "text");
-  width: 40%;
+  width: 60%;
   position: relative;
-  font-size: 2rem;
+  font-size: 1.6rem;
 
   // &::before {
   //   content: '';

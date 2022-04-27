@@ -2,7 +2,9 @@ import HeadingPage from "../../components/layout/HeadingPage.jsx";
 import { Helmet } from "react-helmet";
 import { Parser } from "marked";
 import { useState, useEffect} from "react";
-import Spinner from "react-bootstrap/Spinner";
+import Spinner from "../../utilities/Spinner.jsx";
+import SystemMessage from "../../utilities/SystemMessage.jsx";
+import { api } from "../../constants/api.js";
 import Component from "react"
 
 const RSS_url = "https://www.mattilsynet.no/mat_og_vann/?service=rss";
@@ -11,28 +13,39 @@ const RSS_url = "https://www.mattilsynet.no/mat_og_vann/?service=rss";
 // let parser = new Parser();
 
 function Dashboard() {
-  // const [loading, setLoading] = useState(true)
+  const url = api + "/announcements";
 
-  // useEffect( () => {
-  //   async function getNews() {
-  //     try {
-  //       const response = await parser.parseURL(RSS_url);
+  const [announcements, setAnnouncements] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  //       console.log(response)
-  //     } catch(error) {
-  //       console.log(error)
+
+  useEffect( () => {
+    async function getAnnouncements() {
+      try {
+        const response = await fetch(url)
+
+        if(response.ok) {
+          const results = await response.json();
+          console.log(results);
+          setAnnouncements(results.data);
+          
+        }
+
+      } catch(error) {
+        console.log(error);
+        <SystemMessage type={"message error"} content={"Something went wrong"} />
+
+      } finally {
+        setLoading(false);
+      }
+    }
+    getAnnouncements();
+  }, [url])
+
   
-  //     } finally {
-  //       setLoading(false)
-  //     }
-  
-  //   }
-  //  getNews() 
-  // }, [RSS_url])
-
-  // if (loading) {
-  //   return <Spinner animation="glow" />
-  // }
+  if(loading) {
+    return <Spinner />
+  };
 
 
   return (
