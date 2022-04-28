@@ -54,7 +54,7 @@ function Messages() {
 
     if (search !== "") {
       const filteredData = messages.filter( (message) => {      
-      return Object.values(message.attributes.Title).join("").toLowerCase().includes(search.toLowerCase()) || Object.values(message.attributes.Chefs_name).join("").toLowerCase().includes(search.toLowerCase());
+      return Object.values(message.attributes.title).join("").toLowerCase().includes(search.toLowerCase()) || Object.values(message.attributes.Chefs_name).join("").toLowerCase().includes(search.toLowerCase());
       })
       setFilteredMessages(filteredData);
 
@@ -81,19 +81,19 @@ function Messages() {
               <div key={id}>
               <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
               <div>
-                <span className="from">From:</span> <span className="chefs-name">{attributes.Chefs_name} | {attributes.Title}</span>
+                <span className="from">From:</span> <span className="chefs-name">{attributes.chefs_name} | {attributes.title}</span>
               </div> 
               <div className="subject">
-                <span >{attributes.Subject}</span>
+                <span >{attributes.subject}</span>
               </div>
               </Button>
                 
 
               <MessageModal 
-                title={attributes.Title}
-                name={attributes.Chefs_name}
-                subject={attributes.Subject}
-                message={attributes.Message}
+                title={attributes.title}
+                name={attributes.chefs_name}
+                subject={attributes.subject}
+                message={attributes.message}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
               />
@@ -107,19 +107,19 @@ function Messages() {
                   <div key={id}>
                 <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
                 <div>
-                  <span className="from">From:</span> <span className="chefs-name">{attributes.Chefs_name} | {attributes.Title}</span>
+                  <span className="from">From:</span> <span className="chefs-name">{attributes.chefs_name} | {attributes.title}</span>
                 </div> 
                 <div className="subject">
-                  <span >{attributes.Subject}</span>
+                  <span >{attributes.subject}</span>
                 </div>
                 </Button>
                   
 
                 <MessageModal 
-                  title={attributes.Title}
-                  name={attributes.Chefs_name}
-                  subject={attributes.Subject}
-                  message={attributes.Message}
+                  title={attributes.title}
+                  name={attributes.chefs_name}
+                  subject={attributes.subject}
+                  message={attributes.message}
                   show={modalShow}
                   onHide={() => setModalShow(false)}
                 />

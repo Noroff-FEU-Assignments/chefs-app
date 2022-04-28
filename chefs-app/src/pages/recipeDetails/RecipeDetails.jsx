@@ -49,18 +49,18 @@ function RecipeDetails() {
   return (
     <>
     <Helmet>
-      <title>{details.Name}</title>
+      <title>{details.name}</title>
     </Helmet>
-    <HeadingPage>{details.Name}</HeadingPage>
+    <HeadingPage>{details.name}</HeadingPage>
     <div id="recipeContainer">
       <div id="ingredients">
         <h2>Ingredients</h2>
-        <div dangerouslySetInnerHTML={getMarkdownText(details.Ingredients)}></div>
+        <div dangerouslySetInnerHTML={getMarkdownText(details.ingredients)}></div>
       </div>
       <div className="separator"></div>
       <div id="instructions">
         <h2>Instructions</h2>
-        <div dangerouslySetInnerHTML={getMarkdownText(details.Instructions)}></div>
+        <div dangerouslySetInnerHTML={getMarkdownText(details.instructions)}></div>
       </div>
     </div>
     </>

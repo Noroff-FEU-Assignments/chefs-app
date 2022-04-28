@@ -15,7 +15,6 @@ function Recipes() {
 
   const [recipes, setRecipe] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [search, setSearch] = useState("");
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   console.log(filteredRecipes);
@@ -53,7 +52,7 @@ function Recipes() {
 
     if (search !== "") {
       const filteredData = recipes.filter( (recipe) => {      
-      return Object.values(recipe.attributes.Name).join("").toLowerCase().includes(search.toLowerCase());
+      return Object.values(recipe.attributes.name).join("").toLowerCase().includes(search.toLowerCase());
       })
       setFilteredRecipes(filteredData);
 
@@ -78,14 +77,14 @@ function Recipes() {
           filteredRecipes.map( (recipeInfo) => {
             const {id, attributes} = recipeInfo
             return (
-            <RecipeLink key={id} id={id} name={attributes.Name}/>
+            <RecipeLink key={id} id={id} name={attributes.name}/>
           )  
           }) 
           ) : (
               recipes.map( (recipeInfo) => {
                 const {id, attributes} = recipeInfo
                 return (
-                  <RecipeLink key={id} id={id} name={attributes.Name}/>
+                  <RecipeLink key={id} id={id} name={attributes.name}/>
                 )
               })
             

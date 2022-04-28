@@ -1,10 +1,14 @@
-import React from 'react'
+import LoginForm from "./LoginForm.jsx";
+import { Helmet } from "react-helmet";
 
 function Login() {
   return (
-    <div>
-      <h1>Login</h1>
-    </div>
+    <>
+      <Helmet>
+        <title>Login | Chef's App</title>
+      </Helmet>
+      <LoginForm/>
+    </>
   )
 }
 

@@ -50,6 +50,26 @@ textarea {
 
 
 
+// Login Form
+#loginForm {
+  max-width: 500px;
+
+  & img {
+    display: block;
+    width: 60%;
+    margin: 10px auto;
+  }
+
+  & h3 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.4rem;
+  }
+}
+
+
+
+
 /* ----------- Tablet Styles ----------- */
 @media only screen and (min-width: 1000px) {
   .form-style {
@@ -58,6 +78,24 @@ textarea {
     margin: 20px auto;
   }
 
+
+// Login Form
+  #loginForm {
+    width: 600px;
+
+
+    & img {
+      display: block;
+      width: 40%;
+      margin: 10px auto;
+    }
+  
+    & h3 {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.8rem;
+    }
+  }
   
 }
 
