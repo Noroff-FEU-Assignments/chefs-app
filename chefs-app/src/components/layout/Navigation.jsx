@@ -25,10 +25,12 @@ import  Motimate from "../../images/motimate-logo.svg";
 import  Hamburger from "../../images/hamburger.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import LoginForm from "../../pages/login/LoginForm";
 
 
 function Navigation() {
   const [open, setOpen] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   function fadeInMenu() {
     setOpen(!open);
@@ -36,6 +38,7 @@ function Navigation() {
   
   return (
     <>
+    
       <header>
         <nav >
           <NavLink to="/" id="logo">
@@ -44,11 +47,16 @@ function Navigation() {
           <div className="user-burger">
             <div id="userIcons">
               <div>
-                <FontAwesomeIcon icon={solid('user')} id="userFigure" />
+                <FontAwesomeIcon icon={solid('user')} id="userFigure" onClick={() => setModalShow(true)}/>
                 <FontAwesomeIcon icon={solid('message')} id="messageIcon" />
               </div>
               <div>
-                <NavLink to="login" className="nav-link" id="loginLink">Login</NavLink>
+                {/* <NavLink to="login" className="nav-link" id="loginLink">Login</NavLink> */}
+                <Button variant="primary" onClick={() => setModalShow(true)}  id="loginBtn">Login</Button>
+                <LoginForm
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
               </div>
             </div>
             <img src={Hamburger} id="burgerBtn" onClick={fadeInMenu} alt="burger icon for menu"/>
@@ -117,6 +125,7 @@ function Navigation() {
             </div>
         </nav>
       </header>
+        
           {/* <Container>
             <Routes>
               <Route path="/" element={<Dashboard />} />

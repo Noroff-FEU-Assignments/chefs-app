@@ -2,6 +2,11 @@
   display: none;
 }
 
+.modal-content {
+  background-color: transparent;
+  border: none;
+}
+
 nav {
   display: grid;
   // position: sticky;
@@ -184,7 +189,7 @@ nav {
     color: map-get($colours, "details")
   }
 
-  & .nav-link {
+  & #loginBtn {
     display: none;
   }
 }
@@ -424,6 +429,10 @@ nav {
       height: 35px;
       width: 35px;
     }
+
+    & #userFigure:hover {
+      cursor: pointer;
+    }
     
     & #messageIcon {
       // position: absolute;
@@ -433,12 +442,38 @@ nav {
       // color: map-get($colours, "details")
     }
 
-    & #loginLink {
-      display: inline-block;
+    // & #loginLink {
+    //   display: inline-block;
+    //   margin: 0px 40px;
+    //   padding-top: 20px;
+    //   color: map-get($colours, "light-primary");
+      
+    // }
+
+    & #loginBtn {
+      display: block;
+      width: 5rem;
+      text-align: center;
+      font-size: 1.3rem;
       margin: 0px 40px;
       padding-top: 20px;
       color: map-get($colours, "light-primary");
-      
+      background-color: transparent;
+      border: none;
+      // transform: scale(0%);
+      transition: transform .2s ease-in;
+      // box-shadow: none;
+    }
+
+    & #loginBtn:hover {
+      cursor: pointer;
+      // font-weight: 600;
+      transform: scale(108%);
+      // font-size: 1.5rem;
+    }
+
+    & #loginBtn:focus {
+      box-shadow: none;
     }
   }
 }

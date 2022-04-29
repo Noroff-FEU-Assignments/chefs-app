@@ -7,7 +7,7 @@ function Login() {
       <Helmet>
         <title>Login | Chef's App</title>
       </Helmet>
-      <LoginForm/>
+      {/* <LoginForm/> */}
     </>
   )
 }

@@ -5,6 +5,7 @@ import Announcements from "./pages/announcements/Announcements.jsx";
 import Contact from "./pages/contact/Contact.jsx";
 import Inventory from "./pages/inventory/Inventory.jsx";
 import Login from "./pages/login/Login.jsx";
+import LoginForm from "./pages/login/LoginForm.jsx";
 import Messages from "./pages/messages/Messages.jsx";
 import NewInventoryItem from "./pages/newInventoryItem/NewInventoryItem.jsx";
 import NewRecipe from "./pages/newRecipe/NewRecipe.jsx";
@@ -14,7 +15,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import "./sass/style.scss";
 
+
 function App() {
+
   return (
     <>
       <Router>
@@ -25,7 +28,7 @@ function App() {
               <Route path="/write-announcement" element={<Announcements />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/inventory" element={<Inventory />} />
-              <Route path="/login" element={<Login />} />
+              {/* <Route path="/login" element={<Login />} /> */}
               <Route path="/messages" element={<Messages />} />
               <Route path="/add-inventory-item" element={<NewInventoryItem />} />
               <Route path="/add-recipe" element={<NewRecipe />} />

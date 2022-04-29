@@ -5,8 +5,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 import Logo from "../../images/logo-chefs.png";
 
 
@@ -18,12 +19,12 @@ const schema = yup.object().shape({
 })
 
 
-function LoginForm() {
+function LoginForm(props) {
   const { register, handleSubmit, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
-
-
+  
+  
   function onSubmit(data) {
     console.log(data)
     showMessage = <SystemMessage content={`was added succesfully to recipes`} type={"message success"} />;
@@ -32,12 +33,23 @@ function LoginForm() {
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>Login | Chef's App</title>
-      </Helmet>
+      </Helmet> */}
       {showMessage}
 
-      <Form onSubmit={handleSubmit(onSubmit)} className="form-style" id="loginForm">
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        id="loginModal"
+      >
+        {/* <Modal.Header closeButton>
+        </Modal.Header> */}
+        {/* <Modal.Body> */}
+
+        <Form onSubmit={handleSubmit(onSubmit)} className="form-style" id="loginForm">
         <img src={Logo} alt="logo" />
         <h3>Welcome 😃</h3>
         <Form.Group className="mb-3">
@@ -56,6 +68,53 @@ function LoginForm() {
           Login
         </Button>
       </Form>
+
+        {/* </Modal.Body> */}
+        {/* <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer> */}
+      </Modal>
+      
+      {/* <Form onSubmit={handleSubmit(onSubmit)} className="form-style" id="loginForm">
+        <img src={Logo} alt="logo" />
+        <h3>Welcome 😃</h3>
+        <Form.Group className="mb-3">
+          <Form.Label>Email</Form.Label>
+          <Form.Control {...register("username")} />
+          {errors.username && <span className="form-error">{errors.username.message}</span>}
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" {...register("password")} />
+          {errors.password && <span className="form-error">{errors.password.message}</span>}
+        </Form.Group>
+
+        <Button type="submit">
+          Login
+        </Button>
+      </Form> */}
+      {/* <Form onSubmit={handleSubmit(onSubmit)} className="form-style" id="loginForm">
+        <img src={Logo} alt="logo" />
+        <h3>Welcome 😃</h3>
+        <Form.Group className="mb-3">
+          <Form.Label>Email</Form.Label>
+          <Form.Control {...register("username")} />
+          {errors.username && <span className="form-error">{errors.username.message}</span>}
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" {...register("password")} />
+          {errors.password && <span className="form-error">{errors.password.message}</span>}
+        </Form.Group>
+
+        <Button type="submit">
+          Login
+        </Button>
+      </Form> */}
+
+      
     </>
   )
 }
