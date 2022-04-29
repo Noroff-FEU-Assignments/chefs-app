@@ -37,7 +37,7 @@ function Navigation() {
   return (
     <>
       <header>
-        <nav>
+        <nav >
           <NavLink to="/" id="logo">
             <img src={Logo} alt="Døgnvill logo" />
           </NavLink>
@@ -117,7 +117,7 @@ function Navigation() {
             </div>
         </nav>
       </header>
-          <Container>
+          {/* <Container>
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/write-announcement" element={<Announcements />} />
@@ -130,7 +130,7 @@ function Navigation() {
               <Route path="/recipes/details/:id" element={<RecipeDetails />} />
               <Route path="/recipes" element={<Recipes />} />
             </Routes>
-          </Container>
+          </Container> */}
       
     </>
   )

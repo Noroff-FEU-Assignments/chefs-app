@@ -5,7 +5,7 @@ function Footer() {
 
   
   return (
-    <footer className="fixed-bottom">
+    <footer>
       <div id="social-media-group">
         <a href="#">
           <FontAwesomeIcon icon={brands('twitter')} className="social-media-icon" />
