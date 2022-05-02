@@ -2,10 +2,10 @@
   display: none;
 }
 
-.modal-content {
-  background-color: transparent;
-  border: none;
-}
+// .modal-content {
+//   background-color: transparent;
+//   border: none;
+// }
 
 nav {
   display: grid;
@@ -127,6 +127,10 @@ nav {
     border: 1px solid map-get($colours, "secondary");
     color: map-get($colours, "secondary");
   }
+
+  &:focus {
+    box-shadow: none;
+  }
 }
 
 .external-links {
@@ -189,7 +193,7 @@ nav {
     color: map-get($colours, "details")
   }
 
-  & #loginBtn {
+  & #loginBtn, #loggedBtn {
     display: none;
   }
 }
@@ -450,7 +454,7 @@ nav {
       
     // }
 
-    & #loginBtn {
+    & #loginBtn, #loggedBtn {
       display: block;
       width: 5rem;
       text-align: center;
@@ -474,6 +478,12 @@ nav {
 
     & #loginBtn:focus {
       box-shadow: none;
+    }
+
+    & #loggedBtn {
+      font-size: 1rem;
+      width: 8rem;
+      margin-left: 1.4rem;
     }
   }
 }

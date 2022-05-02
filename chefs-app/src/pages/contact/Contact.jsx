@@ -6,8 +6,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
+import { api } from "../../constants/api";
+import axios from "axios";
+
+
 
 let showMessage = ""
+const url = api + "/messages"
+
 const subjectChoice = ["Equipment Service/Buy", "Other"];
 const schema = yup.object().shape({
   name: yup.string().required("Your name goes here...").min(3, "Minimum 3 characters"),
@@ -23,7 +29,23 @@ function Contact() {
   });
 
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
+    try {
+      const response = await axios.post(url, 
+        { data: {
+          chefs_name: data.name,
+          message: data.message,
+          subject: data.subject,
+          title: data.title,
+        }})
+
+
+    } catch(error) {
+      console.log(error);
+      showMessage = <SystemMessage content={"Failed to send, try again later"} type={"message error"} />
+    }
+
+
     console.log(data)
     reset();
     showMessage = <SystemMessage content={"Thank you for your message"} type={"message success"} />

@@ -26,30 +26,19 @@ header {
 }
 
 .container {
-  // flex-grow: 1;
-  // flex-shrink: 0;
-  // flex-basis: auto;
   margin-top: 190px;
   margin-bottom: 50px;
 }
 
 footer {
   margin-top: auto;
-  // flex-grow: 1;
-  // flex-shrink: 0;
-  // flex-basis: auto;
 }
-
-
-
-// .container {
-//   margin-top: 210px;
-// }
 
 
 @media only screen and (min-width: 1000px) {
 .container {
   margin-top: 120px;
+  width: 70%;
 }
 
 }

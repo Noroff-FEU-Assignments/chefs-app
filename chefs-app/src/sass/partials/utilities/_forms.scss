@@ -35,6 +35,10 @@
     color: map-get($colours, "primary");
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 15px rgba(255, 0, 0, 0.6);
   }
+
+  // & button:active {
+  //   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 15px rgba(255, 0, 0, 0.6);;
+  // }
 }
 
 .form-error {
@@ -86,7 +90,7 @@ textarea {
 
     & img {
       display: block;
-      width: 40%;
+      width: 60%;
       margin: 10px auto;
     }
   

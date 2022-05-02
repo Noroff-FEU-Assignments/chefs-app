@@ -6,8 +6,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
+import { api } from "../../constants/api";
+import { useContext } from "react";
+import AuthContext from "../../utilities/AuthContext.jsx";
+import axios from "axios";
 
 let showMessage = ""
+const url = api + "/recipes";
+
 const schema = yup.object().shape({
   recipeTitle: yup.string().required("Recipe title").min(3, "Minimum 3 characters"),
   ingredients: yup.string().required("Write the recipe's ingredients").min(10, "Minimum 10 characters"),
@@ -15,13 +21,39 @@ const schema = yup.object().shape({
 })
 
 
+
 function NewRecipe() {
   const { register, handleSubmit, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
 
+  const [auth, setAuth] = useContext(AuthContext);
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
+    try {
+      const response = await axios.post(url, 
+        { data: {
+          name: data.recipeTitle, 
+          ingredients: data.ingredients, 
+          instructions: data.instructions}
+        },
+        
+        { headers: {
+          Authorization: `Bearer ${auth.data.jwt}`,
+        }}  )
+        console.log(response)
+      // console.log(response.AxiosError.response);
+      // if (!response) {
+      //   showMessage = <SystemMessage content="Something went wrong" type="message warning" />;
+      // }
+
+    } catch(error) {
+      console.log(error);
+      showMessage = <SystemMessage content="Something went wrong" type="message warning" />
+    }
+
+
+
     console.log(data)
     reset();
     showMessage = <SystemMessage content={`${data.recipeTitle} was added succesfully to recipes`} type={"message success"} />;

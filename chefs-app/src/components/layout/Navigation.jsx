@@ -1,36 +1,85 @@
 import { BrowserRouter as Router, Routes, Route, NavLink} from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-// import { Link } from "react-router-dom";
-// import Navbar from "react-bootstrap/Navbar";
-// import Nav from "react-bootstrap/Nav";
+import { useNavigate} from "react-router-dom";
+import { useState, useContext } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Announcements from "../../pages/announcements/Announcements";
-import Contact from "../../pages/contact/Contact";
-import Dashboard from "../../pages/dashboard/Dashboard";
-import Inventory from "../../pages/inventory/Inventory";
-import Login from "../../pages/login/Login";
-import Messages from "../../pages/messages/Messages";
-import NewInventoryItem from "../../pages/newInventoryItem/NewInventoryItem";
-import NewRecipe from "../../pages/newRecipe/NewRecipe";
-import RecipeDetails from "../../pages/recipeDetails/RecipeDetails";
-import Recipes from "../../pages/recipes/Recipes";
-
-import  Logo from "../../images/logo-chefs.png";
-import  Esmiley from "../../images/esmiley-logo.svg";
-import  Planday from "../../images/planday-logo.svg";
-import  Motimate from "../../images/motimate-logo.svg";
-import  Hamburger from "../../images/hamburger.svg";
+import Logo from "../../images/logo-chefs.png";
+import Esmiley from "../../images/esmiley-logo.svg";
+import Planday from "../../images/planday-logo.svg";
+import Motimate from "../../images/motimate-logo.svg";
+import Hamburger from "../../images/hamburger.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import LoginForm from "../../pages/login/LoginForm";
-
+import AuthContext from "../../utilities/AuthContext.jsx";
 
 function Navigation() {
   const [open, setOpen] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+  const [auth, setAuth] = useContext(AuthContext);
+  const navigate = useNavigate();
+  // console.log(auth.data.user.username)
+
+  function logout() {
+    let confirmation = window.confirm("Are you sure you want to logout?");
+
+    if (confirmation) {
+      navigate("/");
+      setAuth(null);
+      localStorage.clear();
+    }
+  }
+
+  let loginLinks = <div>
+                      <Button variant="primary" onClick={() => setModalShow(true)}  id="loginBtn">Login</Button>
+                      <LoginForm
+                          show={modalShow}
+                          onHide={() => setModalShow(false)}
+                        />
+                    </div>
+
+  let adminLinks = ""
+
+  let messagesIcon = ""
+
+
+  if (auth) {
+    loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username}</Button>
+
+    adminLinks = <>
+              <div id="adminLinks">
+              <div className="nav-separator"></div>
+              <Dropdown>
+                <Dropdown.Toggle id="dropdown-basic">
+                  <NavLink to="#" className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Admin Panel<FontAwesomeIcon icon={solid('chevron-circle-down')} id="circleArrowDown"/>
+                  </NavLink>
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <ul>
+                    <NavLink to="/messages" className="nav-link">
+                      Messages
+                    </NavLink>
+                    <NavLink to="/add-recipe" className="nav-link">
+                      Add Recipe
+                    </NavLink>
+                    <NavLink to="/add-inventory-item" className="nav-link">
+                      Add Inventory Item
+                    </NavLink>
+                    <NavLink to="/write-announcement" className="nav-link">
+                      Write Announcement
+                    </NavLink>
+                    <Button className="nav-link" id="logoutBtn" onClick={logout}>
+                      Logout
+                    </Button>
+                  </ul>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+                  </>
+
+    messagesIcon = <FontAwesomeIcon icon={solid('message')} id="messageIcon" />
+  }
 
   function fadeInMenu() {
     setOpen(!open);
@@ -38,7 +87,6 @@ function Navigation() {
   
   return (
     <>
-    
       <header>
         <nav >
           <NavLink to="/" id="logo">
@@ -48,16 +96,9 @@ function Navigation() {
             <div id="userIcons">
               <div>
                 <FontAwesomeIcon icon={solid('user')} id="userFigure" onClick={() => setModalShow(true)}/>
-                <FontAwesomeIcon icon={solid('message')} id="messageIcon" />
+                {messagesIcon}
               </div>
-              <div>
-                {/* <NavLink to="login" className="nav-link" id="loginLink">Login</NavLink> */}
-                <Button variant="primary" onClick={() => setModalShow(true)}  id="loginBtn">Login</Button>
-                <LoginForm
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                  />
-              </div>
+              {loginLinks}
             </div>
             <img src={Hamburger} id="burgerBtn" onClick={fadeInMenu} alt="burger icon for menu"/>
             {/* <FontAwesomeIcon icon={solid('burger') } className="burger-menu" /> */}
@@ -77,39 +118,7 @@ function Navigation() {
               Contact
             </NavLink>
             </ul>
-            <div id="adminLinks">
-              <div className="nav-separator"></div>
-              <Dropdown>
-                <Dropdown.Toggle id="dropdown-basic">
-                  <NavLink to="#" className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Admin Panel<FontAwesomeIcon icon={solid('chevron-circle-down')} id="circleArrowDown"/>
-                  </NavLink>
-                  {/* <div  className="nav-link" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Admin Panel<FontAwesomeIcon icon={solid('chevron-circle-down')} id="circleArrowDown"/>
-                  </div> */}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <ul>
-                    <NavLink to="/messages" className="nav-link">
-                      Messages
-                    </NavLink>
-                    <NavLink to="/add-recipe" className="nav-link">
-                      Add Recipe
-                    </NavLink>
-                    <NavLink to="/add-inventory-item" className="nav-link">
-                      Add Inventory Item
-                    </NavLink>
-                    <NavLink to="/write-announcement" className="nav-link">
-                      Write Announcement
-                    </NavLink>
-                    <Button className="nav-link" id="logoutBtn">
-                      Logout
-                    </Button>
-                  </ul>
-                </Dropdown.Menu>
-              {/* <h2 className="nav-heading">Admin Panel</h2> */}
-              </Dropdown>
-            </div>
+            {adminLinks}
             <div className="nav-separator" id="navSeparatorRemove"></div>
             <h2 className="nav-heading" id="externalLinksHeading">Press to connect:</h2>
             <div className="external-links">

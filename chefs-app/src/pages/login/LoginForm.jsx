@@ -7,10 +7,15 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
+import { api, auth_token_admin } from "../../constants/api.js"
+import AuthContext from "../../utilities/AuthContext.jsx";
+import axios from "axios";
 // import { Helmet } from "react-helmet";
 import Logo from "../../images/logo-chefs.png";
 
 
+
+const url = api + "/auth/local";
 
 let showMessage = ""
 const schema = yup.object().shape({
@@ -23,21 +28,35 @@ function LoginForm(props) {
   const { register, handleSubmit, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
+
+  const [auth, setAuth] = useContext(AuthContext);
+  const navigate = useNavigate();
   
   
-  function onSubmit(data) {
+  async function onSubmit(data) {
+    // const response = await axios.post(url, {identifier: "admin@admin.com", password: "Pass1234"})
+    try {
+      const response = await axios.post(url, {identifier: data.username, password: data.password})
+      console.log(response)
+      console.log()
+
+
+
+      if (response.status === 200) {
+        setAuth(response);
+        navigate("/");
+      }
+
+    } catch(error) {
+      console.log(error);
+      showMessage = <SystemMessage content={"Wrong Username or Password"} type={"message error"} />
+    }
     console.log(data)
-    showMessage = <SystemMessage content={`was added succesfully to recipes`} type={"message success"} />;
   };
 
 
   return (
     <>
-      {/* <Helmet>
-        <title>Login | Chef's App</title>
-      </Helmet> */}
-      {showMessage}
-
       <Modal
         {...props}
         size="lg"
@@ -45,13 +64,11 @@ function LoginForm(props) {
         centered
         id="loginModal"
       >
-        {/* <Modal.Header closeButton>
-        </Modal.Header> */}
-        {/* <Modal.Body> */}
 
-        <Form onSubmit={handleSubmit(onSubmit)} className="form-style" id="loginForm">
+      <Form onSubmit={handleSubmit(onSubmit)} className="form-style" id="loginForm">
         <img src={Logo} alt="logo" />
         <h3>Welcome 😃</h3>
+        {showMessage}
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
           <Form.Control {...register("username")} />
@@ -68,53 +85,7 @@ function LoginForm(props) {
           Login
         </Button>
       </Form>
-
-        {/* </Modal.Body> */}
-        {/* <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer> */}
       </Modal>
-      
-      {/* <Form onSubmit={handleSubmit(onSubmit)} className="form-style" id="loginForm">
-        <img src={Logo} alt="logo" />
-        <h3>Welcome 😃</h3>
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control {...register("username")} />
-          {errors.username && <span className="form-error">{errors.username.message}</span>}
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" {...register("password")} />
-          {errors.password && <span className="form-error">{errors.password.message}</span>}
-        </Form.Group>
-
-        <Button type="submit">
-          Login
-        </Button>
-      </Form> */}
-      {/* <Form onSubmit={handleSubmit(onSubmit)} className="form-style" id="loginForm">
-        <img src={Logo} alt="logo" />
-        <h3>Welcome 😃</h3>
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control {...register("username")} />
-          {errors.username && <span className="form-error">{errors.username.message}</span>}
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" {...register("password")} />
-          {errors.password && <span className="form-error">{errors.password.message}</span>}
-        </Form.Group>
-
-        <Button type="submit">
-          Login
-        </Button>
-      </Form> */}
-
-      
     </>
   )
 }

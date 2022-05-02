@@ -6,8 +6,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
+import { api } from "../../constants/api";
+import { useContext } from "react";
+import AuthContext from "../../utilities/AuthContext.jsx";
+import axios from "axios";
+
 
 let showMessage = "";
+const url = api + "/announcements"
 const schema = yup.object().shape({
   announcementTitle: yup.string().required("Title of the announcement").min(3, "Minimum 3 characters"),
   announcementMessage: yup.string().required("Your announcement goes here").min(10, "Minimum 10 charactes"),
@@ -19,8 +25,26 @@ function Announcement() {
     resolver: yupResolver(schema)
   });
 
+  const [auth, setAuth] = useContext(AuthContext);
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
+    try {
+      const response = await axios.post(url,
+        { data: {
+          title: data.announcementTitle,
+          announcement: data.announcementMessage,
+        }},
+        
+        { headers: {
+          Authorization: `Bearer ${auth.data.jwt}`,
+        }})
+
+    } catch(error) {
+      console.log(error)
+    }
+
+
+
     console.log(data)
     showMessage = <SystemMessage content={`Your announcement is published`} type={"message success"} />;
   };
