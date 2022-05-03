@@ -7,9 +7,15 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
 import { useEffect, useState } from "react";
+import { api } from "../../constants/api";
+import { useContext } from "react";
+import AuthContext from "../../utilities/AuthContext.jsx";
+import axios from "axios";
 
 let showMessage = "";
-let unitChoice = ["g", "kg", "ml", "l", "stk", "handfull"];
+const url = api + "/products";
+
+let unitChoice = ["g", "kg", "ml", "l", "bag", "stk", "handfull"];
 let areaChoice = ["Walk-in fridge", "Walk-in freezer", "Fridge 1", "Fridge 2", "Freezer 1", "Freezer 2"]
 const schema = yup.object().shape({
   product: yup.string().required("Product's name").min(3, "Minimum 3 characters"),
@@ -45,7 +51,30 @@ function NewInventoryItem() {
   }, [productPrice, discount, setValue]);
 
 
-  function onSubmit(data) {
+  const [auth, setAuth] = useContext(AuthContext);
+
+  async function onSubmit(data) {
+    try {
+      const response = await axios.post(url,
+        { data: {
+          name: data.product,
+          unit: data.unit,
+          area: data.area,
+          price: data.finalprice
+        }},
+
+        { headers: {
+          Authorization: `Bearer ${auth.data.jwt}`,
+        }}
+      )
+      console.log(response)
+    } catch(error) {
+      console.log(error);
+      showMessage = <SystemMessage content={`Something wrong happened`} type={"message error"} />;
+    }
+
+
+
     console.log(data)
     showMessage = <SystemMessage content={`${data.product} was added succesfully to inventory`} type={"message success"} />;
   };

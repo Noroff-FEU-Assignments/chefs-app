@@ -28,7 +28,6 @@ function Recipes() {
           const results = await response.json();
           // console.log(results);
           setRecipe(results.data);
-          
         }
 
       } catch(error) {

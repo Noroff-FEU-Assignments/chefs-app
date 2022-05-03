@@ -4,6 +4,7 @@ import burger from "../../images/hamburger.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
+
 function RecipeLink({id, name}) {
   return (
     <>
