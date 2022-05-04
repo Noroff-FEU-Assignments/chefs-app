@@ -1,21 +1,71 @@
+// .table>:not(caption)>*>* {
+//   background-color: none;
+// }
+
 table {
   background-color: map-get($colours, "primary");
   box-shadow: 0 0 8px map-get($colours, "text");
   border-radius: 15px;
+  
 }
 
 thead {
   text-align: center;
   color: map-get($colours, "text");
+  
+  
+  & th:nth-child(1) {
+      border-radius: 15px;
+    }
 
   & th {
     font-weight: 400;
+    border: 1px solid black;
+    
   }
 }
 
-.td-name {
-  background-color: map-get($coloursTable, "products");
+.tr-product {
+
+  td {
+    border: 1px solid black;
+  }
+
+  & .td-name {
+    background-color: map-get($coloursTable, "products");
+    color: map-get($colours, "light-primary");
+  }
+
+  & .td-quantity {
+    background-color: #fff;
+  }
+
+  & input {
+    border: none;
+    width: 100%;
+    padding: 0;
+  }
+
+  // & input:focus {
+  //   border-color: map-get($colours, "secondary");
+  //   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+  // }
+
+  & .td-unit {
+    color: map-get($colours, "text");
+    background-color: map-get($coloursTable, "units");
+  }
+
+  & .td-price, .td-in-stock {
+    background-color: map-get($coloursTable, "prices");
+  }
+
+  .td-in-stock {
+    text-align: center;
+    color: map-get($colours, "secondary")
+  }
 }
+
 
 
 
