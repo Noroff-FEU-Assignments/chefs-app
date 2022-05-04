@@ -16,7 +16,7 @@ let showMessage = "";
 const url = api + "/products";
 
 let unitChoice = ["g", "kg", "ml", "l", "bag", "stk", "handfull"];
-let areaChoice = ["Walk-in fridge", "Walk-in freezer", "Fridge 1", "Fridge 2", "Freezer 1", "Freezer 2"]
+let areaChoice = ["Walk_in_fridge", "Walk_in_freezer", "Fridge_1", "Fridge_2", "Freezer_1", "Freezer_2"]
 const schema = yup.object().shape({
   product: yup.string().required("Product's name").min(3, "Minimum 3 characters"),
   price: yup.number(),
@@ -67,16 +67,18 @@ function NewInventoryItem() {
           Authorization: `Bearer ${auth.data.jwt}`,
         }}
       )
+
+      if (response.status === 200) {
+        showMessage = <SystemMessage content={`${data.product} was added succesfully to inventory`} type={"message success"} />;
+      } else {
+        showMessage = <SystemMessage content={`Something wrong happened`} type={"message error"} />;
+      }
       console.log(response)
+
     } catch(error) {
       console.log(error);
-      showMessage = <SystemMessage content={`Something wrong happened`} type={"message error"} />;
     }
-
-
-
     console.log(data)
-    showMessage = <SystemMessage content={`${data.product} was added succesfully to inventory`} type={"message success"} />;
   };
 
   const unitOptions = unitChoice.map( (unit, key) => (

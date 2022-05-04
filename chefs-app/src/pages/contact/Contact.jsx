@@ -14,7 +14,7 @@ import axios from "axios";
 let showMessage = ""
 const url = api + "/messages"
 
-const subjectChoice = ["Equipment Service/Buy", "Other"];
+const subjectChoice = ["Enquiry", "Other"];
 const schema = yup.object().shape({
   name: yup.string().required("Your name goes here...").min(3, "Minimum 3 characters"),
   title: yup.string().required("Message title").min(3, "Minimum 3 characters"),

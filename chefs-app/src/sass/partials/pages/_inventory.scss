@@ -1,0 +1,22 @@
+table {
+  background-color: map-get($colours, "primary");
+  box-shadow: 0 0 8px map-get($colours, "text");
+  border-radius: 15px;
+}
+
+thead {
+  text-align: center;
+  color: map-get($colours, "text");
+
+  & th {
+    font-weight: 400;
+  }
+}
+
+.td-name {
+  background-color: map-get($coloursTable, "products");
+}
+
+
+
+

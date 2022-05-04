@@ -7,12 +7,11 @@ import axios from "axios";
 import Table from "react-bootstrap/Table";
 import ProductRow from "./ProductRow.jsx";
 
-
 function Inventory() {
   const url = api + "/products";
   const [products, setProducts] = useState([]);
   
-  console.log(products)
+  // console.log(products)
   useEffect( () => {
     async function getProducts() {
       try {
@@ -29,11 +28,6 @@ function Inventory() {
     getProducts();
 }, [url])
 
-
-
-// let [sum, setSum] = useState(null)
-
-// console.log(sum)
   return (
     <>
     <Helmet>
@@ -54,12 +48,12 @@ function Inventory() {
         {products.map( (product) => {
           const {id, attributes} = product;
           return (
-            <ProductRow key={id} name={attributes.name} unit={attributes.unit} price={attributes.price} />
+            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} />
           )
         })}
         <tr className="tr-summary">
           <td colSpan={3}></td>
-          <td colSpan={0}>Sum</td>
+          <td colSpan={0}>Total</td>
           <td>0</td>
         </tr>
       </tbody>
