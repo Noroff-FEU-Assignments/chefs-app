@@ -6,7 +6,7 @@ table {
   background-color: map-get($colours, "primary");
   box-shadow: 0 0 8px map-get($colours, "text");
   border-radius: 15px;
-  
+  margin-top: 30px;
 }
 
 thead {

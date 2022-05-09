@@ -1,11 +1,11 @@
-import HeadingPage from "../../components/layout/HeadingPage.jsx";
+import SubHeadingPage from "../../components/layout/SubHeadingPage.jsx";
 import { Helmet } from "react-helmet";
 import { Parser } from "marked";
 import { useState, useEffect} from "react";
 import Spinner from "../../utilities/Spinner.jsx";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
 import { api } from "../../constants/api.js";
-import Component from "react"
+
 
 const RSS_url = "https://www.mattilsynet.no/mat_og_vann/?service=rss";
 
@@ -26,7 +26,7 @@ function News() {
 
         if(response.ok) {
           const results = await response.json();
-          console.log(results);
+          // console.log(results);
           setAnnouncements(results.data);
           
         }
@@ -50,15 +50,15 @@ function News() {
 
   return (
     <>
+    <SubHeadingPage>News</SubHeadingPage>
       {announcements.map( (announcement) => {
         return (
-        <div>
+        <div key={announcement.id}>
           <h2>{announcement.attributes.title}</h2>
           <p>{announcement.attributes.announcement}</p>
         </div>
         )
       })}
-      
     </>
   )
 }

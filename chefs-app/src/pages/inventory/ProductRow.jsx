@@ -1,48 +1,49 @@
 import { useState } from "react";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm} from "react-hook-form";
 import axios from "axios";
 import { api } from "../../constants/api.js";
 
 
-const schema = yup.object().shape({
-  quantity: yup.number(),
-})
-
-function ProductRow({productId, name, price, unit, quantity}) {
+function ProductRow({productId, name, price, unit, quantity, in_stock}) {
 
   const url = api + `/products/${productId}`;
-  const { register, handleSubmit, formState: {errors}} = useForm({
-    resolver: yupResolver(schema)
-  });
 
-  const [stock, setStock] = useState(0);
+  const [stock, setStock] = useState(in_stock);
+  const [myQuantity, setMyQuantity] = useState(quantity);
+  // console.log(stock);
   
-  async function updateProduct(data, e) {
-    setStock(Number(e.target.value) * price)
+  function updateProduct(e) {
+    const newQuantity = Number(e.target.value);
+    setStock(newQuantity * price);
+    setMyQuantity(e.target.value);
+  }
 
+  async function sendProduct() {
     try {
-      const putResponse = await axios.put(url,
-      { data: {
-        quantity: data.quantity
-      }});
-      console.log(data);
-      console.log(putResponse);
+      const putResponse = await axios.put(url, {
+        data: {
+          quantity: myQuantity,
+          in_stock: stock,
+        },
+      });
+      // console.log(putResponse);
     } catch(error) {
       console.log(error);
     }
   }
+  sendProduct();
 
   return(
     <>
       <tr className="tr-product">
         <td className="td-name">{name}</td>
-        <td className="td-quantity" onChange={handleSubmit(updateProduct)}><input type="number" {...register("quantity")}  /></td>
-        {/* <td className="td-quantity" onChange={handleSubmit(updateProduct)}><input type="number" {...register("quantity")}  value={quantity} /></td> */}
+        <td className="td-quantity">
+          <input type="number" onChange={ (e) => updateProduct(e)} value={myQuantity}  />
+        </td>
         <td className="td-unit">{unit}</td>
         <td className="td-price">{price}</td>
-        <td className="td-in-stock">{stock}</td>
+        <td className="td-in-stock">
+          {stock}
+        </td>
       </tr>
 
     </>
