@@ -6,7 +6,8 @@ import Spinner from "../../utilities/Spinner.jsx";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
 import { api } from "../../constants/api.js";
 import News from "./News.jsx"
-import ToDoList from "./ToDoList.jsx"
+import PrepList from "./PrepList.jsx"
+import Checklist from "./Checklist.jsx"
 
 // const RSS_url = "https://www.mattilsynet.no/mat_og_vann/?service=rss";
 
@@ -55,8 +56,9 @@ function Dashboard() {
         <title>Dashboard | Chef's App</title>
       </Helmet>
       <HeadingPage>Dashboard</HeadingPage>
-      <ToDoList />
-      {/* <News /> */}
+      {/* <PrepList />
+      <News /> */}
+      <Checklist />
       
     </>
   )
