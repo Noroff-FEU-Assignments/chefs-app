@@ -53,9 +53,9 @@ function News() {
     <SubHeadingPage>News</SubHeadingPage>
       {announcements.map( (announcement) => {
         return (
-        <div key={announcement.id}>
-          <h2>{announcement.attributes.title}</h2>
-          <p>{announcement.attributes.announcement}</p>
+        <div key={announcement.id} className="announcements-item">
+          <h3 className="announcements-title">{announcement.attributes.title}</h3>
+          <p className="announcements-content">{announcement.attributes.announcement}</p>
         </div>
         )
       })}

@@ -57,28 +57,25 @@ function PrepList() {
   
   return (
     <>
-    <SubHeadingPage>Testing to do</SubHeadingPage>
-      <Form onSubmit={handleSubmit}>
-          <Form.Control type="text" value={value} className="input" onChange={handleInput}  placeholder="Add to list" />
-          <Button type="submit">+</Button>
+    <SubHeadingPage>Prep-List</SubHeadingPage>
+      <Form onSubmit={handleSubmit} id="prepListForm">
+          <Form.Control type="text" value={value} id="prepListInput" onChange={handleInput}  placeholder="Add to list" />
+          <Button id="prepListBtn" type="submit">Add</Button>
       </Form>    
+      
         {items.map( (item) => {
           return (
-            <>
-              <div key={item.id}>
-                <span style={{textDecoration: item.isdone ? "line-through" : ""}}
-                      className="to-do-span"
-                      onClick={ () => handleDone(item.id) }>
-                      {/* onClick={ (item) => {item.isdone = setDone((prevState) => !prevState)}}> */}
-                      {/* onClick={(item.isdone) => setDone(true)}> */}
+            <div key={item.id} className="prep-list-item">
+                <div style={{textDecoration: item.isdone ? "line-through" : "", textDecorationColor: item.isdone ? "#BA2126" : ""}}
+                    onClick={ () => handleDone(item.id) }>
                       {item.text}
-                </span> 
-                <button onClick={() => {handleDelete(item.id)}}>X</button>
-              </div>              
-            </>
+                </div>                  
+                <button type="button" onClick={() => {handleDelete(item.id)}}>x</button>
+            </div>
           )
           })
         }
+      
     </>
   )
 }

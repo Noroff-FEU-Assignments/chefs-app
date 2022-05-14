@@ -1,3 +1,193 @@
-.done {
-  text-decoration: line-through;
+#dashboardContainer {
+  margin-top: 20px;
+  display: grid;
+  row-gap: 20px;
+}
+
+#prepListContainer {
+  grid-row: 1;
+  margin-bottom: 3rem;
+}
+
+#checkListContainer {
+  padding-top: 3rem;
+  margin-bottom: 3rem;
+  grid-row: 2;
+  border-top: 2px solid map-get($colours, "secondary");
+}
+
+#newsContainer {
+  padding-top: 3rem;
+  margin-bottom: 3rem;
+  grid-row: 3;
+  border-top: 2px solid map-get($colours, "secondary");  
+}
+
+
+
+/* ----------- Prep List ----------- */
+#prepListForm {
+  width: 80%;
+  margin: 5px auto;
+  position: relative;
+
+  & #prepListInput {
+    border-color: map-get($colours, "secondary");
+  }
+
+  & #prepListInput:focus {
+    border-color: map-get($colours, "secondary");
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+  }
+
+  & #prepListBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: map-get($colours, "secondary");
+    border-color: map-get($colours, "secondary");
+  }
+
+}
+
+.prep-list-item {
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // border: 1px solid map-get($colours, "details");
+  padding: 10px 0;
+  text-decoration-color: map-get($colours, "secondary");
+
+  & div {
+    width: 85%;
+    color: map-get($colours, "text");
+    border: 1px solid rgb(202, 202, 202);
+    // border: 1px solid map-get($colours, "text");
+    border-radius: 8px;
+    padding: 3px 0;
+    font-size: 1.1rem;
+    
+  }
+
+  & div:before {
+    content: "\2022";
+    color: map-get($colours, "secondary");
+    font-weight: bold;
+    display: inline-block; 
+    width: 1.4rem;
+    margin-left: -1rem;
+  }
+
+  & button {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 2px solid map-get($colours, "secondary");
+    background-color: transparent;
+    color: map-get($colours, "secondary");
+    font-weight: 600;
+    
+  }
+
+}
+
+
+
+
+/* ----------- Routines ----------- */
+.routines-item {
+  width: 80%;
+  margin: 5px auto;
+
+  & label {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+
+/* ----------- News ----------- */
+.announcements-item {
+  width: 80%;
+  margin: 10px auto 20px auto;
+  border-bottom: 1px solid map-get($colours, "details");
+  border-radius: 7px;
+  padding: 6px 0;
+
+  & .announcements-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+
+  & .announcements-title:before {
+    content: "\2022";
+    color: map-get($colours, "secondary");
+    font-weight: bold;
+    display: inline-block; 
+    width: 1.4rem;
+    margin-left: -1rem;
+  }
+
+  & .announcements-content {
+    padding-left: 5px;
+  }
+}
+
+// .announcements-item:before {
+//   content: "\2022";
+//   color: map-get($colours, "secondary");
+//   font-weight: bold;
+//   display: inline-block; 
+//   width: 1.4rem;
+//   margin-left: -1rem;
+// }
+
+@media only screen and (min-width: 1000px) {
+  #desktop-divider-one, #desktop-divider-two {
+    display: none;
+  }
+  
+  #dashboardContainer {
+    margin: 60px auto 80px auto;
+    display: grid;
+    row-gap: 0px;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+
+    & h2 {
+      text-align: center;
+    }
+  }
+
+  #prepListContainer {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #checkListContainer {
+    padding-top: 0;
+    margin-bottom: 0;
+    grid-column: 2;
+    grid-row: 1;
+    border-left: 3px solid map-get($colours, "secondary");
+    border-top: 0;
+  }
+
+  #newsContainer {
+    padding-top: 2rem;
+    grid-column: 1/3;
+    grid-row: 2;
+    border-top: 3px solid map-get($colours, "secondary");    
+  }
+}
+
+
+@media only screen and (min-width: 1300px) {
+  
+  
+
 }

@@ -34,6 +34,19 @@ h1 {
 
 }
 
+.page-sub-heading {
+  text-align: left;
+  margin: 0px auto 20px auto;
+  color: map-get($colours, "text");
+  border-bottom: 1px solid map-get($colours, "text");
+  width: 80%;
+  position: relative;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+
+
 @media only screen and (min-width: 1000px) {
   h1 {
     margin-top: 40px;

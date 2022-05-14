@@ -2,6 +2,8 @@ import { api } from "../../constants/api";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import SubHeadingPage from "../../components/layout/SubHeadingPage";
+import Routine from "./Routine.jsx";
 
 
 function Checklist() {
@@ -28,14 +30,11 @@ function Checklist() {
 
   return (
     <>
+    <SubHeadingPage>Routines</SubHeadingPage>
       {routines.map( (routine) => {
+        const {id, attributes} = routine;
         return(
-          <>
-          <div>
-            <input type="checkbox" />
-            {routine.attributes.name}
-          </div>
-          </>
+          <Routine key={id} routineId={id} name={attributes.name} done={attributes.done}/>
         )
       })}
     </>

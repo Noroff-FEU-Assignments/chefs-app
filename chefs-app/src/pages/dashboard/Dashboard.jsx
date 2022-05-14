@@ -8,6 +8,8 @@ import { api } from "../../constants/api.js";
 import News from "./News.jsx"
 import PrepList from "./PrepList.jsx"
 import Checklist from "./Checklist.jsx"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 // const RSS_url = "https://www.mattilsynet.no/mat_og_vann/?service=rss";
 
@@ -55,10 +57,18 @@ function Dashboard() {
       <Helmet>
         <title>Dashboard | Chef's App</title>
       </Helmet>
-      <HeadingPage>Dashboard</HeadingPage>
-      {/* <PrepList />
-      <News /> */}
-      <Checklist />
+      {/* <HeadingPage>Dashboard</HeadingPage> */}
+      <div id="dashboardContainer">
+        <div id="prepListContainer">
+          <PrepList  />
+        </div>
+        <div id="checkListContainer">
+          <Checklist />
+        </div>
+        <div id="newsContainer">
+          <News />
+        </div>
+      </div>
       
     </>
   )
