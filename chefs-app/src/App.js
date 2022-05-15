@@ -4,6 +4,7 @@ import Dashboard from "./pages/dashboard/Dashboard.jsx";
 import Announcements from "./pages/announcements/Announcements.jsx";
 import Contact from "./pages/contact/Contact.jsx";
 import Inventory from "./pages/inventory/Inventory.jsx";
+import EditRecipe from "./pages/editRecipe/EditRecipe.jsx";
 import { AuthProvider } from "./utilities/AuthContext.jsx";
 // import Login from "./pages/login/Login.jsx";
 // import LoginForm from "./pages/login/LoginForm.jsx";
@@ -53,7 +54,7 @@ function App() {
               <Route path="/messages" element={<Messages />} />
               <Route path="/add-inventory-item" element={<NewInventoryItem />} />
               <Route path="/add-recipe" element={<NewRecipe />} />
-              
+              <Route path="/recipes/details/:id/edit-recipe/:id" element={<EditRecipe />} />
             </Routes>
           </Container>
         <Footer />

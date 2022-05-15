@@ -76,7 +76,7 @@
   display: flex;
   flex-direction: column;
 
-  & button {
+  & button, .edit-btn {
     height: 2.5rem;
     width: 15rem;
     border: none;
@@ -88,6 +88,9 @@
 
   & .edit-btn {
     background-color: map-get($colours, "details");
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
   }
 
   & .delete-btn {
@@ -121,6 +124,36 @@
       padding-top: 0rem;
       padding-left: 2rem;
     }
+
+}
+
+
+#admin-buttons {
+  margin: 150px auto 10px auto;
+  gap: 3rem;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  & button {
+    height: 2.5rem;
+    width: 15rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 8px map-get($colours, "text");
+    color: #fff;
+  }
+
+
+  & .edit-btn {
+    background-color: map-get($colours, "details");
+  }
+
+  & .delete-btn {
+    background-color: map-get($colours, "secondary");
+  }
+
 
 }
 }

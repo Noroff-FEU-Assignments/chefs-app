@@ -1,19 +1,23 @@
 import HeadingPage from "../../components/layout/HeadingPage.jsx";
-import { Helmet } from "react-helmet";
-import { api } from "../../constants/api.js";
-import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
 import Spinner from "../../utilities/Spinner.jsx";
+import { api } from "../../constants/api.js";
+import AuthContext from "../../utilities/AuthContext.jsx";
+import { Helmet } from "react-helmet";
+import { useState, useEffect, useContext } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { marked } from "marked";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import axios from "axios";
 
 
 
 function RecipeDetails() {
   const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const [auth, setAuth] = useContext()
+  const [auth, setAuth] = useContext(AuthContext)
+  const navigate = useNavigate("/")
+ 
 
   const {id} = useParams();
 
@@ -40,15 +44,44 @@ function RecipeDetails() {
     recipe();
   }, [detailsURL]);
   
-  console.log(details);
+  // console.log(details);
   if (loading) {
     return <Spinner />
+  }
+
+  async function deleteRecipe() {
+    const confirmDelete = window.confirm("Are you sure you want to delete the recipe?");
+
+    if (confirmDelete) {
+      try {
+        const deleteResponse = await axios.delete(detailsURL);
+        navigate("/");
+
+      } catch(error) {
+        console.log(error);
+      }
+   
+
+
+    }
+
   }
 
   const getMarkdownText = (text) => {
     const formattedText = marked(text);
     return { __html: formattedText };
   };
+
+
+  let adminButtons = ""
+  if (auth) {
+    adminButtons =  <div id="admin-buttons">
+                      <Link to={`edit-recipe/${id}`} className="edit-btn">Edit <FontAwesomeIcon icon={solid('pen')}/></Link>
+                      <button type="button" className="delete-btn" onClick={deleteRecipe}>Delete <FontAwesomeIcon icon={solid('trash')}/></button>
+                    </div>
+  }
+
+
 
   return (
     <>
@@ -61,16 +94,12 @@ function RecipeDetails() {
         <h2>Ingredients</h2>
         <div dangerouslySetInnerHTML={getMarkdownText(details.ingredients)}></div>
       </div>
-      {/* <div className="separator"></div> */}
       <div id="instructions">
         <h2>Instructions</h2>
         <div dangerouslySetInnerHTML={getMarkdownText(details.instructions)}></div>
       </div>
     </div>
-    <div id="admin-buttons">
-      <button type="button" className="edit-btn">Edit <FontAwesomeIcon icon={solid('pen')}/></button>
-      <button type="button" className="delete-btn">Delete <FontAwesomeIcon icon={solid('trash')}/></button>
-    </div>
+    {adminButtons}
     </>
   )
 }

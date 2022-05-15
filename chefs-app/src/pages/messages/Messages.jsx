@@ -5,7 +5,9 @@ import { React, useState, useEffect } from "react";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
 import Spinner from "../../utilities/Spinner.jsx";
 import Button from "react-bootstrap/Button";
+import Accordion from "react-bootstrap/Accordion";
 import MessageModal from "./MessageModal.jsx";
+import MessageAccordion from "./MessageAccordion.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -78,7 +80,12 @@ function Messages() {
           filteredMessages.map( (message) => {
             const {id, attributes} = message
             return (
-              <div key={id}>
+              <>
+              {/* <div key={id}>
+                <MessageAccordion title={attributes.title} name={attributes.chefs_name} message={attributes.message} />
+              </div> */}
+
+              {/* <div key={id}>
               <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
               <div>
                 <span className="from">From:</span> <span className="chefs-name">{attributes.chefs_name} | {attributes.title}</span>
@@ -87,7 +94,7 @@ function Messages() {
                 <span >{attributes.subject}</span>
               </div>
               </Button>
-                
+              
 
               <MessageModal 
                 title={attributes.title}
@@ -97,14 +104,31 @@ function Messages() {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
               />
-            </div>
+            </div> */}
+              
+              </>
           )  
           }) 
           ) : (
               messages.map( (message) => {
                 const {id, attributes} = message
                 return (
-                  <div key={id}>
+                  <>
+                  <Accordion>
+                    <Accordion.Item eventKey="0">
+                      <Accordion.Header><span className="from">From:</span> {attributes.chefs_name} - {attributes.title}</Accordion.Header>
+                      <Accordion.Body>
+                        <p className="from">{attributes.message}</p>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
+                  {/* <div key={id}>
+                    <MessageAccordion title={attributes.title} name={attributes.chefs_name} message={attributes.message} />
+                  </div> */}
+
+
+
+                  {/* <div key={id}>
                 <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
                 <div>
                   <span className="from">From:</span> <span className="chefs-name">{attributes.chefs_name} | {attributes.title}</span>
@@ -123,7 +147,9 @@ function Messages() {
                   show={modalShow}
                   onHide={() => setModalShow(false)}
                 />
-              </div>
+              </div> */}
+                  
+                  </>
                 )
               })
             

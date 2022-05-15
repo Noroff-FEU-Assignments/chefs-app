@@ -25,7 +25,6 @@ function ProductRow({productId, name, price, unit, quantity, in_stock}) {
           in_stock: stock,
         },
       });
-      // console.log(putResponse);
     } catch(error) {
       console.log(error);
     }
