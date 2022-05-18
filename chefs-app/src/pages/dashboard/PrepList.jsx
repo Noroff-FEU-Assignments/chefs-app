@@ -1,25 +1,19 @@
 import { useState, useEffect } from "react";
 import SubHeadingPage from "../../components/layout/SubHeadingPage";
-import useLocalStorage from "../../hooks/useLocalStorage";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { api } from "../../constants/api.js";
 
 
-
-
-
-function PrepList() {
-  const [items, setItems] = useLocalStorage("todos", [])
+function PrepList({done}) {
   const [value, setValue] = useState("");
   const [prepItems, setPrepItems] = useState([]);
-  const [drawLine, setDrawLine] = useState()
-  // const [done, setDone] = useState(false);
+  const [checked, setChecked] = useState(done)
+  console.log(checked)
+
   const url = api + "/prep-lists";
   console.log(prepItems);
-
 
   useEffect( () => {
     async function getPrepItems() {
@@ -68,19 +62,15 @@ function PrepList() {
       console.log(error);
     }
   }
-  // function handleDelete(id) {
-  //   const removeItem = prepItems.filter((item) =>{
-  //     return item.id !== id;
-  //   })
-  //   setPrepItems(removeItem);
-  // }
 
 
   async function handleDone(id) {
+    setChecked((prevChecked) => !prevChecked);
+    
     try {
       const doneResponse = await axios.put(url + "/" + id, {
         data: {
-          done: drawLine
+          done: checked
         }
       })
       console.log(doneResponse)
@@ -89,58 +79,6 @@ function PrepList() {
     }
   }
 
-  // function handleDone(id) {
-  //   setPrepItems( (prevState) => {
-  //     return prevState.map( (item) => {
-  //       if (item.id === id) {
-  //         return { ...item, isdone: !item.isdone};
-
-  //       } else {
-  //         return item;
-  //       }
-  //     })
-  //   })
-  // }
-  // function handleInput(e) {
-  //   setValue(e.target.value);
-  // }
-  
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   if (!value) {
-  //     return
-  //   } else {
-  //     setItems([...items, {
-  //       id: items.length + 1,
-  //       text: value.trim(),
-  //       isdone: false,
-  //     }
-  //     ]);
-  //   }
-  //   setValue("");
-  // }
-
-  // function handleDelete(id) {
-  //   const removeItem = items.filter((item) =>{
-  //     return item.id !== id;
-  //   })
-  //   setItems(removeItem);
-  // }
-
-
-  // function handleDone(id) {
-  //   setItems( (prevState) => {
-  //     return prevState.map( (item) => {
-  //       if (item.id === id) {
-  //         return { ...item, isdone: !item.isdone};
-
-  //       } else {
-  //         return item;
-  //       }
-  //     })
-  //   })
-  // }
   
   return (
     <>
@@ -153,7 +91,7 @@ function PrepList() {
         {prepItems.map( (item) => {
           return (
             <div key={item.id} className="prep-list-item">
-                <div style={{textDecoration: item.isdone ? "line-through" : "", textDecorationColor: item.isdone ? "#BA2126" : ""}}
+                <div style={{textDecoration: item.done ? "line-through" : "", textDecorationColor: item.done ? "#BA2126" : ""}}
                     onClick={ () => handleDone(item.id) }>
                       {item.attributes.Item}
                 </div>                  
@@ -161,20 +99,7 @@ function PrepList() {
             </div>
           )
           })
-        }
-        {/* {items.map( (item) => {
-          return (
-            <div key={item.id} className="prep-list-item">
-                <div style={{textDecoration: item.isdone ? "line-through" : "", textDecorationColor: item.isdone ? "#BA2126" : ""}}
-                    onClick={ () => handleDone(item.id) }>
-                      {item.text}
-                </div>                  
-                <button type="button" onClick={() => {handleDelete(item.id)}}>x</button>
-            </div>
-          )
-          })
-        } */}
-      
+        }      
     </>
   )
 }

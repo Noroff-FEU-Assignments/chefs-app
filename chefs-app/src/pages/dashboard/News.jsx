@@ -58,7 +58,7 @@ function News() {
           <p className="announcements-content">{announcement.attributes.announcement}</p>
         </div>
         )
-      })}
+      }).reverse()}
     </>
   )
 }
