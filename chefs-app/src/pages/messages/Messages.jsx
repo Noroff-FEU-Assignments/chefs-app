@@ -52,18 +52,20 @@ function Messages() {
   }
 
   const searchItems = (searchValue) => {
-    setSearch(searchValue)
-
-    if (search !== "") {
-      const filteredData = messages.filter( (message) => {      
-      return Object.values(message.attributes.title).join("").toLowerCase().includes(search.toLowerCase()) || Object.values(message.attributes.Chefs_name).join("").toLowerCase().includes(search.toLowerCase());
+    setSearch(searchValue);
+      const filteredData = messages.filter( (message) => {
+      if (message.attributes.title.toLowerCase().includes(search) || message.attributes.chefs_name.toLowerCase().includes(search)) {
+        return true 
+        }   
       })
-      setFilteredMessages(filteredData);
-
-    } else {
-      setFilteredMessages(messages)
-    }
+      
+      if (search.length > 0) {
+        setFilteredMessages(filteredData);
+      } else {
+        setFilteredMessages(messages)
+      }
   }
+
 
   return (
     <>
@@ -81,9 +83,9 @@ function Messages() {
             const {id, attributes} = message
             return (
               <>
-              {/* <div key={id}>
-                <MessageAccordion title={attributes.title} name={attributes.chefs_name} message={attributes.message} />
-              </div> */}
+                
+                  <MessageAccordion key={id} name={attributes.chefs_name} title={attributes.title} message={attributes.message} subject={attributes.subject} />
+                
 
               {/* <div key={id}>
               <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
@@ -114,19 +116,9 @@ function Messages() {
                 const {id, attributes} = message
                 return (
                   <>
-                  <Accordion>
-                    <Accordion.Item eventKey="0">
-                      <Accordion.Header><span className="from">From:</span> {attributes.chefs_name} - {attributes.title}</Accordion.Header>
-                      <Accordion.Body>
-                        <p className="from">{attributes.message}</p>
-                      </Accordion.Body>
-                    </Accordion.Item>
-                  </Accordion>
-                  {/* <div key={id}>
-                    <MessageAccordion title={attributes.title} name={attributes.chefs_name} message={attributes.message} />
-                  </div> */}
-
-
+                  
+                    <MessageAccordion key={id} name={attributes.chefs_name} title={attributes.title} message={attributes.message} subject={attributes.subject} />
+                  
 
                   {/* <div key={id}>
                 <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">

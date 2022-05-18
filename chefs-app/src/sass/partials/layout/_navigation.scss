@@ -78,6 +78,7 @@ nav {
   }
 }
 
+
 #adminLinks {
   text-align: center;
   width: 100%;
@@ -85,6 +86,10 @@ nav {
   & .nav-separator {
     margin: 0 auto;
   }
+}
+
+#logoutIcon {
+  color: map-get($colours, "primary");
 }
 
 #dropdown-basic {
@@ -456,10 +461,10 @@ nav {
 
     & #loginBtn, #loggedBtn {
       display: block;
-      width: 5rem;
+      width: 100%;
       text-align: center;
       font-size: 1.3rem;
-      margin: 0px 40px;
+      margin: 0px 10px;
       padding-top: 20px;
       color: map-get($colours, "light-primary");
       background-color: transparent;

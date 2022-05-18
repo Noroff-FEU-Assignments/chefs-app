@@ -42,9 +42,11 @@ function Navigation() {
 
   let messagesIcon = ""
 
+  
 
-  if (auth) {
-    loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username}</Button>
+
+  if (auth && auth.data.user.email === "admin@admin.com") {
+    loginLinks = <Button variant="primary"  id="loggedBtn">Hi, {auth.data.user.username} <FontAwesomeIcon icon={solid('arrow-right-from-bracket')} id="logoutIcon" onClick={logout}/></Button>
 
     adminLinks = <>
               <div id="adminLinks">
@@ -79,6 +81,8 @@ function Navigation() {
                   </>
 
     messagesIcon = <FontAwesomeIcon icon={solid('message')} id="messageIcon" />
+  } else if (auth) {
+    loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username} <FontAwesomeIcon icon={solid('arrow-right-from-bracket')} id="logoutIcon" onClick={logout}/></Button>
   }
 
   function fadeInMenu() {
@@ -101,9 +105,9 @@ function Navigation() {
               {loginLinks}
             </div>
             <img src={Hamburger} id="burgerBtn" onClick={fadeInMenu} alt="burger icon for menu"/>
-            {/* <FontAwesomeIcon icon={solid('burger') } className="burger-menu" /> */}
           </div>
           <div className={open ? "nav-visible" : "nav-list"}>
+          {/* <div className={open ? "nav-visible" : "nav-list"}> */}
             <ul>
             <NavLink to="/" className="nav-link">
               Dashboard

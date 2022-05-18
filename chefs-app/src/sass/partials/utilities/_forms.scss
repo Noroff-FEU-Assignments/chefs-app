@@ -55,8 +55,14 @@ textarea {
 
 
 // Login Form
+.modal-content {
+  background-color: transparent;
+  border: 0;
+}
+
 #loginForm {
   max-width: 500px;
+  
 
   & img {
     display: block;

@@ -46,18 +46,20 @@ function Recipes() {
     return <Spinner />
   };
 
+
   const searchItems = (searchValue) => {
-    setSearch(searchValue)
-
-    if (search !== "") {
-      const filteredData = recipes.filter( (recipe) => {      
-      return Object.values(recipe.attributes.name).join("").toLowerCase().includes(search.toLowerCase());
+    setSearch(searchValue);
+      const filteredData = recipes.filter( (recipe) => {
+      if (recipe.attributes.name.toLowerCase().includes(search)) {
+        return true 
+        }   
       })
-      setFilteredRecipes(filteredData);
-
-    } else {
-      setFilteredRecipes(recipes)
-    }
+      
+      if (search.length > 0) {
+        setFilteredRecipes(filteredData);
+      } else {
+        setFilteredRecipes(recipes)
+      }
   }
   
 

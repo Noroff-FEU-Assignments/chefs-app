@@ -8,10 +8,10 @@ function Routine({routineId, done, name}) {
 
   const [checked, setChecked] = useState(done);
   // console.log(done)
-  console.log(checked);
+  // console.log(checked);
   
   function updateRoutine(e) {
-    console.log(e.target.checked);
+    // console.log(e.target.checked);
     setChecked(e.target.checked)
   }
     
@@ -23,7 +23,7 @@ function Routine({routineId, done, name}) {
             done: checked,
           }
         });
-        console.log(response)
+        // console.log(response)
         } catch(error) {
           console.log(error);
         }

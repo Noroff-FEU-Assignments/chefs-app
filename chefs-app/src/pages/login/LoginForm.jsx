@@ -37,8 +37,8 @@ function LoginForm(props) {
     // const response = await axios.post(url, {identifier: "admin@admin.com", password: "Pass1234"})
     try {
       const response = await axios.post(url, {identifier: data.username, password: data.password})
-      console.log(response)
-      console.log()
+      // console.log(response)
+      // console.log()
 
 
 
@@ -51,7 +51,7 @@ function LoginForm(props) {
       console.log(error);
       showMessage = <SystemMessage content={"Wrong Username or Password"} type={"message error"} />
     }
-    console.log(data)
+    // console.log(data)
   };
 
 
