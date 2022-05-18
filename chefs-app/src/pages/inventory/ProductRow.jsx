@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { api } from "../../constants/api.js";
+import AuthContext from "../../utilities/AuthContext.jsx";
 
 
 function ProductRow({productId, name, price, unit, quantity, in_stock}) {
@@ -9,7 +10,11 @@ function ProductRow({productId, name, price, unit, quantity, in_stock}) {
 
   const [stock, setStock] = useState(in_stock);
   const [myQuantity, setMyQuantity] = useState(quantity);
-  // console.log(stock);
+  const [newPrice, setNewPrice] = useState(price);
+  const [auth, setAuth] = useContext(AuthContext);
+  
+
+  
   
   function updateProduct(e) {
     const newQuantity = Number(e.target.value);
@@ -17,19 +22,41 @@ function ProductRow({productId, name, price, unit, quantity, in_stock}) {
     setMyQuantity(e.target.value);
   }
 
+  function updateMainPrice(e) {
+    const myNewPrice = Number(e.target.value);
+    setStock(quantity * myNewPrice);
+    setNewPrice(e.target.value);
+  }
+  
   async function sendProduct() {
     try {
       const putResponse = await axios.put(url, {
         data: {
           quantity: myQuantity,
           in_stock: stock,
+          price: newPrice,
         },
       });
+      console.log(putResponse);
     } catch(error) {
       console.log(error);
     }
   }
   sendProduct();
+
+
+
+
+  
+  let priceData = "";
+  if (auth && auth.data.user.email === "admin@admin.com") {
+    priceData = <td className="td-price">
+                  <input type="number" onChange={ (e) => updateMainPrice(e)} value={newPrice} />
+                </td>
+  } else {
+    priceData =  <td className="td-price">{price}</td>
+  }
+
 
   return(
     <>
@@ -39,7 +66,11 @@ function ProductRow({productId, name, price, unit, quantity, in_stock}) {
           <input type="number" onChange={ (e) => updateProduct(e)} value={myQuantity}  />
         </td>
         <td className="td-unit">{unit}</td>
-        <td className="td-price">{price}</td>
+        {priceData}
+        {/* <td className="td-price">
+          <input type="number" defaultValue={price} />
+        </td>
+        <td className="td-price">{price}</td> */}
         <td className="td-in-stock">
           {stock}
         </td>

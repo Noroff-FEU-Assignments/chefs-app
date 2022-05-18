@@ -115,35 +115,11 @@ function Messages() {
               messages.map( (message) => {
                 const {id, attributes} = message
                 return (
-                  <>
-                  
+                  <>                 
                     <MessageAccordion key={id} name={attributes.chefs_name} title={attributes.title} message={attributes.message} subject={attributes.subject} />
-                  
-
-                  {/* <div key={id}>
-                <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
-                <div>
-                  <span className="from">From:</span> <span className="chefs-name">{attributes.chefs_name} | {attributes.title}</span>
-                </div> 
-                <div className="subject">
-                  <span >{attributes.subject}</span>
-                </div>
-                </Button>
-                  
-
-                <MessageModal 
-                  title={attributes.title}
-                  name={attributes.chefs_name}
-                  subject={attributes.subject}
-                  message={attributes.message}
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
-                />
-              </div> */}
-                  
                   </>
                 )
-              })
+              }).reverse()
             
             )
       } 
