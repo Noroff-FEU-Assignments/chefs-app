@@ -16,30 +16,30 @@ function Routine({routineId, done, name}) {
   }
     
 
-    async function sendCheck() {
-      try {
-        const response = await axios.put(url, {
-          data: {
-            done: checked,
-          }
-        });
-        // console.log(response)
-        } catch(error) {
-          console.log(error);
-        }
+  async function sendCheck() {
+  try {
+    const response = await axios.put(url, {
+      data: {
+        done: checked,
       }
-      sendCheck();
+    });
+    // console.log(response)
+    } catch(error) {
+      console.log(error);
+    }
+  }
+  sendCheck();
 
 
 
   return (
     <>
     <div className="routines-item">
-            <label>
-              <input checked={checked} type="checkbox" onChange={(e) => updateRoutine(e)} />
-              {name}
-            </label>
-          </div>
+      <label>
+        <input checked={checked} type="checkbox" onChange={(e) => updateRoutine(e)} />
+        {name}
+      </label>
+    </div>
     </>
   )
 

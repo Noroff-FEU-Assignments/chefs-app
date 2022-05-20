@@ -10,13 +10,13 @@ function Checklist() {
   const url = api + "/routines";
   const [routines, setRoutines] = useState([]);
   const [sort, setSort] = useState([]);
-  console.log(routines)
+  // console.log(routines)
   
   useEffect( () => {
     async function getRoutines() {
       try {
         const response = await axios.get(url);
-        console.log(response);
+        // console.log(response);
         setRoutines(response.data.data); 
   
 
@@ -43,7 +43,7 @@ function Checklist() {
 
   
     const sortedArray = [...routines].sort((a,b) => a - b)
-    console.log(sortedArray)
+    // console.log(sortedArray)
  
   // useEffect( () => {
   //   const sortArray = (type) => {
