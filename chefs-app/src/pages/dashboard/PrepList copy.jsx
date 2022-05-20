@@ -26,44 +26,45 @@ function PrepList() {
   }
   
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
 
-    if (!value) {
-      return
-    } else {
-      setItems([...items, {
-        id: items.length + 1,
-        text: value.trim(),
-      }
-      ]);
-    }
-    setValue("");
-  }
-
-
-  
-  function handleDelete(id) {
-    const removeItem = prepItems.filter((item) =>{
-      return item.id !== id;
-    })
-    setPrepItems(removeItem);
-  }
+  //   if (!value) {
+  //     return
+  //   } else {
+  //     setItems([...items, {
+  //       id: items.length + 1,
+  //       text: value.trim(),
+  //     }
+  //     ]);
+  //   }
+  //   setValue("");
+  // }
 
 
   
-  function handleDone(id) {
-    setPrepItems( (prevState) => {
-      return prevState.map( (item) => {
-        if (item.id === id) {
-          return { ...item, isdone: !item.isdone};
+  // function handleDelete(id) {
+  //   const removeItem = prepItems.filter((item) =>{
+  //     return item.id !== id;
+  //   })
+  //   setPrepItems(removeItem);
+  // }
 
-        } else {
-          return item;
-        }
-      })
-    })
-  }
+
+  
+  // function handleDone(id) {
+  //   setPrepItems( (prevState) => {
+  //     return prevState.map( (item) => {
+  //       if (item.id === id) {
+  //         return { ...item, isdone: !item.isdone};
+
+  //       } else {
+  //         return item;
+  //       }
+  //     })
+  //   })
+  // }
+  
   function handleInput(e) {
     setValue(e.target.value);
   }

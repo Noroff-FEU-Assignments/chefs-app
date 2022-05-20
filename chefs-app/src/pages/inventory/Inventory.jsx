@@ -6,12 +6,13 @@ import SystemMessage from "../../utilities/SystemMessage.jsx";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
 import ProductRow from "./ProductRow.jsx";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 
 function Inventory() {
   const url = api + "/products";
   const [products, setProducts] = useState([]);
-  const [newSum, setNewSum] = useState(0)
+  const [newSum, setNewSum] = useLocalStorage("sum", null)
   console.log(newSum)
   // console.log(products);
   // console.log(products)
@@ -38,40 +39,38 @@ function Inventory() {
 
 // }, [newSum]);
 
-useEffect( () => {
-  setNewSum(JSON.parse(window.localStorage.getItem("sum")))
-}, []);
+// useEffect( () => {
+//   setNewSum(JSON.parse(window.localStorage.getItem("sum")))
+// }, []);
 
 
+let sum = 0;
 
 useEffect( () => {
   async function getProducts() {
       try {
         const response = await axios.get(url);
         setProducts(response.data.data);
-        // setNewSum(JSON.parse)
-        
-        // updateSum()
-        
-        let sum = 0;
+
         products.forEach(element => {
-          // console.log(element.attributes.in_stock)
           let values = element.attributes.in_stock
           sum += values;
-          // setNewSum(sum);
-          console.log(sum);
-
-          window.localStorage.setItem("sum", sum)
           
-          });
-        // console.log(response);
+        });
+        setNewSum(sum)
+          console.log(newSum)
+        // updateSum()
+        
+        
+        console.log(response);
       } catch(error) {
         console.log(error);
         <SystemMessage content="Something went wrong" type="message error" />
       }
     }
     getProducts();
-}, [url])
+}, [products])
+
 
       
   return (
@@ -92,19 +91,7 @@ useEffect( () => {
       </thead>
       <tbody>
         {products.map( (product) => {
-          const {id, attributes} = product;
-          
-      //     let sum = 0;
-      // products.forEach(element => {
-      //   // console.log(element.attributes.in_stock)
-      //   let values = element.attributes.in_stock
-      //   sum += values;
-      //   console.log(sum)
-      //   setNewSum(sum);
-      //   // console.log(sum);
-
-      // });
-          
+          const {id, attributes} = product;        
 
           return (
             <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} />

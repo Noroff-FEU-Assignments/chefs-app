@@ -37,15 +37,12 @@ function ProductRow({productId, name, price, unit, quantity, in_stock}) {
           price: newPrice,
         },
       });
-      console.log(putResponse);
+      // console.log(putResponse);
     } catch(error) {
       console.log(error);
     }
   }
   sendProduct();
-
-
-
 
   
   let priceData = "";
@@ -67,10 +64,6 @@ function ProductRow({productId, name, price, unit, quantity, in_stock}) {
         </td>
         <td className="td-unit">{unit}</td>
         {priceData}
-        {/* <td className="td-price">
-          <input type="number" defaultValue={price} />
-        </td>
-        <td className="td-price">{price}</td> */}
         <td className="td-in-stock">
           {stock}
         </td>
