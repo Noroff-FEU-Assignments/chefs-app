@@ -6,10 +6,10 @@ import SystemMessage from "../../utilities/SystemMessage.jsx";
 import Spinner from "../../utilities/Spinner.jsx";
 import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
-import MessageModal from "./MessageModal.jsx";
 import MessageAccordion from "./MessageAccordion.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import axios from "axios";
 
 
 
@@ -20,7 +20,6 @@ function Messages() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filteredMessages, setFilteredMessages] = useState([]);
-  const [modalShow, setModalShow] = useState(false);
 
 
   useEffect( () => {
@@ -67,6 +66,24 @@ function Messages() {
   }
 
 
+  async function deleteMsg(id) {
+    const confirmDelete = window.confirm("Delete the message permanently?");
+
+    if (confirmDelete) {
+      try {
+      const response = await axios.delete(messages_URL + "/" + id);
+      const newArr = messages.filter( (message) => {
+        return message.id !== id
+        })
+        setFilteredMessages(newArr);
+        setMessages(newArr);
+      } catch(error) {
+        console.log(error);
+      }
+    }
+  }
+
+
   return (
     <>
       <Helmet>
@@ -78,81 +95,29 @@ function Messages() {
         <FontAwesomeIcon icon={solid('search')} className="search-icon" />
       </div>
       <div id="recipeListContainer">
-        {search.length >= 1 ? (
-          filteredMessages.map( (message) => {
-            const {id, attributes} = message
-            return (
-              <>
-                
-                  <MessageAccordion key={id} name={attributes.chefs_name} title={attributes.title} message={attributes.message} subject={attributes.subject} />
-                
-
-              {/* <div key={id}>
-              <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
-              <div>
-                <span className="from">From:</span> <span className="chefs-name">{attributes.chefs_name} | {attributes.title}</span>
-              </div> 
-              <div className="subject">
-                <span >{attributes.subject}</span>
-              </div>
-              </Button>
-              
-
-              <MessageModal 
-                title={attributes.title}
-                name={attributes.chefs_name}
-                subject={attributes.subject}
-                message={attributes.message}
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-              />
-            </div> */}
-              
-              </>
-          )  
-          }) 
+        {search.length >= 1 
+            ? (
+            filteredMessages.map( (message) => {
+              const {id, attributes} = message
+              return (
+                <>
+                  <MessageAccordion key={id} name={attributes.chefs_name} title={attributes.title} message={attributes.message} subject={attributes.subject} deleteMessage={() => deleteMsg(id)} />
+                </>
+            )  
+            }) 
           ) : (
               messages.map( (message) => {
                 const {id, attributes} = message
+      
                 return (
-                  <>                 
-                    <MessageAccordion key={id} name={attributes.chefs_name} title={attributes.title} message={attributes.message} subject={attributes.subject} />
+                  <>    
+                    <MessageAccordion key={id} name={attributes.chefs_name} title={attributes.title} message={attributes.message} subject={attributes.subject} deleteMessage={() => deleteMsg(id)}/>
                   </>
                 )
-              }).reverse()
-            
+              }).reverse()  
             )
       } 
       </div>
-
-
-      {/* {
-        messages.map( (message) => {
-          const {id, attributes} = message
-          return (
-              <div key={id}>
-                <Button variant="primary" onClick={() => setModalShow(true)} className="modalbtn">
-                <div>
-                  <span className="from">From:</span> <span className="chefs-name">{attributes.Chefs_name}</span>
-                </div> 
-                <div className="subject">
-                  <span >{attributes.Subject}</span>
-                </div>
-                </Button>
-                  
-
-                <MessageModal 
-                  title={attributes.Title}
-                  name={attributes.Chefs_name}
-                  subject={attributes.Subject}
-                  message={attributes.Message}
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
-                />
-              </div>
-        )  
-        }) 
-      } */}
     </>
   )
 }

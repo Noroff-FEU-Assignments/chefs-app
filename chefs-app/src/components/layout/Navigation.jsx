@@ -59,16 +59,16 @@ function Navigation() {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <ul>
-                    <NavLink to="/messages" className="nav-link">
+                    <NavLink to="/messages" className="nav-link" onClick={() => setOpen(false)}>
                       Messages
                     </NavLink>
-                    <NavLink to="/add-recipe" className="nav-link">
+                    <NavLink to="/add-recipe" className="nav-link" onClick={() => setOpen(false)}>
                       Add Recipe
                     </NavLink>
-                    <NavLink to="/add-inventory-item" className="nav-link">
+                    <NavLink to="/add-inventory-item" className="nav-link" onClick={() => setOpen(false)}>
                       Add Inventory Item
                     </NavLink>
-                    <NavLink to="/write-announcement" className="nav-link">
+                    <NavLink to="/write-announcement" className="nav-link" onClick={() => setOpen(false)}>
                       Write Announcement
                     </NavLink>
                     <Button className="nav-link" id="logoutBtn" onClick={logout}>
@@ -80,7 +80,7 @@ function Navigation() {
             </div>
                   </>
 
-    messagesIcon = <FontAwesomeIcon icon={solid('message')} id="messageIcon" />
+    messagesIcon = <NavLink to="/messages"><FontAwesomeIcon icon={solid('message')} id="messageIcon" /></NavLink>
   } else if (auth) {
     loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username} <FontAwesomeIcon icon={solid('arrow-right-from-bracket')} id="logoutIcon" onClick={logout}/></Button>
   }
@@ -109,16 +109,16 @@ function Navigation() {
           <div className={open ? "nav-visible" : "nav-list"}>
           {/* <div className={open ? "nav-visible" : "nav-list"}> */}
             <ul>
-            <NavLink to="/" className="nav-link">
+            <NavLink to="/" className="nav-link" onClick={() => setOpen(false)}>
               Dashboard
             </NavLink>
-            <NavLink to="/recipes" className="nav-link">
+            <NavLink to="/recipes" className="nav-link" onClick={() => setOpen(false)}>
               Recipes
             </NavLink>
-            <NavLink to="/inventory" className="nav-link">
+            <NavLink to="/inventory" className="nav-link" onClick={() => setOpen(false)}>
               Inventory
             </NavLink>
-            <NavLink to="/contact" className="nav-link">
+            <NavLink to="/contact" className="nav-link" onClick={() => setOpen(false)}>
               Contact
             </NavLink>
             </ul>

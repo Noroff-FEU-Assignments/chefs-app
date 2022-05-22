@@ -7,7 +7,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
   function MessageAccordion(props) {
-    const {name, title, message, subject} = props
+    const {name, title, message, subject, deleteMessage} = props
 
     return (
       <>
@@ -28,33 +28,11 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
             <div className="message-content">
               {message}
             </div>
-            <button type="button" id="deleteMessageBtn">Delete</button>
+            <button type="button" id="deleteMessageBtn"  onClick={deleteMessage}>Delete <FontAwesomeIcon icon={solid('trash')}/></button>
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
 
-
-      {/* <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            {name}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h4>{title}</h4>
-          <p>
-            {message}
-          </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal> */}
       </>
     );
   }
@@ -63,7 +41,8 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 MessageAccordion.propTypes = {
   name: PropTypes.string,
   title: PropTypes.string,
-  message: PropTypes.string
+  message: PropTypes.string,
+  subject: PropTypes.string,
 }
 
 export default MessageAccordion;

@@ -12,6 +12,7 @@ import AuthContext from "../../utilities/AuthContext.jsx";
 import axios from "axios";
 
 let showMessage = ""
+
 const url = api + "/recipes";
 
 const schema = yup.object().shape({
@@ -41,6 +42,12 @@ function NewRecipe() {
         { headers: {
           Authorization: `Bearer ${auth.data.jwt}`,
         }}  )
+
+        if (response.status === 200) {
+          showMessage = <SystemMessage content={`${data.recipeTitle} was added succesfully to recipes`} type={"message success"} />;
+        } else {
+          showMessage = <SystemMessage content="Something went wrong" type={"message error"} />;
+        }
         console.log(response)
       // console.log(response.AxiosError.response);
       // if (!response) {
@@ -56,7 +63,7 @@ function NewRecipe() {
 
     console.log(data)
     reset();
-    showMessage = <SystemMessage content={`${data.recipeTitle} was added succesfully to recipes`} type={"message success"} />;
+    
   };
 
 
@@ -77,13 +84,13 @@ function NewRecipe() {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Ingredients</Form.Label>
+          <Form.Label>Ingredients <span className="form-instructions">*Add a dash (-) in front of every ingredient</span></Form.Label>
           <Form.Control as="textarea" {...register("ingredients")} />
           {errors.ingredients && <span className="form-error">{errors.ingredients.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Instructions</Form.Label>
+          <Form.Label>Instructions <span className="form-instructions">*Add numbering in front of every step</span></Form.Label>
           <Form.Control as="textarea" {...register("instructions")} />
           {errors.instructions && <span className="form-error">{errors.instructions.message}</span>}
         </Form.Group>

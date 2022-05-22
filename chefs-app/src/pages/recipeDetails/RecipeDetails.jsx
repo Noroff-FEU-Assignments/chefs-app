@@ -1,4 +1,4 @@
-import HeadingPage from "../../components/layout/HeadingPage.jsx";
+import HeadingRecipePage from "../../components/layout/HeadingRecipeDetails.jsx";
 import Spinner from "../../utilities/Spinner.jsx";
 import { api } from "../../constants/api.js";
 import AuthContext from "../../utilities/AuthContext.jsx";
@@ -55,7 +55,7 @@ function RecipeDetails() {
     if (confirmDelete) {
       try {
         const deleteResponse = await axios.delete(detailsURL);
-        navigate("/");
+        navigate("/recipes");
 
       } catch(error) {
         console.log(error);
@@ -88,7 +88,7 @@ function RecipeDetails() {
     <Helmet>
       <title>{details.name}</title>
     </Helmet>
-    <HeadingPage>{details.name}</HeadingPage>
+    <HeadingRecipePage>{details.name}</HeadingRecipePage>
     <div id="recipeContainer">
       <div id="ingredients">
         <h2>Ingredients</h2>

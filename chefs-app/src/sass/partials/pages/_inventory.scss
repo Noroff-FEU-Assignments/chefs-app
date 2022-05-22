@@ -1,28 +1,30 @@
-// .table>:not(caption)>*>* {
-//   background-color: none;
-// }
-
 table {
   background-color: map-get($colours, "primary");
   box-shadow: 0 0 8px map-get($colours, "text");
-  border-radius: 15px;
+  // border-radius: 10px;
   margin-top: 30px;
+  // width: 50%;
 }
 
 thead {
   text-align: center;
   color: map-get($colours, "text");
+  border-radius: 0px;
   
   
-  & th:nth-child(1) {
-      border-radius: 15px;
-    }
+  // & th:nth-child(1) {
+  //     border-radius: 35px;
+  //   }
 
   & th {
-    font-weight: 400;
+    font-weight: 600;
     border: 1px solid black;
     
   }
+}
+
+.tr-head {
+  border-radius: 15px;
 }
 
 .tr-product {
@@ -34,22 +36,28 @@ thead {
   & .td-name {
     background-color: map-get($coloursTable, "products");
     color: map-get($colours, "light-primary");
+    width: 30%;
   }
 
   & .td-quantity {
     background-color: #fff;
+    width: 15%;
   }
 
   & input {
     border: none;
     width: 100%;
     padding: 0;
+    text-align: right;
+    height: 30px;
   }
 
-  // & input:focus {
-  //   border-color: map-get($colours, "secondary");
-  //   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
-  // }
+  & input:focus {
+    // border-color: map-get($colours, "secondary");
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(44, 130, 163, 0.6);
+    // border: 0;
+    outline: none;
+  }
 
   & .td-unit {
     color: map-get($colours, "text");
@@ -62,8 +70,44 @@ thead {
 
   .td-in-stock {
     text-align: center;
-    color: map-get($colours, "secondary")
+    color: map-get($colours, "secondary");
   }
+
+  .td-price {
+    width: 100px;
+  }
+
+  .td-price input {
+    background-color: transparent;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.tr-summary {
+  border: 1px solid black;
+}
+
+.tr-summary td:not(:nth-child(2)){
+  background-color: map-get($colours, "text");
+  color: map-get($colours, "primary");
+  text-align: right;
+}
+
+.tr-summary td:nth-child(2) {
+  background-color: map-get($colours, "details");
+  color: map-get($colours, "text");
+  border: 1px solid black;
+  text-align: center;
+}
+
+#deleteRowBtn {
+  color: map-get($colours, "secondary");
+  background-color: transparent;
+  border: 0;
+  font-size: 1.2rem;
+  width: 100%;
 }
 
 

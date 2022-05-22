@@ -31,14 +31,14 @@ Week 4 to 6: Coding
 Week 7: Bug Fixing
 
 ### Level 1 Process
-- Use your networks and connections to find a client that needs a website or application built.
-- Understand their requirements and come up with a functional specification for the project. You can write the functional specification using “System shall” statements. For example, “The system shall allow visitors to search for an article”
-- Create a Gantt chart for the project, planning out your deliverables for the client.
-- Make a design style guide and then take this style guide and create an Adobe XD prototype. Present to the client for feedback.
-- Develop the site ensuring you deliver all that is listed in your functional specification.
-- Test the website on various platforms and browsers. Ensure the site is bug-free and working before presenting to the client.
-- Go through a final round of changes before going live with the website.
-- Write a report on your process and decisions for the project. Please use the report template provided.
+- Use your networks and connections to find a client that needs a website or application built.✅
+- Understand their requirements and come up with a functional specification for the project. You can write the functional specification using “System shall” statements. For example, “The system shall allow visitors to search for an article”✅
+- Create a Gantt chart for the project, planning out your deliverables for the client.✅
+- Make a design style guide and then take this style guide and create an Adobe XD prototype. Present to the client for feedback.✅
+- Develop the site ensuring you deliver all that is listed in your functional specification.✅
+- Test the website on various platforms and browsers. Ensure the site is bug-free and working before presenting to the client.✅
+- Go through a final round of changes before going live with the website.✅
+- Write a report on your process and decisions for the project. Please use the report template provided.✅
 
 ### Submission
 End of week 3: Functional specification, Gantt chart, style guide, and Adobe XD prototype
@@ -54,18 +54,18 @@ You will need to create an API to store the data for the establishments, enquiri
 ## Requirements for the Website
 
 ### Visitor Side
-- Homepage
-- Search bar typeahead (auto dropdown with hotel names that match what has been typed)
-- A results page with all hotels
-- The hotel specific page which displays all details about the hotel
-- An enquiry page either modal or separate page
-- A contact page (different to enquiry page) which goes to the admin for Holidaze
+- Homepage ✅
+- Search bar typeahead (auto dropdown with hotel names that match what has been typed) ✅
+- A results page with all hotels✅
+- The hotel specific page which displays all details about the hotel✅
+- An enquiry page either modal or separate page✅
+- A contact page (different to enquiry page) which goes to the admin for Holidaze✅
 
 ### Admin side
-- Create a login section that makes use of JWT tokens
-- List of enquiries and new enquiries appear when user submits the form on the enquiry page
-- List of messages from contact form
-- The admin can create a new establishment
+- Create a login section that makes use of JWT tokens✅
+- List of enquiries and new enquiries appear when user submits the form on the enquiry page✅
+- List of messages from contact form✅
+- The admin can create a new establishment✅
 
 ### Recommended Process
 Week 1 and 2:  Planning and Design

@@ -1,6 +1,8 @@
 // Font imports
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
 
 // Custom Global Variables
 $colours: ("primary": #FFFCE8, "secondary": #BA2126, "text": #4c362c, "light-primary": #fffef6, "details": #f2b32a);
@@ -8,12 +10,8 @@ $coloursTable: ("products": #307fae, "units": #c4dbf8, "prices": #ffff81);
 $coloursAlerts: ("success": #40ab21, "error": #ff0007, "warning": #ff8000);
 
 $font-main: "muli", sans-serif;
-$font-secondary: "Poppins", sans-serif;
-$font-extra: 'Playfair Display', serif;
-
-
-// Bootstrap variables
-
+$font-secondary: 'Bangers', cursive;
+$font-extra: "Poppins", sans-serif;
 
 
 // Imports

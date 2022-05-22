@@ -12,39 +12,21 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 function Inventory() {
   const url = api + "/products";
   const [products, setProducts] = useState([]);
-  const [newSum, setNewSum] = useLocalStorage("sum", null)
-  console.log(newSum)
-  // console.log(products);
-  // console.log(products)
+  // const [newSum, setNewSum] = useLocalStorage("sum", []);
+  // const [test, setTest] = useState(0);
+  // console.log(newSum)
+
   
+  let sum = 0;
+  function getTotal() {
+    products.forEach(element => {
+      let values = element.attributes.in_stock
+      sum += values;
+    });
+  }
+  getTotal()
 
-  // function updateSum() {
-  //   let sum = 0;
-  //   products.forEach(element => {
-  //       let values = element.attributes.in_stock
-  //       sum += values;
-  //       console.log(sum);
-  //       setNewSum(sum);
-  //   })
-  // }
-//   let sum = 0;
-//   useEffect( () => {
-//     products.forEach(element => {
-
-//           let values = element.attributes.in_stock
-//           sum += values;
-//           console.log(sum);
-//           setNewSum(sum);
-//         })
-
-// }, [newSum]);
-
-// useEffect( () => {
-//   setNewSum(JSON.parse(window.localStorage.getItem("sum")))
-// }, []);
-
-
-let sum = 0;
+  
 
 useEffect( () => {
   async function getProducts() {
@@ -52,25 +34,32 @@ useEffect( () => {
         const response = await axios.get(url);
         setProducts(response.data.data);
 
-        products.forEach(element => {
-          let values = element.attributes.in_stock
-          sum += values;
-          
-        });
-        setNewSum(sum)
-          console.log(newSum)
-        // updateSum()
         
-        
-        console.log(response);
       } catch(error) {
         console.log(error);
         <SystemMessage content="Something went wrong" type="message error" />
       }
     }
     getProducts();
-}, [products])
+}, [])
 
+
+async function handleDelete(id) {
+  const confirmDelete = window.confirm(`Delete permanently?`);
+
+  if (confirmDelete) {
+    try {
+      const deleteItem = await axios.delete(url + "/" + id);
+      const removeProduct = products.filter( (product) => {
+        return product.id !== id;
+      })
+      setProducts(removeProduct);
+      console.log(deleteItem)
+    } catch(error) {
+      console.log(error);
+    }
+  }
+}
 
       
   return (
@@ -81,7 +70,7 @@ useEffect( () => {
     <HeadingPage>Inventory</HeadingPage>
     <Table responsive="sm">
       <thead>
-        <tr>
+        <tr className="tr-head">
           <th>Product</th>
           <th>Quantity</th>
           <th>Unit</th>
@@ -94,16 +83,17 @@ useEffect( () => {
           const {id, attributes} = product;        
 
           return (
-            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} />
+            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} />
           )
         })}
         <tr className="tr-summary">
-          <td colSpan={3}></td>
-          <td colSpan={0}>Total</td>
+          <td colSpan={4}>Total:</td>
+          {/* <td colSpan={0}></td> */}
           {/* <td>
             <input onChange={updateSum} value={newSum} /> 
           </td> */}
-          <td>{newSum}</td>
+          {/* <td>{newSum}</td> */}
+          <td>{sum}</td>
         </tr>
       </tbody>
     </Table>

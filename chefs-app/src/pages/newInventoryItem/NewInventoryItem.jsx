@@ -32,7 +32,7 @@ function NewInventoryItem() {
   const [discount, setDiscount] = useState(0);
 
 
-  const { register, handleSubmit, setValue, formState: {errors}} = useForm({
+  const { register, handleSubmit, setValue, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
 
@@ -70,14 +70,14 @@ function NewInventoryItem() {
 
       if (response.status === 200) {
         showMessage = <SystemMessage content={`${data.product} was added succesfully to inventory`} type={"message success"} />;
-      } else {
-        showMessage = <SystemMessage content={`Something wrong happened`} type={"message error"} />;
-      }
-      console.log(response)
-
+      } 
+      
     } catch(error) {
       console.log(error);
+      showMessage = <SystemMessage content={`Something wrong happened, login and try again`} type={"message error"} />;
     }
+
+    reset();
     console.log(data)
   };
 
@@ -124,13 +124,13 @@ function NewInventoryItem() {
 
         <Form.Group className="mb-3">
           <Form.Label>Price (kr.)</Form.Label>
-          <Form.Control {...register("price")} onChange={handleDiscount} type="number" name="price" />
+          <Form.Control {...register("price")} onChange={handleDiscount} type="number" name="price"/>
           {errors.price && <span className="form-error">{errors.price.message}</span>}
         </Form.Group>
 
         <Form.Group className="mb-3">
           <Form.Label>Discount (%)</Form.Label>
-          <Form.Control {...register("discount")} onChange={handleDiscount}  name="discount" />
+          <Form.Control {...register("discount")} onChange={handleDiscount}  name="discount" defaultValue={0}/>
           {errors.discount && <span className="form-error">{errors.discount.message}</span>}
         </Form.Group>
 
