@@ -1,30 +1,32 @@
 import HeadingPage from "../../components/layout/HeadingPage";
 import { Helmet } from "react-helmet";
 import { api } from "../../constants/api.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
 import ProductRow from "./ProductRow.jsx";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import AuthContext from "../../utilities/AuthContext";
 
 
 function Inventory() {
   const url = api + "/products";
   const [products, setProducts] = useState([]);
-  // const [newSum, setNewSum] = useLocalStorage("sum", []);
-  // const [test, setTest] = useState(0);
-  // console.log(newSum)
+  const [auth, setAuth] = useContext(AuthContext);
+  // const [sumPrice, setSumPrice] = useState()
+    
 
-  
-  let sum = 0;
-  function getTotal() {
-    products.forEach(element => {
-      let values = element.attributes.in_stock
-      sum += values;
-    });
-  }
-  getTotal()
+  // useEffect( () => {
+    let sum = 0;
+    function getTotal() {
+       products.forEach(element => {
+          let values = element.attributes.in_stock
+          sum += values;
+        })
+        // setSumPrice(sum)
+    }
+    
+  // }, [products])
 
   
 
@@ -49,7 +51,11 @@ async function handleDelete(id) {
 
   if (confirmDelete) {
     try {
-      const deleteItem = await axios.delete(url + "/" + id);
+      const deleteItem = await axios.delete(url + "/" + id, 
+      { headers: {
+        Authorization: `Bearer ${auth.data.jwt}`,
+      }}
+      );
       const removeProduct = products.filter( (product) => {
         return product.id !== id;
       })
@@ -83,16 +89,12 @@ async function handleDelete(id) {
           const {id, attributes} = product;        
 
           return (
-            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} />
+            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} updateSum={getTotal()}/>
           )
         })}
         <tr className="tr-summary">
           <td colSpan={4}>Total:</td>
-          {/* <td colSpan={0}></td> */}
-          {/* <td>
-            <input onChange={updateSum} value={newSum} /> 
-          </td> */}
-          {/* <td>{newSum}</td> */}
+          {/* <td>{sumPrice}</td> */}
           <td>{sum}</td>
         </tr>
       </tbody>

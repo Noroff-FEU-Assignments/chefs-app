@@ -75,13 +75,14 @@ thead {
 
   .td-price {
     width: 100px;
+    text-align: right;
   }
 
   .td-price input {
     background-color: transparent;
     width: 100%;
     margin: 0;
-    text-align: center;
+    text-align: right;
   }
 }
 

@@ -1,7 +1,7 @@
 import HeadingPage from "../../components/layout/HeadingPage.jsx";
 import { Helmet } from "react-helmet";
 import { api } from "../../constants/api.js";
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useContext } from "react";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
 import Spinner from "../../utilities/Spinner.jsx";
 import Button from "react-bootstrap/Button";
@@ -10,31 +10,31 @@ import MessageAccordion from "./MessageAccordion.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import axios from "axios";
+import AuthContext from "../../utilities/AuthContext.jsx";
 
 
 
 function Messages() {
   const messages_URL = api + "/messages";
 
+  const [auth, setAuth] = useContext(AuthContext);
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filteredMessages, setFilteredMessages] = useState([]);
-
-
+  
   useEffect( () => {
     async function getMessages() {
       try {
-        const response = await fetch(messages_URL);
+        const response = await axios.get(messages_URL,
+          { headers: {
+            Authorization: `Bearer ${auth.data.jwt}`,
+          }});
 
-        if (response.ok) {
-          const results = await response.json();
-          setMessages(results.data)
+          if(response.status === 200) {
+            setMessages(response.data.data)
+          }
           
-          console.log(results.data)
-        }
-
-
       } catch(error) {
         console.log(error);
         <SystemMessage type={"message error"} content={"Something went wrong"} />
@@ -71,7 +71,10 @@ function Messages() {
 
     if (confirmDelete) {
       try {
-      const response = await axios.delete(messages_URL + "/" + id);
+      const response = await axios.delete(messages_URL + "/" + id, 
+      { headers: {
+        Authorization: `Bearer ${auth.data.jwt}`,
+      }});
       const newArr = messages.filter( (message) => {
         return message.id !== id
         })

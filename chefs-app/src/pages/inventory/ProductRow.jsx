@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
-function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow}) {
+function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow, updateSum}) {
 
   const url = api + `/products/${productId}`;
   const [stock, setStock] = useState(in_stock);
@@ -18,6 +18,7 @@ function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow
     const newQuantity = Number(e.target.value);
     setStock(newQuantity * price);
     setMyQuantity(e.target.value);
+    {updateSum};
   }
 
   function updateMainPrice(e) {
@@ -61,7 +62,8 @@ function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow
       <tr className="tr-product">
         <td className="td-name">{name}</td>
         <td className="td-quantity">
-          <input type="number" onChange={ (e) => updateProduct(e)} value={myQuantity}  />
+          <input type="number" onChange={ (e) => updateProduct(e) } value={myQuantity}  />
+          {/* <input type="number" onChange={ (e) => updateProduct(e); {updateSum}} value={myQuantity}  /> */}
         </td>
         <td className="td-unit">{unit}</td>
         {priceData}
