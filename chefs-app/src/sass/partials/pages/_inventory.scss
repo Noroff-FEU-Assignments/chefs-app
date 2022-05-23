@@ -64,18 +64,16 @@ thead {
     background-color: map-get($coloursTable, "units");
   }
 
-  & .td-price, .td-in-stock {
-    background-color: map-get($coloursTable, "prices");
-  }
-
   .td-in-stock {
     text-align: center;
     color: map-get($colours, "secondary");
+    background-color: map-get($coloursTable, "prices-pale");
   }
 
   .td-price {
     width: 100px;
     text-align: right;
+    background-color: map-get($coloursTable, "prices");
   }
 
   .td-price input {

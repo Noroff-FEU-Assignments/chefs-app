@@ -46,7 +46,6 @@ function NewInventoryItem() {
         finalPrice = (productPrice - (productPrice * (discount / 100)) );
       }
     }
-
     setValue("finalprice", finalPrice);
   }, [productPrice, discount, setValue]);
 

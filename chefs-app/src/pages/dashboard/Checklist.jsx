@@ -1,35 +1,27 @@
 import { api } from "../../constants/api";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import SubHeadingPage from "../../components/layout/SubHeadingPage";
 import Routine from "./Routine.jsx";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import AuthContext from "../../utilities/AuthContext";
+
 
 
 function Checklist() {
   const url = api + "/routines";
   const [routines, setRoutines] = useState([]);
-  const [sort, setSort] = useState([]);
-  // console.log(routines)
+  const [value, setValue] = useState("");
+  const [auth, setAuth] = useContext(AuthContext);
+  
   
   useEffect( () => {
     async function getRoutines() {
       try {
         const response = await axios.get(url);
-        // console.log(response);
         setRoutines(response.data.data); 
-  
-
-        // const sortArray = (type) => {
-        //   const types = {
-        //     // name: ,
-        //   };
-    
-        //   const sortProperty = types[type];
-        //   const sorted = [...routines].sort((a,b) => b[sortProperty] - a[sortProperty]);
-        //   setSort(sorted);
-        // };
-        // sortArray(sort);
 
       } catch(error) {
         console.log(error);
@@ -38,25 +30,80 @@ function Checklist() {
 
     }
     getRoutines()
-  }, [url])
+  }, [])
 
 
-  
-    const sortedArray = [...routines].sort((a,b) => a - b)
-    // console.log(sortedArray)
- 
-  // useEffect( () => {
-  //   const sortArray = (type) => {
-  //     const types = {
-  //       name: name,
-  //     };
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-  //     const sortProperty = types[type];
-  //     const sorted = [...routines].sort((a,b) => b[sortProperty] - a[sortProperty]);
-  //     setSort(sorted);
-  //   };
-  //   sortArray(sort);
-  // }, [sort]);
+    if (!value) {
+      return
+    } else {
+      try {
+        const putItem = await axios.post(url,
+          { data: {
+            name: value, 
+            done: false,
+          },
+        })
+        const putItemDetails = putItem.data.data;
+        setRoutines([...routines, {
+          id: putItemDetails.id,
+          attributes: {
+              name: putItemDetails.attributes.name, 
+              done: putItemDetails.attributes.done
+            } 
+          }
+        ])
+        console.log(putItem)
+      } catch(error) {
+        console.log(error);
+      }
+      
+    }
+    setValue("");
+  }
+
+
+  function handleInput(e) {
+    setValue(e.target.value);
+  }
+
+
+
+
+  function sortRoutines(a, b) {
+    return a.id - b.id;
+  }
+
+
+  async function handleDelete(id) {
+    const confirmDelete = window.confirm(`Delete routine permanently?`);
+    try {
+      const deleteItem = await axios.delete(url + "/" + id, 
+      { headers: {
+        Authorization: `Bearer ${auth.data.jwt}`,
+      }})
+
+      const removeItem = routines.filter( (item) => {
+        return item.id !== id;
+      })
+      setRoutines(removeItem)
+      console.log(deleteItem)
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+// Adding a routine if an admin is logged
+  let addRoutineForm = "";
+  if (auth && auth.data.user.email === "admin@admin.com") {
+    addRoutineForm = <Form onSubmit={handleSubmit} id="prepListForm">
+          <Form.Control type="text" value={value} id="prepListInput" onChange={handleInput}  placeholder="Add new routine" />
+          <Button id="prepListBtn" type="submit">Add</Button>
+      </Form>    
+
+  }
 
 
   return (
@@ -64,10 +111,12 @@ function Checklist() {
     <SubHeadingPage>Routines</SubHeadingPage>
       {routines.map( (routine) => {
         const {id, attributes} = routine;
+        routines.sort(sortRoutines)
         return(
-          <Routine key={id} routineId={id} name={attributes.name} done={attributes.done}/>
+          <Routine key={id} routineId={id} name={attributes.name} done={attributes.done} deleteRoutine={() => handleDelete(id)}/>
         )
       })}
+      {addRoutineForm}
     </>
   )
 }

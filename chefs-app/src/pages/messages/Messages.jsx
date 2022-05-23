@@ -22,7 +22,9 @@ function Messages() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filteredMessages, setFilteredMessages] = useState([]);
-  
+  console.log(messages)
+
+
   useEffect( () => {
     async function getMessages() {
       try {
@@ -48,6 +50,15 @@ function Messages() {
 
   if (loading) {
     <Spinner />
+  }
+
+  if (messages.length === 0) {
+    return (
+      <>
+      <HeadingPage>Messages</HeadingPage>
+      <SystemMessage type={"message normal"} content={"There are no messages to show"} />
+      </>
+    )
   }
 
   const searchItems = (searchValue) => {
@@ -111,7 +122,7 @@ function Messages() {
           ) : (
               messages.map( (message) => {
                 const {id, attributes} = message
-      
+                console.log(messages)
                 return (
                   <>    
                     <MessageAccordion key={id} name={attributes.chefs_name} title={attributes.title} message={attributes.message} subject={attributes.subject} deleteMessage={() => deleteMsg(id)}/>

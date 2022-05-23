@@ -52,18 +52,17 @@
 
 .prep-list-item {
   width: 80%;
-  margin: 10px auto;
+  margin: 0px auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // border: 1px solid map-get($colours, "details");
-  padding: 10px 0;
+  padding: 7px 0;
   text-decoration-color: map-get($colours, "secondary");
 
   & div {
     width: 85%;
     color: map-get($colours, "text");
-    border: 1px solid rgb(202, 202, 202);
+    border: 1px solid hsl(358, 61%, 85%);
     // border: 1px solid map-get($colours, "text");
     border-radius: 8px;
     padding: 3px 0;
@@ -99,11 +98,35 @@
 /* ----------- Routines ----------- */
 .routines-item {
   width: 80%;
-  margin: 5px auto;
+  margin: 7px auto;
+  padding: 5px;
+  box-shadow: 0 0 2px map-get($colours, "text");
+  display: grid;
+  grid-template-columns: 90% 10%;
+
+  &:nth-child(even) {
+    background-color: map-get($colours, "primary");
+  }
+
+  &:nth-child(odd) {
+    background-color: hsl(358, 61%, 94%);
+  }
 
   & label {
     display: flex;
+    // grid-template-rows: 1;
+    // grid-template-columns: 5% 85% 10%;
     align-items: center;
+  }
+
+  & .routines-name {
+    margin-left: 10px;
+  }
+
+  & .delete-routine-btn {
+    color: map-get($colours, "secondary");
+    text-align: center;
+    cursor: pointer;
   }
 }
 
@@ -113,9 +136,11 @@
 .announcements-item {
   width: 80%;
   margin: 10px auto 20px auto;
-  border-bottom: 1px solid map-get($colours, "details");
+  // border-bottom: 3px solid hsl(358, 61%, 94%);
   border-radius: 7px;
   padding: 6px 0;
+  box-shadow: 2px 2px 4px hsl(358, 61%, 70%);
+  // box-shadow: 1px 1px 3px hsl(358, 61%, 80%);
 
   & .announcements-title {
     font-size: 1.1rem;
@@ -137,14 +162,8 @@
   }
 }
 
-// .announcements-item:before {
-//   content: "\2022";
-//   color: map-get($colours, "secondary");
-//   font-weight: bold;
-//   display: inline-block; 
-//   width: 1.4rem;
-//   margin-left: -1rem;
-// }
+
+
 
 @media only screen and (min-width: 1000px) {
   #desktop-divider-one, #desktop-divider-two {

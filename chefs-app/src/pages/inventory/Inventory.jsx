@@ -14,19 +14,17 @@ function Inventory() {
   const [products, setProducts] = useState([]);
   const [auth, setAuth] = useContext(AuthContext);
   // const [sumPrice, setSumPrice] = useState()
+  // console.log(sumPrice)
     
 
-  // useEffect( () => {
-    let sum = 0;
-    function getTotal() {
-       products.forEach(element => {
-          let values = element.attributes.in_stock
-          sum += values;
-        })
-        // setSumPrice(sum)
+  let sum = 0;
+  function getTotal() {
+     products.forEach(element => {
+        let values = element.attributes.in_stock
+        sum += values;
+      })
     }
-    
-  // }, [products])
+  getTotal();
 
   
 
@@ -35,7 +33,7 @@ useEffect( () => {
       try {
         const response = await axios.get(url);
         setProducts(response.data.data);
-
+        // console.log(products)
         
       } catch(error) {
         console.log(error);
@@ -43,7 +41,7 @@ useEffect( () => {
       }
     }
     getProducts();
-}, [])
+}, [products])
 
 
 async function handleDelete(id) {
@@ -67,6 +65,10 @@ async function handleDelete(id) {
   }
 }
 
+function sortOut(a, b) {
+  return a.attributes.name > b.attributes.name ? 1 : -1;
+}
+
       
   return (
     <>
@@ -87,9 +89,12 @@ async function handleDelete(id) {
       <tbody>
         {products.map( (product) => {
           const {id, attributes} = product;        
+          
+          products.sort(sortOut);
+          
 
           return (
-            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} updateSum={getTotal()}/>
+            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} />
           )
         })}
         <tr className="tr-summary">

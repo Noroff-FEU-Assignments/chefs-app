@@ -54,7 +54,10 @@ function RecipeDetails() {
 
     if (confirmDelete) {
       try {
-        const deleteResponse = await axios.delete(detailsURL);
+        const deleteResponse = await axios.delete(detailsURL,
+          { headers: {
+            Authorization: `Bearer ${auth.data.jwt}`,
+          }});
         navigate("/recipes");
 
       } catch(error) {

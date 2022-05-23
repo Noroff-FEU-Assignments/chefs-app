@@ -18,7 +18,6 @@ function Navigation() {
   const [modalShow, setModalShow] = useState(false);
   const [auth, setAuth] = useContext(AuthContext);
   const navigate = useNavigate();
-  // console.log(auth.data.user.username)
 
   function logout() {
     let confirmation = window.confirm("Are you sure you want to logout?");
@@ -37,13 +36,8 @@ function Navigation() {
                           onHide={() => setModalShow(false)}
                         />
                     </div>
-
   let adminLinks = ""
-
   let messagesIcon = ""
-
-  
-
 
   if (auth && auth.data.user.email === "admin@admin.com") {
     loginLinks = <Button variant="primary"  id="loggedBtn">Hi, {auth.data.user.username} <FontAwesomeIcon icon={solid('arrow-right-from-bracket')} id="logoutIcon" onClick={logout}/></Button>
@@ -126,15 +120,15 @@ function Navigation() {
             <div className="nav-separator" id="navSeparatorRemove"></div>
             <h2 className="nav-heading" id="externalLinksHeading">Press to connect:</h2>
             <div className="external-links">
-                <a href="https://secure.e-smiley.dk/" className="ext-link-individual">E-smiley <img src={Esmiley} alt="Esmiley logo"/></a>
-                <a href="https://id.planday.com/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Db116846e-8ff0-42dc-83b6-5392543ca73c%26redirect_uri%3Dhttps%253A%252F%252Fdbb.planday.com%252Fauth-callback%26response_type%3Dcode%26scope%3Dopenid%2520impersonate%2520plandayid%26state%3D26911e29e99243c189b9fb0bac7360ed%26code_challenge%3DA0yoEKZBDJpSdpLLXgp7kdGcRbivgLDRKZTTihWHIj4%26code_challenge_method%3DS256%26acr_values%3Dtenant%253Adbb.planday.com%26response_mode%3Dquery" className="ext-link-individual">Planday <img src={Planday} alt="Planday logo"/></a>
-                <a href="https://motimate.app/dognvill/">Motimate <img src={Motimate} alt="Motimate logo" /></a>
+                <a href="https://secure.e-smiley.dk/" className="ext-link-individual" target="_blank" rel="noreferrer noopener">E-smiley <img src={Esmiley} alt="Esmiley logo"/></a>
+                <a href="https://id.planday.com/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Db116846e-8ff0-42dc-83b6-5392543ca73c%26redirect_uri%3Dhttps%253A%252F%252Fdbb.planday.com%252Fauth-callback%26response_type%3Dcode%26scope%3Dopenid%2520impersonate%2520plandayid%26state%3D26911e29e99243c189b9fb0bac7360ed%26code_challenge%3DA0yoEKZBDJpSdpLLXgp7kdGcRbivgLDRKZTTihWHIj4%26code_challenge_method%3DS256%26acr_values%3Dtenant%253Adbb.planday.com%26response_mode%3Dquery" className="ext-link-individual" target="_blank" rel="noreferrer noopener">Planday <img src={Planday} alt="Planday logo"/></a>
+                <a href="https://motimate.app/dognvill/" target="_blank" rel="noreferrer noopener">Motimate <img src={Motimate} alt="Motimate logo" /></a>
             </div>
           </div>
           <div className="external-links-desktop">
-                <a href="https://secure.e-smiley.dk/" className="ext-link-individual">E-smiley <img src={Esmiley} alt="Esmiley logo"/></a>
-                <a href="https://id.planday.com/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Db116846e-8ff0-42dc-83b6-5392543ca73c%26redirect_uri%3Dhttps%253A%252F%252Fdbb.planday.com%252Fauth-callback%26response_type%3Dcode%26scope%3Dopenid%2520impersonate%2520plandayid%26state%3D26911e29e99243c189b9fb0bac7360ed%26code_challenge%3DA0yoEKZBDJpSdpLLXgp7kdGcRbivgLDRKZTTihWHIj4%26code_challenge_method%3DS256%26acr_values%3Dtenant%253Adbb.planday.com%26response_mode%3Dquery" className="ext-link-individual">Planday <img src={Planday} alt="Planday logo"/></a>
-                <a href="https://motimate.app/dognvill/">Motimate <img src={Motimate} alt="Motimate logo" /></a>
+                <a href="https://secure.e-smiley.dk/" className="ext-link-individual" target="_blank" rel="noreferrer noopener">E-smiley <img src={Esmiley} alt="Esmiley logo"/></a>
+                <a href="https://id.planday.com/Login?ReturnUrl=%2Fconnect%2Fauthorize%2Fcallback%3Fclient_id%3Db116846e-8ff0-42dc-83b6-5392543ca73c%26redirect_uri%3Dhttps%253A%252F%252Fdbb.planday.com%252Fauth-callback%26response_type%3Dcode%26scope%3Dopenid%2520impersonate%2520plandayid%26state%3D26911e29e99243c189b9fb0bac7360ed%26code_challenge%3DA0yoEKZBDJpSdpLLXgp7kdGcRbivgLDRKZTTihWHIj4%26code_challenge_method%3DS256%26acr_values%3Dtenant%253Adbb.planday.com%26response_mode%3Dquery" className="ext-link-individual" target="_blank" rel="noreferrer noopener">Planday <img src={Planday} alt="Planday logo"/></a>
+                <a href="https://motimate.app/dognvill/" target="_blank" rel="noreferrer noopener">Motimate <img src={Motimate} alt="Motimate logo" /></a>
             </div>
         </nav>
       </header>

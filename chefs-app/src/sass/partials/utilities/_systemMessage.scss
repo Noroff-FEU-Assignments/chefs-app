@@ -1,5 +1,5 @@
 .message {
-  color: map-get($colours, "bg-form");
+  // color: map-get($colours, "bg-form");
   max-width: 100%;
   border-radius: 3px;
   margin: 20px auto;
@@ -9,7 +9,15 @@
 }
 
 .message.normal {
-  border: 1px solid map-get($colours, "bg-fomr");
+  position: absolute;
+  width: 60%;
+  padding: 100px;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid map-get($colours, "secondary");
+  background-color: map-get($colours, "primary");
+  color: map-get($colours, "text");
 }
 
 .message.error {

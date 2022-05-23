@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
 import { api } from "../../constants/api";
 import axios from "axios";
+import { useState } from "react";
 
 
 
@@ -24,6 +25,8 @@ const schema = yup.object().shape({
 
 
 function Contact() {
+  const [appear, setAppear] = useState(false)
+  console.log(appear)
   const { register, handleSubmit, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
@@ -38,7 +41,16 @@ function Contact() {
           subject: data.subject,
           title: data.title,
         }})
+        console.log(response)
+        
+        if (response.status === 200) {
+          showMessage = <SystemMessage content={"Message sent"} type={"message success"} />          
+          setAppear(true)
 
+          if (appear) {
+          }
+          console.log(appear)
+        }
 
     } catch(error) {
       console.log(error);
@@ -46,9 +58,15 @@ function Contact() {
     }
 
 
-    console.log(data)
+    if (showMessage) {
+      setTimeout(() => {
+        setAppear(false)
+      }, 1000);
+      console.log(appear)
+    }
+    
     reset();
-    showMessage = <SystemMessage content={"Thank you for your message"} type={"message success"} />
+    
   };
     
   const subjectOptions = subjectChoice.map( (subjects, key) => (
@@ -64,7 +82,6 @@ function Contact() {
       </Helmet>
       <HeadingPage>Contact</HeadingPage>
       {showMessage}
-
       <Form onSubmit={handleSubmit(onSubmit)} className="form-style" id="contactForm">
         <Form.Group className="mb-3">
           <Form.Label>Chef's name</Form.Label>

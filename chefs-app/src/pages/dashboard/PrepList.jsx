@@ -130,7 +130,9 @@ function PrepList({done}) {
   //     console.log(error);
   //   }
   // }
-
+  function sortPreps(a, b) {
+    return a.id - b.id;
+  }
   
   return (
     <>
@@ -142,6 +144,8 @@ function PrepList({done}) {
       
         {prepItems.map( (item) => {
           // console.log(item.attributes.done)
+          prepItems.sort(sortPreps);
+
           return (
             <div key={item.id} className="prep-list-item">
                 <div style={{textDecoration: item.attributes.done || item.isDoneLocal ? "line-through" : "", textDecorationColor: item.attributes.done || item.isDoneLocal ? "#BA2126" : ""}}
