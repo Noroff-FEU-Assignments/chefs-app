@@ -10,11 +10,10 @@ function PrepList({}) {
   const [value, setValue] = useState("");
   const [prepItems, setPrepItems] = useState([]);
   const [checked, setChecked] = useState()
-  // console.log(checked)
+
   
   const url = api + "/prep-lists";
   console.log(prepItems);
-
 
   useEffect( () => {
     async function getPrepItems() {
