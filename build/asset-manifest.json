@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.224d7022.css",
+    "main.js": "/static/js/main.3139943f.js",
+    "static/js/787.2875839a.chunk.js": "/static/js/787.2875839a.chunk.js",
+    "static/media/motimate-logo.svg": "/static/media/motimate-logo.30c70d323c610f671057c9fc10fc5455.svg",
+    "static/media/logo-chefs.png": "/static/media/logo-chefs.a76f25b1445ca72a0486.png",
+    "static/media/planday-logo.svg": "/static/media/planday-logo.10a894302b45d36f7cf2affc0eb814b5.svg",
+    "static/media/esmiley-logo.svg": "/static/media/esmiley-logo.fbfb60bfbbe3f4c3dfc0afb402262f2f.svg",
+    "index.html": "/index.html",
+    "static/media/hamburger.svg": "/static/media/hamburger.03c3d4df5099506c138ad08924356cad.svg",
+    "static/media/recipe-banner.svg": "/static/media/recipe-banner.7eb0589dbd0760cc8eea8b990ea6979b.svg",
+    "main.224d7022.css.map": "/static/css/main.224d7022.css.map",
+    "main.3139943f.js.map": "/static/js/main.3139943f.js.map",
+    "787.2875839a.chunk.js.map": "/static/js/787.2875839a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.224d7022.css",
+    "static/js/main.3139943f.js"
+  ]
+}
