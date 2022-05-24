@@ -6,10 +6,10 @@ import axios from "axios";
 import { api } from "../../constants/api.js";
 
 
-function PrepList({done}) {
+function PrepList({}) {
   const [value, setValue] = useState("");
   const [prepItems, setPrepItems] = useState([]);
-  const [checked, setChecked] = useState(done)
+  const [checked, setChecked] = useState()
   // console.log(checked)
   
   const url = api + "/prep-lists";
