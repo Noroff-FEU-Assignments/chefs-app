@@ -34,7 +34,9 @@ thead {
   }
 
   & .td-name {
-    background-color: map-get($coloursTable, "products");
+    
+    background-color: #199bd7;
+    // background-color: map-get($coloursTable, "products");
     color: map-get($colours, "light-primary");
     width: 30%;
   }
@@ -61,7 +63,8 @@ thead {
 
   & .td-unit {
     color: map-get($colours, "text");
-    background-color: map-get($coloursTable, "units");
+    background: rgb(224, 255, 224);
+    // background-color: map-get($coloursTable, "units");
   }
 
   .td-in-stock {
@@ -73,7 +76,7 @@ thead {
   .td-price {
     width: 100px;
     text-align: right;
-    background-color: map-get($coloursTable, "prices");
+    background-color: hsl(358, 61%, 94%);;
   }
 
   .td-price input {
