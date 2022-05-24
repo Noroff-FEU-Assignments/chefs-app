@@ -1,0 +1,35 @@
+// Font imports
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url("https://use.typekit.net/avb6yzv.css");
+
+
+// Custom Global Variables
+$colours: ("primary": #FFFCE8, "secondary": #BA2126, "text": #4c362c, "light-primary": #fffef6, "details": #f2b32a);
+$coloursTable: ("products": #307fae, "units": #c4dbf8, "prices": #ffff81, "prices-pale": hsl(60, 100%, 89%));
+$coloursAlerts: ("success": #40ab21, "error": #ff0007, "warning": #ff8000);
+
+$font-main: "muli", sans-serif;
+$font-secondary: 'Bangers', cursive;
+$font-extra: "Poppins", sans-serif;
+$font-extra-2: "hummingbird", sans-serif;
+$font-extra-3: "poster-gothic-excond-atf", sans-serif;
+
+
+
+
+// Imports
+@import "./partials/layout/_navigation.scss";
+@import "./partials/layout/_footer.scss";
+@import "./partials/layout/_layout.scss";
+@import "./partials/typography/_typography.scss";
+@import "./partials/pages/_recipes.scss";
+@import "./partials/pages/_recipeDetails.scss";
+@import "./partials/pages/_messages.scss";
+@import "./partials/pages/_inventory.scss";
+@import "./partials/pages/_dashboard.scss";
+@import "./partials/utilities/_systemMessage.scss";
+@import "./partials/utilities/_forms.scss";
+@import "./partials/utilities/_spinner.scss";
+@import "./partials/utilities/_sectionDivider.scss";

@@ -1,0 +1,44 @@
+// html, body {
+//   height: 100%;
+// }
+
+// body > footer {
+//   position: sticky;
+//   // top: 100vh;
+//   bottom: 10px;
+// }
+html, body {
+  height: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+header {
+  background-color: map-get($colours, "primary");
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.container {
+  margin-top: 190px;
+  margin-bottom: 50px;
+}
+
+footer {
+  margin-top: auto;
+}
+
+
+@media only screen and (min-width: 1000px) {
+.container {
+  margin-top: 120px;
+  width: 70%;
+}
+
+}

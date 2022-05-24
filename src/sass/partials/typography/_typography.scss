@@ -1,0 +1,127 @@
+body {
+  font-family: $font-main;
+}
+
+a {
+  color: map-get($colours, "text");
+  text-decoration: none;
+}
+
+
+
+// Main page title
+h1 {
+  font-family: $font-extra-3;
+  text-transform: uppercase;
+  // font-weight: 500;
+  letter-spacing: .1rem;
+  text-align: center;
+  margin: 20px auto 10px auto;
+  color: map-get($colours, "text");
+  // border-bottom: 1px solid map-get($colours, "secondary");
+  width: 60%;
+  position: relative;
+  font-size: 1.6rem;
+  
+  &::after {
+    content: '';
+    margin: -5px;
+    position: absolute;
+    bottom: 8px;
+    right: 5px;
+    width: 100%;
+    border-bottom: solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-color: map-get($colours, "secondary");
+    border-image-source: radial-gradient(circle 150px, #BA2126,  #FFF );
+    // border-image-source: radial-gradient(circle 200px, #BA2126,  #FFFCE8, #4c362c);
+  }
+}
+
+
+
+// Details Recipe Title
+.recipe-title-container {
+  max-width: 600px;
+  margin: 40px auto 10px auto;
+  position: relative;
+
+  & .recipe-title-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: map-get($colours, "primary");
+    font-family: $font-extra-3;
+    // font-family: $font-secondary;
+    font-size: 2.6rem;
+    letter-spacing: .15rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+.page-sub-heading {
+  font-family: $font-extra-3;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  text-align: left;
+  margin: 0px auto 20px auto;
+  color: map-get($colours, "text");
+  // border-bottom: 1px solid map-get($colours, "text");
+  width: 80%;
+  position: relative;
+  font-size: 1.6rem;
+  
+  &::after {
+    content: '';
+    margin: -5px;
+    position: absolute;
+    bottom: 8px;
+    right: 5px;
+    width: 100%;
+    border-bottom: solid;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-color: map-get($colours, "secondary");
+    border-image-source: linear-gradient(to right, #BA2126,  #FFF );
+  }
+}
+
+
+
+@media only screen and (min-width: 1000px) {
+  h1 {
+    margin: 40px auto 20px auto;
+    font-size: 3rem;
+    width: 20rem;
+  }
+
+
+
+  .page-sub-heading {
+    font-size: 1.8rem;
+    // font-weight: 600;
+  
+    &::after {
+      border-width: 2px;
+      border-image-source: radial-gradient(circle 150px, #BA2126,  #FFF );
+      // border-image-source: radial-gradient(circle 200px, #BA2126,  #FFFCE8, #4c362c);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

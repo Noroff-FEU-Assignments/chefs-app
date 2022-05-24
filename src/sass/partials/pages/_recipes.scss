@@ -1,0 +1,154 @@
+.search {
+  display: flex;
+  width: 70%;
+  margin: 20px auto;
+  justify-content: space-around;
+  position: relative;
+
+  & input {
+    width: 100%;
+    border: 1px solid map-get($colours, "secondary");
+    border-radius: 5px;
+    box-shadow: 0 0 4px map-get($colours, "text");
+    transition: padding .2s ease-in-out;
+  }
+
+  & input::placeholder {
+    padding-left: 10px;
+  }
+
+  // & input:focus {
+  //   padding: 5px;
+  //   border: 1px solid map-get($colours, "secondary");
+  // }
+
+  & .search-icon {
+    color: map-get($colours, "secondary");
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+#recipeListContainer {
+  margin-top: 30px;
+}
+
+.link-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 90% 10%;
+  align-items: center;
+  box-shadow: 0 0 8px map-get($colours, "text");
+  background-color: map-get($colours, "primary");
+  border-radius: 10px;
+  height: 40px;
+  margin: 15px auto;
+  transition: .15s ease-in;
+
+  &:hover {
+    transform: scale(1.015);
+  }
+}
+
+.recipe-list-links {
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  width: 90%;
+  // height: 40px;
+  // margin: 15px auto;
+  // box-shadow: 0 0 8px map-get($colours, "text");
+  // background-color: map-get($colours, "primary");
+  // border-radius: 10px;
+  align-items: center;
+  padding: 8px 3px;
+
+  // justify-items: center;
+
+  & img {
+    width: 25px;
+    justify-self: center;
+    margin-right: 10px;
+    grid-column: 1;
+  }
+
+  & h4 {
+    margin: 0;
+    position: relative;
+    grid-column: 2;
+    // margin-left: 1rem;
+  }
+
+  &:hover {
+    color: map-get($colours, "text");
+  }
+
+  & h4:before {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 40px;
+    // margin-right: -10px;
+    top: -8px;
+    left: -10px;
+    background-color: map-get($colours, "secondary");
+  }
+
+  // & h4:after {
+  //   content: "";
+  //   position: absolute;
+  //   width: 1px;
+  //   height: 40px;
+  //   // margin-right: -10px;
+  //   top: -8px;
+  //   right: 0px;
+  //   background-color: map-get($colours, "secondary");
+  // }
+
+  
+
+  
+}
+
+.pen-icon {
+  color: map-get($colours, "secondary");
+  position: relative;
+  grid-column: 2;
+}
+
+
+
+@media only screen and (min-width: 1000px) {
+  .search {
+    width: 40%;
+    margin: 20px auto;
+  
+    & input {
+      width: 100%;
+      border-radius: 5px;
+      box-shadow: 0 0 4px map-get($colours, "text");
+    }
+  
+    // & .search-icon {
+    //   border: 1px solid map-get($colours, "secondary");
+    //   border-radius: 5px;
+    //   box-shadow: 0 0 4px map-get($colours, "text");
+    // }
+  }
+  
+
+  .link-container {
+    width: 70%;
+    // display: grid;
+    // grid-template-columns: 90% 10%;
+    // align-items: center;
+    // box-shadow: 0 0 8px map-get($colours, "text");
+    // background-color: map-get($colours, "primary");
+    // border-radius: 10px;
+    // height: 40px;
+    // margin: 15px auto;
+  }
+
+}

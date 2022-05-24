@@ -1,0 +1,120 @@
+.accordion {
+  width: 100%;
+}
+
+.message-title-desktop {
+  display: none;
+}
+
+.accordion-button {
+    background-color: map-get($colours, "primary");
+    border: 1px solid map-get($colours, "secondary");
+    display: grid;
+    grid-template-columns: 75% 20% 5%;
+    // padding: 0 16px;
+
+  &:focus {
+    background-color: map-get($colours, "primary");
+    border: 1px solid map-get($colours, "secondary");
+    color: map-get($colours, "text");
+    box-shadow: inset 0  0 map-get($colours, "text");
+  }
+
+  &:not(.collapsed) {
+    background-color: map-get($colours, "primary");
+    color: map-get($colours, "text");
+    box-shadow: inset 0  0 map-get($colours, "text");
+
+    // &::after:active {
+    //   color: red;
+    // }
+  }
+
+  &:active {
+    box-shadow: inset 0  0 map-get($colours, "text");
+  }
+
+  // &:after {
+  //   color: red;
+  // }
+
+  // &:after:focus {
+  //   color: red;
+  // }
+}
+
+.accordion-header div:nth-child(2) {
+  font-weight: 600;
+}
+
+.accordion-header div:nth-child(2):before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 52px;
+  top: 0px;
+  margin-left: -10px;
+  background-color: map-get($colours, "secondary");
+}
+
+.accordion-body {
+  border-right: 1px solid map-get($colours, "secondary");
+  border-left: 1px solid map-get($colours, "secondary");
+  border-bottom: 1px solid map-get($colours, "secondary");
+  background-color: map-get($colours, "light-primary");
+  display: flex;
+  flex-direction: column;
+}
+
+.from {
+  font-weight: 600;
+  text-decoration: underline;
+  padding-right: .1rem;
+}
+
+.message-title {
+  text-decoration: underline;
+  padding-right: .1rem;
+}
+
+#deleteMessageBtn {
+  height: 2.1rem;
+  width: 8rem;
+  border: none;
+  border-radius: 3px;
+  // box-shadow: 0 0 8px map-get($colours, "text");
+  color: #fff;
+  background-color: map-get($colours, "secondary");
+  margin: 0 auto;
+}
+
+
+
+/* ------------ Tablet ------------ */
+@media only screen and (min-width: 1000px) {
+  .accordion {
+    margin: auto;
+    width: 700px;
+  }
+
+  .message-title-desktop {
+    display: inline-block;
+
+    & span {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+/* ------------ Desktop ------------ */
+@media only screen and (min-width: 1300px) {
+  .accordion {
+    margin: auto;
+    width: 850px;
+
+  }
+  
+
+}
