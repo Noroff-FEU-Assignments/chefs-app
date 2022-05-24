@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react" ;
 import axios from "axios";
 import { api } from "../../constants/api.js";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import AuthContext from "../../utilities/AuthContext.jsx";
 
 
@@ -33,7 +33,8 @@ function Routine({routineId, done, name, deleteRoutine}) {
   // Delete button if admin is logged
   let deleteRoutineBtn = "";
   if (auth && auth.data.user.email === "admin@admin.com") {
-    deleteRoutineBtn = <span className="delete-routine-btn" onClick={deleteRoutine}><FontAwesomeIcon icon={solid('trash')}/></span>
+    deleteRoutineBtn = <span className="delete-routine-btn" onClick={deleteRoutine}></span>
+    // deleteRoutineBtn = <span className="delete-routine-btn" onClick={deleteRoutine}><FontAwesomeIcon icon={solid('trash')}/></span>
 
   }
 

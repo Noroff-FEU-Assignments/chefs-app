@@ -8,8 +8,8 @@ import Esmiley from "../../images/esmiley-logo.svg";
 import Planday from "../../images/planday-logo.svg";
 import Motimate from "../../images/motimate-logo.svg";
 import Hamburger from "../../images/hamburger.svg";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import LoginForm from "../../pages/login/LoginForm";
 import AuthContext from "../../utilities/AuthContext.jsx";
 
@@ -40,7 +40,8 @@ function Navigation() {
   let messagesIcon = ""
 
   if (auth && auth.data.user.email === "admin@admin.com") {
-    loginLinks = <Button variant="primary"  id="loggedBtn">Hi, {auth.data.user.username} <FontAwesomeIcon icon={solid('arrow-right-from-bracket')} id="logoutIcon" onClick={logout}/></Button>
+    loginLinks = <Button variant="primary"  id="loggedBtn">Hi, {auth.data.user.username} </Button>
+    // loginLinks = <Button variant="primary"  id="loggedBtn">Hi, {auth.data.user.username} <FontAwesomeIcon icon={solid('arrow-right-from-bracket')} id="logoutIcon" onClick={logout}/></Button>
 
     adminLinks = <>
               <div id="adminLinks">
@@ -48,7 +49,8 @@ function Navigation() {
               <Dropdown>
                 <Dropdown.Toggle id="dropdown-basic">
                   <NavLink to="#" className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Admin Panel<FontAwesomeIcon icon={solid('chevron-circle-down')} id="circleArrowDown"/>
+                    Admin Panel
+                    {/* Admin Panel<FontAwesomeIcon icon={solid('chevron-circle-down')} id="circleArrowDown"/> */}
                   </NavLink>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -74,9 +76,11 @@ function Navigation() {
             </div>
                   </>
 
-    messagesIcon = <NavLink to="/messages"><FontAwesomeIcon icon={solid('message')} id="messageIcon" /></NavLink>
+    messagesIcon = <NavLink to="/messages"></NavLink>
+    // messagesIcon = <NavLink to="/messages"><FontAwesomeIcon icon={solid('message')} id="messageIcon" /></NavLink>
   } else if (auth) {
-    loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username} <FontAwesomeIcon icon={solid('arrow-right-from-bracket')} id="logoutIcon" onClick={logout}/></Button>
+    loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username} </Button>
+    // loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username} <FontAwesomeIcon icon={solid('arrow-right-from-bracket')} id="logoutIcon" onClick={logout}/></Button>
   }
 
   function fadeInMenu() {
@@ -93,7 +97,7 @@ function Navigation() {
           <div className="user-burger">
             <div id="userIcons">
               <div>
-                <FontAwesomeIcon icon={solid('user')} id="userFigure" onClick={() => setModalShow(true)}/>
+                {/* <FontAwesomeIcon icon={solid('user')} id="userFigure" onClick={() => setModalShow(true)}/> */}
                 {messagesIcon}
               </div>
               {loginLinks}

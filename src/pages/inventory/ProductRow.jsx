@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import axios from "axios";
 import { api } from "../../constants/api.js";
 import AuthContext from "../../utilities/AuthContext.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
 function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow, updateSum}) {
@@ -51,7 +51,8 @@ function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow
     priceData = <td className="td-price">
                   <input type="number" onChange={ (e) => updateMainPrice(e)} value={newPrice} />
                 </td>
-    deleteBtn = <td><button onClick={deleteRow} id="deleteRowBtn"><FontAwesomeIcon icon={solid('trash')}/></button></td>
+    // deleteBtn = <td><button onClick={deleteRow} id="deleteRowBtn"><FontAwesomeIcon icon={solid('trash')}/></button></td>
+    deleteBtn = <td><button onClick={deleteRow} id="deleteRowBtn"></button></td>
   } else {
     priceData =  <td className="td-price">{price}</td>
   }

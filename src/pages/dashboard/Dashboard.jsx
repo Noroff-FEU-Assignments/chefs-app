@@ -8,8 +8,8 @@ import { api } from "../../constants/api.js";
 import News from "./News.jsx"
 import PrepList from "./PrepList.jsx"
 import Checklist from "./Checklist.jsx"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 // const RSS_url = "https://www.mattilsynet.no/mat_og_vann/?service=rss";
 

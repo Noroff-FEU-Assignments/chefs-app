@@ -5,8 +5,8 @@ import RecipeLink from "./RecipeLink.jsx";
 import { useState, useEffect } from "react";
 import Spinner from "../../utilities/Spinner.jsx";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
 
@@ -71,7 +71,7 @@ function Recipes() {
       <HeadingPage>Recipes</HeadingPage>
       <div className="search">
         <input onChange={(e) => searchItems(e.target.value)} type="text" id="searchRecipe" className="search-input" placeholder="Search recipe" />
-        <FontAwesomeIcon icon={solid('search')} className="search-icon" />
+        {/* <FontAwesomeIcon icon={solid('search')} className="search-icon" /> */}
       </div>
       <div id="recipeListContainer">
         {search.length >= 1 ? (

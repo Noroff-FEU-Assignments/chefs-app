@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import Accordion from "react-bootstrap/Accordion";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
   function MessageAccordion(props) {
@@ -28,7 +28,8 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
             <div className="message-content">
               {message}
             </div>
-            <button type="button" id="deleteMessageBtn"  onClick={deleteMessage}>Delete <FontAwesomeIcon icon={solid('trash')}/></button>
+            <button type="button" id="deleteMessageBtn"  onClick={deleteMessage}>Delete </button>
+            {/* <button type="button" id="deleteMessageBtn"  onClick={deleteMessage}>Delete <FontAwesomeIcon icon={solid('trash')}/></button> */}
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>

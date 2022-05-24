@@ -6,8 +6,8 @@ import { Helmet } from "react-helmet";
 import { useState, useEffect, useContext } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { marked } from "marked";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import axios from "axios";
 
 
@@ -79,8 +79,8 @@ function RecipeDetails() {
   let adminButtons = ""
   if (auth) {
     adminButtons =  <div id="admin-buttons">
-                      <Link to={`edit-recipe/${id}`} className="edit-btn">Edit <FontAwesomeIcon icon={solid('pen')}/></Link>
-                      <button type="button" className="delete-btn" onClick={deleteRecipe}>Delete <FontAwesomeIcon icon={solid('trash')}/></button>
+                      {/* <Link to={`edit-recipe/${id}`} className="edit-btn">Edit <FontAwesomeIcon icon={solid('pen')}/></Link>
+                      <button type="button" className="delete-btn" onClick={deleteRecipe}>Delete <FontAwesomeIcon icon={solid('trash')}/></button> */}
                     </div>
   }
 
