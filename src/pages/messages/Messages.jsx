@@ -7,8 +7,8 @@ import Spinner from "../../utilities/Spinner.jsx";
 import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
 import MessageAccordion from "./MessageAccordion.jsx";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import axios from "axios";
 import AuthContext from "../../utilities/AuthContext.jsx";
 
@@ -106,7 +106,7 @@ function Messages() {
       <HeadingPage>Messages</HeadingPage>
       <div className="search">
         <input onChange={(e) => searchItems(e.target.value)} type="text" id="searchMessage" className="search-input" placeholder="Search" />
-        <FontAwesomeIcon icon={solid('search')} className="search-icon" />
+        {/* <FontAwesomeIcon icon={solid('search')} className="search-icon" /> */}
       </div>
       <div id="recipeListContainer">
         {search.length >= 1 
