@@ -19,9 +19,9 @@ h1 {
   margin: 20px auto 10px auto;
   color: map-get($colours, "text");
   // border-bottom: 1px solid map-get($colours, "secondary");
-  width: 60%;
+  width: 80%;
   position: relative;
-  font-size: 1.6rem;
+  font-size: 2rem;
   
   &::after {
     content: '';
@@ -97,7 +97,7 @@ h1 {
   h1 {
     margin: 40px auto 20px auto;
     font-size: 3rem;
-    width: 20rem;
+    width: 100%;
   }
 
 
