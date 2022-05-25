@@ -5,8 +5,7 @@ import RecipeLink from "./RecipeLink.jsx";
 import { useState, useEffect } from "react";
 import Spinner from "../../utilities/Spinner.jsx";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { FaSearch } from "react-icons/fa";
 
 
 
@@ -71,7 +70,7 @@ function Recipes() {
       <HeadingPage>Recipes</HeadingPage>
       <div className="search">
         <input onChange={(e) => searchItems(e.target.value)} type="text" id="searchRecipe" className="search-input" placeholder="Search recipe" />
-        {/* <FontAwesomeIcon icon={solid('search')} className="search-icon" /> */}
+        <FaSearch className="search-icon" />
       </div>
       <div id="recipeListContainer">
         {search.length >= 1 ? (
@@ -91,13 +90,6 @@ function Recipes() {
             
             )
       } 
-
-        {/* {recipes.map( (recipeInfo) => {
-          const {id, attributes} = recipeInfo
-          return (
-            <RecipeLink key={id} id={id} name={attributes.Name}/>
-          )
-        })} */}
       </div>
       
     </>
@@ -105,27 +97,5 @@ function Recipes() {
   
   
 }
-
-// const [search, setSearch] = useState("");
-
-// function FilterRecipes(event) {
-//   setSearch(event.target.value);
-
-//   console.log(search);
-
-//   // const searchForm = document.querySelector("#searchRecipe");
-//   // const test = document.querySelector("h1");
-
-//   // test.onClick = () => {
-//   //   console.log("done")
-//   // }
-
-//   // searchForm.onChange = (event) => {
-//   //   console.log(event.target.value);
-//   // }
-// }
-
-
-
 
 export default Recipes

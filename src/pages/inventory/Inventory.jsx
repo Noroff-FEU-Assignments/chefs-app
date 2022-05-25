@@ -9,19 +9,33 @@ import ProductRow from "./ProductRow.jsx";
 import AuthContext from "../../utilities/AuthContext";
 import Spinner from "../../utilities/Spinner.jsx";
 
-
 function Inventory() {
   const url = api + "/products";
   const [products, setProducts] = useState([]);
   const [auth, setAuth] = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-  const [sumPrice, setSumPrice] = useState(0)
-  console.log(sumPrice)
+  // const [sumPrice, setSumPrice] = useState(0)
+  // console.log(sumPrice)
   
-  
- 
 
-  
+  function newTotal(id, quantity) {
+    // add a function in Inventory that takes an id and quantity then update the products with setProducts, then calculate the total, and call this function from ProductRow
+  }
+
+
+  let sum = 0;
+  function getTotal() {
+     products.forEach(element => {
+        let values = element.attributes.in_stock
+        sum += values
+      })
+      // setSumPrice(sum)
+      console.log(sum)
+      // setSumPrice(sum);
+    }
+  getTotal();
+
+
 
 useEffect( () => {
   async function getProducts() {
@@ -30,17 +44,7 @@ useEffect( () => {
         setProducts(response.data.data);
         console.log(products)
 
-        let sum = 0;
-        function getTotal() {
-           products.forEach(element => {
-              let values = element.attributes.in_stock
-              sum += values
-            })
-            // setSumPrice(sum)
-            console.log(sum)
-            setSumPrice(sum);
-          }
-        getTotal();
+        
       } catch(error) {
         console.log(error);
         <SystemMessage content="Something went wrong" type="message error" />
@@ -49,7 +53,7 @@ useEffect( () => {
       }
     }
     getProducts()
-}, [loading])
+}, [])
 
 if(loading) {
   return <Spinner />;
@@ -104,7 +108,6 @@ function sortOut(a, b) {
           
           products.sort(sortOut);
           
-
           return (
             <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} />
           )
@@ -112,7 +115,7 @@ function sortOut(a, b) {
         <tr className="tr-summary">
           <td colSpan={4}>Total:</td>
           {/* <td>{sumPrice}</td> */}
-          <td>{sumPrice}</td>
+          <td>{sum}</td>
         </tr>
       </tbody>
     </Table>

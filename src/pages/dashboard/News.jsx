@@ -1,16 +1,9 @@
 import SubHeadingPage from "../../components/layout/SubHeadingPage.jsx";
-import { Helmet } from "react-helmet";
-import { Parser } from "marked";
 import { useState, useEffect} from "react";
 import Spinner from "../../utilities/Spinner.jsx";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
 import { api } from "../../constants/api.js";
 
-
-const RSS_url = "https://www.mattilsynet.no/mat_og_vann/?service=rss";
-
-// let Parser = require('rss-parser');
-// let parser = new Parser();
 
 function News() {
   const url = api + "/announcements";

@@ -9,6 +9,8 @@ import Planday from "../../images/planday-logo.svg";
 import Motimate from "../../images/motimate-logo.svg";
 import Hamburger from "../../images/hamburger.svg";
 import { FiLogOut } from "react-icons/fi";
+import { FaChevronCircleDown, FaCommentAlt, FaUser } from "react-icons/fa";
+import { SiCodechef } from "react-icons/si";
 import LoginForm from "../../pages/login/LoginForm";
 import AuthContext from "../../utilities/AuthContext.jsx";
 
@@ -47,8 +49,7 @@ function Navigation() {
               <Dropdown>
                 <Dropdown.Toggle id="dropdown-basic">
                   <NavLink to="#" className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Admin Panel
-                    {/* Admin Panel<FontAwesomeIcon icon={solid('chevron-circle-down')} id="circleArrowDown"/> */}
+                    Admin Panel<FaChevronCircleDown id="circleArrowDown"/>
                   </NavLink>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
@@ -74,8 +75,7 @@ function Navigation() {
             </div>
                   </>
 
-    messagesIcon = <NavLink to="/messages"></NavLink>
-    // messagesIcon = <NavLink to="/messages"><FontAwesomeIcon icon={solid('message')} id="messageIcon" /></NavLink>
+    messagesIcon = <NavLink to="/messages"><FaCommentAlt id="messageIcon" /></NavLink>
   } else if (auth) {
     loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username} <FiLogOut id="logoutIcon" onClick={logout}/></Button>
   }
@@ -94,7 +94,8 @@ function Navigation() {
           <div className="user-burger">
             <div id="userIcons">
               <div>
-                {/* <FontAwesomeIcon icon={solid('user')} id="userFigure" onClick={() => setModalShow(true)}/> */}
+                <FaUser id="userFigure" onClick={() => setModalShow(true)}/>
+                {/* <SiCodechef id="userFigure" onClick={() => setModalShow(true)}/> */}
                 {messagesIcon}
               </div>
               {loginLinks}
@@ -133,22 +134,6 @@ function Navigation() {
             </div>
         </nav>
       </header>
-        
-          {/* <Container>
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/write-announcement" element={<Announcements />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/inventory" element={<Inventory />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/messages" element={<Messages />} />
-              <Route path="/add-inventory-item" element={<NewInventoryItem />} />
-              <Route path="/add-recipe" element={<NewRecipe />} />
-              <Route path="/recipes/details/:id" element={<RecipeDetails />} />
-              <Route path="/recipes" element={<Recipes />} />
-            </Routes>
-          </Container> */}
-      
     </>
   )
 }
