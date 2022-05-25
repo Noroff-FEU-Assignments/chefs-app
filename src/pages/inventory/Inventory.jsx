@@ -18,16 +18,7 @@ function Inventory() {
   const [sumPrice, setSumPrice] = useState(0)
   console.log(sumPrice)
   
-  let sum = 0;
-  function getTotal() {
-     products.forEach(element => {
-        let values = element.attributes.in_stock
-        sum += values
-      })
-      // setSumPrice(sum)
-      console.log(sum)
-      setSumPrice(sum);
-    }
+  
  
 
   
@@ -38,7 +29,18 @@ useEffect( () => {
         const response = await axios.get(url);
         setProducts(response.data.data);
         console.log(products)
-        
+
+        let sum = 0;
+        function getTotal() {
+           products.forEach(element => {
+              let values = element.attributes.in_stock
+              sum += values
+            })
+            // setSumPrice(sum)
+            console.log(sum)
+            setSumPrice(sum);
+          }
+        getTotal();
       } catch(error) {
         console.log(error);
         <SystemMessage content="Something went wrong" type="message error" />
@@ -47,7 +49,7 @@ useEffect( () => {
       }
     }
     getProducts()
-}, [])
+}, [loading])
 
 if(loading) {
   return <Spinner />;
@@ -114,7 +116,7 @@ function sortOut(a, b) {
         </tr>
       </tbody>
     </Table>
-    <button type="button" onClick={() => getTotal()}>Update Total</button>
+    {/* <button type="button" onClick={() => getTotal()}>Update Total</button> */}
     </>
   )
 }
