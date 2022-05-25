@@ -8,8 +8,7 @@ import Esmiley from "../../images/esmiley-logo.svg";
 import Planday from "../../images/planday-logo.svg";
 import Motimate from "../../images/motimate-logo.svg";
 import Hamburger from "../../images/hamburger.svg";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { FiLogOut } from "react-icons/fi";
 import LoginForm from "../../pages/login/LoginForm";
 import AuthContext from "../../utilities/AuthContext.jsx";
 
@@ -40,8 +39,7 @@ function Navigation() {
   let messagesIcon = ""
 
   if (auth && auth.data.user.email === "admin@admin.com") {
-    loginLinks = <Button variant="primary"  id="loggedBtn">Hi, {auth.data.user.username} </Button>
-    // loginLinks = <Button variant="primary"  id="loggedBtn">Hi, {auth.data.user.username} <FontAwesomeIcon icon={solid('arrow-right-from-bracket')} id="logoutIcon" onClick={logout}/></Button>
+    loginLinks = <Button variant="primary"  id="loggedBtn">Hi, {auth.data.user.username} <FiLogOut id="logoutIcon" onClick={logout}/></Button>
 
     adminLinks = <>
               <div id="adminLinks">
@@ -79,8 +77,7 @@ function Navigation() {
     messagesIcon = <NavLink to="/messages"></NavLink>
     // messagesIcon = <NavLink to="/messages"><FontAwesomeIcon icon={solid('message')} id="messageIcon" /></NavLink>
   } else if (auth) {
-    loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username} </Button>
-    // loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username} <FontAwesomeIcon icon={solid('arrow-right-from-bracket')} id="logoutIcon" onClick={logout}/></Button>
+    loginLinks = <Button variant="primary"  id="loggedBtn">Hello, {auth.data.user.username} <FiLogOut id="logoutIcon" onClick={logout}/></Button>
   }
 
   function fadeInMenu() {

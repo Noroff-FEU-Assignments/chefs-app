@@ -1,20 +1,18 @@
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { brands } from '@fortawesome/fontawesome-svg-core/import.macro';
+import {FaTwitter, FaFacebookF, FaInstagram} from "react-icons/fa"
 
 function Footer() {
 
-  
   return (
     <footer>
       <div id="social-media-group">
         <a href="#">
-          {/* <FontAwesomeIcon icon={brands('twitter')} className="social-media-icon" /> */}
+          <FaTwitter className="social-media-icon" />
         </a>
         <a href="#">
-          {/* <FontAwesomeIcon icon={brands('facebook')} className="social-media-icon" /> */}
+          <FaFacebookF className="social-media-icon" />
         </a>
         <a href="#">
-          {/* <FontAwesomeIcon icon={brands('instagram')} className="social-media-icon" /> */}
+          <FaInstagram className="social-media-icon" />
         </a>
       </div>
       <span id="copyrights">©️ {new Date().getFullYear()} - Georgios Fragkias, Døgnvill Bar & Burger</span>

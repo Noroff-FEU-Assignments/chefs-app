@@ -7,24 +7,28 @@ import axios from "axios";
 import Table from "react-bootstrap/Table";
 import ProductRow from "./ProductRow.jsx";
 import AuthContext from "../../utilities/AuthContext";
+import Spinner from "../../utilities/Spinner.jsx";
 
 
 function Inventory() {
   const url = api + "/products";
   const [products, setProducts] = useState([]);
   const [auth, setAuth] = useContext(AuthContext);
-  // const [sumPrice, setSumPrice] = useState()
-  // console.log(sumPrice)
-    
-
+  const [loading, setLoading] = useState(true);
+  const [sumPrice, setSumPrice] = useState(0)
+  console.log(sumPrice)
+  
   let sum = 0;
   function getTotal() {
      products.forEach(element => {
         let values = element.attributes.in_stock
-        sum += values;
+        sum += values
       })
+      // setSumPrice(sum)
+      console.log(sum)
+      setSumPrice(sum);
     }
-  getTotal();
+ 
 
   
 
@@ -33,15 +37,21 @@ useEffect( () => {
       try {
         const response = await axios.get(url);
         setProducts(response.data.data);
-        // console.log(products)
+        console.log(products)
         
       } catch(error) {
         console.log(error);
         <SystemMessage content="Something went wrong" type="message error" />
+      } finally {
+        setLoading(false)
       }
     }
-    getProducts();
-}, [products])
+    getProducts()
+}, [])
+
+if(loading) {
+  return <Spinner />;
+}
 
 
 async function handleDelete(id) {
@@ -100,10 +110,11 @@ function sortOut(a, b) {
         <tr className="tr-summary">
           <td colSpan={4}>Total:</td>
           {/* <td>{sumPrice}</td> */}
-          <td>{sum}</td>
+          <td>{sumPrice}</td>
         </tr>
       </tbody>
     </Table>
+    <button type="button" onClick={() => getTotal()}>Update Total</button>
     </>
   )
 }

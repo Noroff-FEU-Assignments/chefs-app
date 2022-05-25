@@ -36,6 +36,7 @@ function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow
           price: newPrice,
         },
       });
+      // console.log(putResponse)
     } catch(error) {
       console.log(error);
     }

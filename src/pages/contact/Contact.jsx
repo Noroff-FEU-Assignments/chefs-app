@@ -26,7 +26,7 @@ const schema = yup.object().shape({
 
 function Contact() {
   const [appear, setAppear] = useState(false)
-  console.log(appear)
+  // console.log(appear)
   const { register, handleSubmit, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
@@ -62,7 +62,7 @@ function Contact() {
       setTimeout(() => {
         setAppear(false)
       }, 1000);
-      console.log(appear)
+      // console.log(appear)
     }
     
     reset();
