@@ -186,8 +186,9 @@ nav {
     background-color: white;
     padding: 10px;
     border-radius: 50%;
-    height: 20px;
-    width: 20px;
+    height: 40px;
+    width: 40px;
+    font-size: 3rem;
   }
   
   & #messageIcon {
@@ -433,10 +434,10 @@ nav {
       // border: 1px solid map-get($colours, "text");
       // background-color: white;
       position: absolute;
-      left: -27px;
+      left: -30px;
       // padding: 10px;
-      height: 35px;
-      width: 35px;
+      height: 60px;
+      width: 60px;
     }
 
     & #userFigure:hover {
@@ -445,7 +446,7 @@ nav {
     
     & #messageIcon {
       // position: absolute;
-      top: -5px;
+      top: -10px;
       left: 10px;
       font-size: 1.6rem;
       // color: map-get($colours, "details")
@@ -464,7 +465,7 @@ nav {
       width: 100%;
       text-align: center;
       font-size: 1.3rem;
-      margin: 0px 10px;
+      margin: 0px 15px;
       padding-top: 20px;
       color: map-get($colours, "light-primary");
       background-color: transparent;

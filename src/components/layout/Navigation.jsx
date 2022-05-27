@@ -94,8 +94,8 @@ function Navigation() {
           <div className="user-burger">
             <div id="userIcons">
               <div>
-                <FaUser id="userFigure" onClick={() => setModalShow(true)}/>
-                {/* <SiCodechef id="userFigure" onClick={() => setModalShow(true)}/> */}
+                {/* <FaUser id="userFigure" onClick={() => setModalShow(true)}/> */}
+                <SiCodechef id="userFigure" onClick={() => setModalShow(true)}/>
                 {messagesIcon}
               </div>
               {loginLinks}
