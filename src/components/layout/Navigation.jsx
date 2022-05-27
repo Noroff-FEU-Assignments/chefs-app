@@ -39,9 +39,12 @@ function Navigation() {
                     </div>
   let adminLinks = ""
   let messagesIcon = ""
+  let userIcon = <FaUser id="userFigure" onClick={() => setModalShow(true)}/>;
 
   if (auth && auth.data.user.email === "admin@admin.com") {
     loginLinks = <Button variant="primary"  id="loggedBtn">Hi, {auth.data.user.username} <FiLogOut id="logoutIcon" onClick={logout}/></Button>
+
+    userIcon = <SiCodechef id="userFigure" onClick={() => setModalShow(true)}/>
 
     adminLinks = <>
               <div id="adminLinks">
@@ -94,8 +97,7 @@ function Navigation() {
           <div className="user-burger">
             <div id="userIcons">
               <div>
-                {/* <FaUser id="userFigure" onClick={() => setModalShow(true)}/> */}
-                <SiCodechef id="userFigure" onClick={() => setModalShow(true)}/>
+                {userIcon}
                 {messagesIcon}
               </div>
               {loginLinks}

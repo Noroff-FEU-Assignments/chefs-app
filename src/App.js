@@ -6,8 +6,8 @@ import Contact from "./pages/contact/Contact.jsx";
 import Inventory from "./pages/inventory/Inventory.jsx";
 import EditRecipe from "./pages/editRecipe/EditRecipe.jsx";
 import { AuthProvider } from "./utilities/AuthContext.jsx";
-// import Login from "./pages/login/Login.jsx";
-// import LoginForm from "./pages/login/LoginForm.jsx";
+import Login from "./pages/login/Login.jsx";
+import LoginForm from "./pages/login/LoginForm.jsx";
 import Messages from "./pages/messages/Messages.jsx";
 import NewInventoryItem from "./pages/newInventoryItem/NewInventoryItem.jsx";
 import NewRecipe from "./pages/newRecipe/NewRecipe.jsx";
@@ -18,23 +18,10 @@ import Container from "react-bootstrap/Container";
 import "./sass/style.scss";
 import AuthContext from "./utilities/AuthContext.jsx";
 import { useContext } from "react";
+import ProtectedRoute from "./utilities/ProtectedRoute.jsx";
 
 
-let adminRoutes = "";
-
-function App() {
-  const [auth, setAuth] = useContext(AuthContext);
-  // console.log(auth)
-
-  if (auth) {
-    console.log("dawda")
-    // adminRoutes = <>
-    //                 <Route path="/write-announcement" element={<Announcements />} />
-    //                 <Route path="/messages" element={<Messages />} />
-    //                 <Route path="/add-inventory-item" element={<NewInventoryItem />} />
-    //                 <Route path="/add-recipe" element={<NewRecipe />} />
-    //               </> 
-  }
+function App() {  
 
   return (
     <>
@@ -46,15 +33,13 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/inventory" element={<Inventory />} />
-              {/* <Route path="/login" element={<Login />} /> */}
               <Route path="/recipes/details/:id" element={<RecipeDetails />} />
               <Route path="/recipes" element={<Recipes />} />
-              {/* {adminRoutes} */}
-              <Route path="/write-announcement" element={<Announcements />} />
-              <Route path="/messages" element={<Messages />} />
-              <Route path="/add-inventory-item" element={<NewInventoryItem />} />
-              <Route path="/add-recipe" element={<NewRecipe />} />
-              <Route path="/recipes/details/:id/edit-recipe/:id" element={<EditRecipe />} />
+              <Route path="/write-announcement" element={<ProtectedRoute><Announcements /></ProtectedRoute>} />
+              <Route path="/messages" element={<ProtectedRoute><Messages /></ProtectedRoute>} />
+              <Route path="/add-inventory-item" element={<ProtectedRoute><NewInventoryItem /></ProtectedRoute>} />
+              <Route path="/add-recipe" element={<ProtectedRoute><NewRecipe /></ProtectedRoute>} />
+              <Route path="/recipes/details/:id/edit-recipe/:id" element={<ProtectedRoute><EditRecipe /></ProtectedRoute>} />
             </Routes>
           </Container>
         <Footer />
