@@ -23,17 +23,17 @@ function Inventory() {
   }
 
 
-  let sum = 0;
-  function getTotal() {
-     products.forEach(element => {
-        let values = element.attributes.in_stock
-        sum += values
-      })
-      // setSumPrice(sum)
-      console.log(sum)
-      // setSumPrice(sum);
-    }
-  getTotal();
+  // let sum = 0;
+  // function getTotal() {
+  //    products.forEach(element => {
+  //       let values = element.attributes.in_stock
+  //       sum += values
+  //     })
+  //     // setSumPrice(sum)
+  //     console.log(sum)
+  //     // setSumPrice(sum);
+  //   }
+  // getTotal();
 
 
 
@@ -115,7 +115,7 @@ function sortOut(a, b) {
         <tr className="tr-summary">
           <td colSpan={4}>Total:</td>
           {/* <td>{sumPrice}</td> */}
-          <td>{sum}</td>
+          {/* <td>{sum}</td> */}
         </tr>
       </tbody>
     </Table>
