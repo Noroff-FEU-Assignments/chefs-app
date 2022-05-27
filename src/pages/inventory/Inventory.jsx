@@ -14,6 +14,7 @@ function Inventory() {
   const [products, setProducts] = useState([]);
   const [auth, setAuth] = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
+  console.log(products)
   // const [sumPrice, setSumPrice] = useState(0)
   // console.log(sumPrice)
   
@@ -42,7 +43,6 @@ useEffect( () => {
       try {
         const response = await axios.get(url);
         setProducts(response.data.data);
-        console.log(products)
 
         
       } catch(error) {
