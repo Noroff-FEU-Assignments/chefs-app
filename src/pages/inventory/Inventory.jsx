@@ -14,14 +14,22 @@ function Inventory() {
   const [products, setProducts] = useState([]);
   const [auth, setAuth] = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-  const [sumPrice, setSumPrice] = useState(0)
-  console.log(sumPrice)
+  // const [sumPrice, setSumPrice] = useState(0)
+  console.log(products)
+  // console.log(sumPrice)
+
+
+
 
 useEffect( () => {
   async function getProducts() {
       try {
         const response = await axios.get(url);
         setProducts(response.data.data);
+        
+
+        
+        // setSumPrice(total)
         
       } catch(error) {
         console.log(error);
@@ -36,6 +44,38 @@ useEffect( () => {
 if(loading) {
   return <Spinner />;
 }
+
+
+// function runTotal() {
+//   const newP = products.reduce( (acc, product) => {
+//     return acc + (Number(product.attributes.in_stock))
+//     // return acc + (Number(product.attributes.in_stock) * Number(product.attributes.quantity))
+//   }, 0);
+//   console.log(newP)
+// }
+// runTotal()
+
+const total = products.reduce( (acc, product) => {
+  return acc + (Number(product.attributes.in_stock))
+  // return acc + (Number(product.attributes.in_stock) * Number(product.attributes.quantity))
+}, 0);
+console.log(total)
+
+
+
+// function changeQuantity(newQuantity, productId) {
+//   setProducts(prev =>  {
+//     return prev.reduce((acc, product) => {
+//       if (product.id === productId) return { ...product, quantity: newQuantity }
+//       return acc
+//     })
+//   })
+// }
+
+// console.log(changeQuantity())
+
+
+
 
 
 async function handleDelete(id) {
@@ -59,10 +99,17 @@ async function handleDelete(id) {
   }
 }
 
+
+
+
+
 function sortOut(a, b) {
   return a.attributes.name > b.attributes.name ? 1 : -1;
 }
 
+function refreshPage() {
+  window.location.reload(true);
+}
       
   return (
     <>
@@ -87,15 +134,16 @@ function sortOut(a, b) {
           products.sort(sortOut);
           
           return (
-            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)}  />
+            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} />
           )
         })}
         <tr className="tr-summary">
           <td colSpan={4}>Total:</td>
-          <td>{sumPrice}</td>
+          <td>{total}</td>
         </tr>
       </tbody>
     </Table>
+      <button type="button" onClick={refreshPage} id="updateTotalBtn">Update Total</button>
     </>
   )
 }

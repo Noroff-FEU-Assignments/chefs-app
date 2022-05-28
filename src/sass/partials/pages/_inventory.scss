@@ -113,6 +113,19 @@ thead {
 }
 
 
+#updateTotalBtn {
+  display: block;
+  margin: 30px auto;
+  height: 2.5rem;
+  width: 15rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 8px map-get($colours, "text");
+  background-color: map-get($colours, "secondary");
+  color: #fff;
+}
+
+
 
 
 
