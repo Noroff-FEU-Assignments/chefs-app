@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react" ;
+import { useState, useContext } from "react" ;
 import axios from "axios";
 import { api } from "../../constants/api.js";
 import AuthContext from "../../utilities/AuthContext.jsx";
@@ -21,7 +21,6 @@ function Routine({routineId, done, name, deleteRoutine}) {
         done: checked,
       }
     });
-    // console.log(response)
     } catch(error) {
       console.log(error);
     }
@@ -46,8 +45,6 @@ function Routine({routineId, done, name, deleteRoutine}) {
     </div>
     </>
   )
-
-
 }
 
 export default Routine;

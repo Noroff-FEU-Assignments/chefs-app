@@ -11,9 +11,7 @@ function PrepList({}) {
   const [prepItems, setPrepItems] = useState([]);
   const [checked, setChecked] = useState()
 
-  
   const url = api + "/prep-lists";
-  console.log(prepItems);
 
   useEffect( () => {
     async function getPrepItems() {
@@ -28,12 +26,11 @@ function PrepList({}) {
     getPrepItems();
   }, []);
 
-  
+
   function handleInput(e) {
     setValue(e.target.value);
   }
   
-
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -60,7 +57,6 @@ function PrepList({}) {
       } catch(error) {
         console.log(error);
       }
-      
     }
     setValue("");
   }
@@ -79,11 +75,9 @@ function PrepList({}) {
   }
 
 
-  
   async function handleDone(id) {
     setChecked(!checked);
     try {
-      // console.log(id)
       const doneResponse = await axios.put(url + "/" + id, {
         data: {
           done: checked
@@ -100,35 +94,11 @@ function PrepList({}) {
           }
         })
       })
-      console.log(doneResponse)
     } catch(error) {
       console.log(error);
     }
   }
-  // async function handleDone(id) {
-  //   setChecked((prevChecked) => !prevChecked);
-  //   try {
-  //     // console.log(id)
-  //     const doneResponse = await axios.put(url + "/" + id, {
-  //       data: {
-  //         done: checked
-  //       }
-  //     })
-  //     setPrepItems( (prevState) => {
-  //       return prevState.map( (item) => {
-  //         if (item.id === id) {
-  //           return { ...item, isdone: !item.isdone};
-  
-  //         } else {
-  //           return item;
-  //         }
-  //       })
-  //     })
-  //     console.log(doneResponse)
-  //   } catch(error) {
-  //     console.log(error);
-  //   }
-  // }
+ 
   function sortPreps(a, b) {
     return a.id - b.id;
   }
@@ -142,13 +112,11 @@ function PrepList({}) {
       </Form>    
       
         {prepItems.map( (item) => {
-          // console.log(item.attributes.done)
           prepItems.sort(sortPreps);
 
           return (
             <div key={item.id} className="prep-list-item">
                 <div style={{textDecoration: item.attributes.done || item.isDoneLocal ? "line-through" : "", textDecorationColor: item.attributes.done || item.isDoneLocal ? "#BA2126" : ""}}
-                // <div style={{textDecoration: item.isDoneLocal ? "line-through" : "", textDecorationColor: item.isDoneLocal ? "#BA2126" : ""}}
                     onClick={ () => handleDone(item.id) } >
                       {item.attributes.Item}
                 </div>                  

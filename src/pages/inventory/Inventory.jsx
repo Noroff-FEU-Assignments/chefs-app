@@ -19,32 +19,13 @@ function Inventory() {
     try {
             const response = await axios.get(url);
             setProducts(response.data.data);
-    
-            // setSumPrice(total)
-            
           } catch(error) {
             console.log(error);
             <SystemMessage content="Something went wrong" type="message error" />
           } finally {
             setLoading(false)
           }
-  }, [])
-
-
-  // async function getProducts() {
-  //     try {
-  //       const response = await axios.get(url);
-  //       setProducts(response.data.data);
-
-  //       // setSumPrice(total)
-        
-  //     } catch(error) {
-  //       console.log(error);
-  //       <SystemMessage content="Something went wrong" type="message error" />
-  //     } finally {
-  //       setLoading(false)
-  //     }
-  //   }
+  }, [url])
     
 useEffect( () => {
   getProducts()
@@ -59,7 +40,7 @@ if(loading) {
 const total = products.reduce( (acc, product) => {
   return acc + (Number(product.attributes.in_stock))
 }, 0);
-console.log(total)
+
 
 
 // Deleting a product from the list
@@ -77,7 +58,7 @@ async function handleDelete(id) {
         return product.id !== id;
       })
       setProducts(removeProduct);
-      console.log(deleteItem)
+
     } catch(error) {
       console.log(error);
     }
@@ -107,10 +88,10 @@ function sortOut(a, b) {
         </tr>
       </thead>
       <tbody>
-        {products.map( (product) => {
+        {products.sort(sortOut).map( (product) => {
           const {id, attributes} = product;        
           
-          products.sort(sortOut);
+          // products.sort(sortOut);
           
           return (
             <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} updateSum={getProducts}/>

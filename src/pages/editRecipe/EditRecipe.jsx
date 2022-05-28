@@ -10,13 +10,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
-import { useContext } from "react";
-import AuthContext from "../../utilities/AuthContext.jsx";
 import axios from "axios";
 
 
 let showMessage = ""
-
 const schema = yup.object().shape({
   recipeTitle: yup.string().required("Recipe title").min(3, "Minimum 3 characters"),
   ingredients: yup.string().required("Write the recipe's ingredients").min(10, "Minimum 10 characters"),
@@ -24,11 +21,9 @@ const schema = yup.object().shape({
 })
 
 
-
 function EditRecipe() {
   const [currentRecipe, setCurrentRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
-  // console.log();
 
   const {id} = useParams();
   const editURL = api + "/recipes/" + id;
@@ -42,7 +37,6 @@ function EditRecipe() {
       try {
         const response = await axios.get(editURL);
         setCurrentRecipe(response.data.data)
-        console.log(response.data.data);
 
       } catch(error) {
         console.log(error);
@@ -53,7 +47,6 @@ function EditRecipe() {
     }
     getRecipe()
   }, [editURL])
-// console.log(currentRecipe.attributes.name)
 
   if (loading) {
     return <Spinner />
@@ -61,7 +54,6 @@ function EditRecipe() {
 
 
   async function onSubmit(data) {
-    console.log(data)
     try {
       const putResponse = await axios.put(editURL, 
         { data: {
@@ -70,18 +62,14 @@ function EditRecipe() {
         instructions: data.instructions}
       }
       )
-        console.log(putResponse.data)
-      // console.log(response.AxiosError.response);
-      // if (!response) {
-      //   showMessage = <SystemMessage content="Something went wrong" type="message warning" />;
-      // }
+      if(putResponse.status === 200) {
+        showMessage = <SystemMessage content={`${data.recipeTitle} was updated succesfully`} type={"message success"} />;
+      }
 
     } catch(error) {
       console.log(error);
       showMessage = <SystemMessage content="Something went wrong" type="message warning" />
     }
-    
-    showMessage = <SystemMessage content={`${data.recipeTitle} was updated succesfully`} type={"message success"} />;
   };
 
 return (
@@ -92,6 +80,7 @@ return (
     <HeadingPage>{currentRecipe.attributes.name}</HeadingPage>
   
     {showMessage}
+    
     <Form onSubmit={handleSubmit(onSubmit)} className="form-style" id="contactForm">
       <Form.Group className="mb-3">
         <Form.Label>Title</Form.Label>

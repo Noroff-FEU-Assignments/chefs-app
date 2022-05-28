@@ -24,7 +24,6 @@ function Announcement() {
   const { register, handleSubmit, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
-
   const [auth, setAuth] = useContext(AuthContext);
 
   async function onSubmit(data) {
@@ -42,10 +41,6 @@ function Announcement() {
     } catch(error) {
       console.log(error)
     }
-
-
-
-    console.log(data)
     showMessage = <SystemMessage content={`Your announcement is published`} type={"message success"} />;
   };
 

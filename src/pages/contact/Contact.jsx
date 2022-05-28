@@ -25,8 +25,6 @@ const schema = yup.object().shape({
 
 
 function Contact() {
-  const [appear, setAppear] = useState(false)
-  // console.log(appear)
   const { register, handleSubmit, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
@@ -41,32 +39,16 @@ function Contact() {
           subject: data.subject,
           title: data.title,
         }})
-        console.log(response)
         
         if (response.status === 200) {
           showMessage = <SystemMessage content={"Message sent"} type={"message success"} />          
-          setAppear(true)
-
-          if (appear) {
-          }
-          console.log(appear)
         }
 
     } catch(error) {
       console.log(error);
       showMessage = <SystemMessage content={"Failed to send, try again later"} type={"message error"} />
     }
-
-
-    if (showMessage) {
-      setTimeout(() => {
-        setAppear(false)
-      }, 1000);
-      // console.log(appear)
-    }
-    
     reset();
-    
   };
     
   const subjectOptions = subjectChoice.map( (subjects, key) => (

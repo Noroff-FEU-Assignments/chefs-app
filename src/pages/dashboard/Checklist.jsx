@@ -1,5 +1,4 @@
 import { api } from "../../constants/api";
-import SystemMessage from "../../utilities/SystemMessage.jsx";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import SubHeadingPage from "../../components/layout/SubHeadingPage";
@@ -16,7 +15,6 @@ function Checklist() {
   const [value, setValue] = useState("");
   const [auth, setAuth] = useContext(AuthContext);
   
-  
   useEffect( () => {
     async function getRoutines() {
       try {
@@ -26,11 +24,9 @@ function Checklist() {
       } catch(error) {
         console.log(error);
       } 
-
-
     }
     getRoutines()
-  }, [])
+  }, [url])
 
 
   async function handleSubmit(e) {
@@ -55,7 +51,6 @@ function Checklist() {
             } 
           }
         ])
-        console.log(putItem)
       } catch(error) {
         console.log(error);
       }
@@ -64,13 +59,9 @@ function Checklist() {
     setValue("");
   }
 
-
   function handleInput(e) {
     setValue(e.target.value);
   }
-
-
-
 
   function sortRoutines(a, b) {
     return a.id - b.id;
@@ -91,7 +82,6 @@ function Checklist() {
           return item.id !== id;
         })
         setRoutines(removeItem)
-        console.log(deleteItem)
       } catch(error) {
         console.log(error);
       }

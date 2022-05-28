@@ -11,7 +11,6 @@ function News() {
   const [announcements, setAnnouncements] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   useEffect( () => {
     async function getAnnouncements() {
       try {
@@ -19,9 +18,7 @@ function News() {
 
         if(response.ok) {
           const results = await response.json();
-          // console.log(results);
           setAnnouncements(results.data);
-          
         }
 
       } catch(error) {

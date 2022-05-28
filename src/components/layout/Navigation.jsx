@@ -20,6 +20,7 @@ function Navigation() {
   const [auth, setAuth] = useContext(AuthContext);
   const navigate = useNavigate();
 
+  //Logout function
   function logout() {
     let confirmation = window.confirm("Are you sure you want to logout?");
 
@@ -30,6 +31,8 @@ function Navigation() {
     }
   }
 
+
+  // Admin links and paths
   let loginLinks = <div>
                       <Button variant="primary" onClick={() => setModalShow(true)}  id="loginBtn">Login</Button>
                       <LoginForm
@@ -87,6 +90,8 @@ function Navigation() {
     setOpen(!open);
   }
   
+
+  // Rendering
   return (
     <>
       <header>
