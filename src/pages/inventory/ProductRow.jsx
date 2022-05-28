@@ -17,7 +17,7 @@ function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow
     const newQuantity = Number(e.target.value);
     setStock(newQuantity * price);
     setMyQuantity(e.target.value);
-    // updateSum();
+    updateSum();
   }
 
   function updateMainPrice(e) {

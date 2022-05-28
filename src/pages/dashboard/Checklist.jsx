@@ -101,11 +101,10 @@ function Checklist() {
 // Adding a routine if an admin is logged
   let addRoutineForm = "";
   if (auth && auth.data.user.email === "admin@admin.com") {
-    addRoutineForm = <Form onSubmit={handleSubmit} id="prepListForm">
+    addRoutineForm = <Form onSubmit={handleSubmit} id="prepListForm" class="add-routine-form">
           <Form.Control type="text" value={value} id="prepListInput" onChange={handleInput}  placeholder="Add new routine" />
           <Button id="prepListBtn" type="submit">Add</Button>
       </Form>    
-
   }
 
 

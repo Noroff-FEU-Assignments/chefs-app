@@ -16,10 +16,7 @@ import Recipes from "./pages/recipes/Recipes.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import "./sass/style.scss";
-import AuthContext from "./utilities/AuthContext.jsx";
-import { useContext } from "react";
 import ProtectedRoute from "./utilities/ProtectedRoute.jsx";
-import { PriceContextProvider } from "./utilities/TotalPrice.jsx";
 
 
 function App() {  

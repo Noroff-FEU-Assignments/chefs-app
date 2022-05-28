@@ -1,7 +1,7 @@
 import HeadingPage from "../../components/layout/HeadingPage";
 import { Helmet } from "react-helmet";
 import { api } from "../../constants/api.js";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import SystemMessage from "../../utilities/SystemMessage.jsx";
 import axios from "axios";
 import Table from "react-bootstrap/Table";
@@ -14,31 +14,40 @@ function Inventory() {
   const [products, setProducts] = useState([]);
   const [auth, setAuth] = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-  // const [sumPrice, setSumPrice] = useState(0)
-  console.log(products)
-  // console.log(sumPrice)
+
+  const getProducts = useCallback(async () => {
+    try {
+            const response = await axios.get(url);
+            setProducts(response.data.data);
+    
+            // setSumPrice(total)
+            
+          } catch(error) {
+            console.log(error);
+            <SystemMessage content="Something went wrong" type="message error" />
+          } finally {
+            setLoading(false)
+          }
+  }, [])
 
 
+  // async function getProducts() {
+  //     try {
+  //       const response = await axios.get(url);
+  //       setProducts(response.data.data);
 
-
+  //       // setSumPrice(total)
+        
+  //     } catch(error) {
+  //       console.log(error);
+  //       <SystemMessage content="Something went wrong" type="message error" />
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   }
+    
 useEffect( () => {
-  async function getProducts() {
-      try {
-        const response = await axios.get(url);
-        setProducts(response.data.data);
-        
-
-        
-        // setSumPrice(total)
-        
-      } catch(error) {
-        console.log(error);
-        <SystemMessage content="Something went wrong" type="message error" />
-      } finally {
-        setLoading(false)
-      }
-    }
-    getProducts()
+  getProducts()
 }, [])
 
 if(loading) {
@@ -46,38 +55,14 @@ if(loading) {
 }
 
 
-// function runTotal() {
-//   const newP = products.reduce( (acc, product) => {
-//     return acc + (Number(product.attributes.in_stock))
-//     // return acc + (Number(product.attributes.in_stock) * Number(product.attributes.quantity))
-//   }, 0);
-//   console.log(newP)
-// }
-// runTotal()
-
+// Getting the total amount of the products in stock
 const total = products.reduce( (acc, product) => {
   return acc + (Number(product.attributes.in_stock))
-  // return acc + (Number(product.attributes.in_stock) * Number(product.attributes.quantity))
 }, 0);
 console.log(total)
 
 
-
-// function changeQuantity(newQuantity, productId) {
-//   setProducts(prev =>  {
-//     return prev.reduce((acc, product) => {
-//       if (product.id === productId) return { ...product, quantity: newQuantity }
-//       return acc
-//     })
-//   })
-// }
-
-// console.log(changeQuantity())
-
-
-
-
-
+// Deleting a product from the list
 async function handleDelete(id) {
   const confirmDelete = window.confirm(`Delete permanently?`);
 
@@ -99,17 +84,11 @@ async function handleDelete(id) {
   }
 }
 
+// Sorting
+// function sortOut(a, b) {
+//   return a.attributes.name > b.attributes.name ? 1 : -1;
+// }
 
-
-
-
-function sortOut(a, b) {
-  return a.attributes.name > b.attributes.name ? 1 : -1;
-}
-
-function refreshPage() {
-  window.location.reload(true);
-}
       
   return (
     <>
@@ -131,10 +110,10 @@ function refreshPage() {
         {products.map( (product) => {
           const {id, attributes} = product;        
           
-          products.sort(sortOut);
+          // products.sort(sortOut);
           
           return (
-            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} />
+            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} updateSum={getProducts}/>
           )
         })}
         <tr className="tr-summary">
@@ -143,7 +122,7 @@ function refreshPage() {
         </tr>
       </tbody>
     </Table>
-      <button type="button" onClick={refreshPage} id="updateTotalBtn">Update Total</button>
+      <button type="button" onClick={getProducts} id="updateTotalBtn">Update Total</button>
     </>
   )
 }
