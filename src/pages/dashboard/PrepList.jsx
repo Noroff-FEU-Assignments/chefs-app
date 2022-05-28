@@ -77,6 +77,7 @@ function PrepList({}) {
 
   async function handleDone(id) {
     setChecked(!checked);
+    
     try {
       const doneResponse = await axios.put(url + "/" + id, {
         data: {
