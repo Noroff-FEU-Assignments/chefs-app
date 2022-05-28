@@ -79,19 +79,22 @@ function Checklist() {
 
   async function handleDelete(id) {
     const confirmDelete = window.confirm(`Delete routine permanently?`);
-    try {
-      const deleteItem = await axios.delete(url + "/" + id, 
-      { headers: {
-        Authorization: `Bearer ${auth.data.jwt}`,
-      }})
 
-      const removeItem = routines.filter( (item) => {
-        return item.id !== id;
-      })
-      setRoutines(removeItem)
-      console.log(deleteItem)
-    } catch(error) {
-      console.log(error);
+    if(confirmDelete) {
+      try {
+        const deleteItem = await axios.delete(url + "/" + id, 
+        { headers: {
+          Authorization: `Bearer ${auth.data.jwt}`,
+        }})
+  
+        const removeItem = routines.filter( (item) => {
+          return item.id !== id;
+        })
+        setRoutines(removeItem)
+        console.log(deleteItem)
+      } catch(error) {
+        console.log(error);
+      }
     }
   }
 

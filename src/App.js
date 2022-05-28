@@ -19,12 +19,14 @@ import "./sass/style.scss";
 import AuthContext from "./utilities/AuthContext.jsx";
 import { useContext } from "react";
 import ProtectedRoute from "./utilities/ProtectedRoute.jsx";
+import { PriceContextProvider } from "./utilities/TotalPrice.jsx";
 
 
 function App() {  
 
   return (
     <>
+    {/* <PriceContextProvider> */}
     <AuthProvider>
       <Router>
         <Navigation />
@@ -45,6 +47,7 @@ function App() {
         <Footer />
       </Router>
     </AuthProvider>  
+    {/* </PriceContextProvider> */}
     </>
   );
 }

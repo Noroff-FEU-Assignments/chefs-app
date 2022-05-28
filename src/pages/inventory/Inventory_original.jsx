@@ -16,6 +16,32 @@ function Inventory() {
   const [loading, setLoading] = useState(true);
   const [sumPrice, setSumPrice] = useState(0)
   console.log(sumPrice)
+  // add a function in Inventory that takes an id and quantity then update the products with setProducts, then calculate the total, and call this function from ProductRow
+
+  
+  // function newTotal() {
+  //   const newProductList = products;
+    
+  //   // setProducts(newProductList)   
+  //   // console.log(products)
+  // }
+  // newTotal();
+
+  // let sum = 0;
+  // async function getTotal() {
+  
+  //    products.forEach(element => {
+  //       let values = element.attributes.in_stock
+  //       sum += values
+  //     })
+  //     setSumPrice(sum)
+  //     // setSumPrice(sum)
+  //     console.log(sum)
+  //     // setSumPrice(sum);
+  //   }
+  // // getTotal();
+
+
 
 useEffect( () => {
   async function getProducts() {
@@ -30,7 +56,19 @@ useEffect( () => {
         setLoading(false)
       }
     }
-    getProducts()
+    getProducts().then( () => {
+      function getTotal() {
+        let sum = sumPrice;
+        products.forEach(element => {
+          let values = element.attributes.in_stock
+          sum += values
+        })
+        setSumPrice(sum)
+        // setSumPrice(sum)
+        console.log(sum)
+      }
+      getTotal()
+    })
 }, [])
 
 if(loading) {
@@ -93,9 +131,11 @@ function sortOut(a, b) {
         <tr className="tr-summary">
           <td colSpan={4}>Total:</td>
           <td>{sumPrice}</td>
+          {/* <td>{sum}</td> */}
         </tr>
       </tbody>
     </Table>
+    {/* <button type="button" onClick={getTotal}>Update Total</button> */}
     </>
   )
 }
