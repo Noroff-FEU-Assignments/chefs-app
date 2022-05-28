@@ -85,9 +85,9 @@ async function handleDelete(id) {
 }
 
 // Sorting
-// function sortOut(a, b) {
-//   return a.attributes.name > b.attributes.name ? 1 : -1;
-// }
+function sortOut(a, b) {
+  return a.attributes.name > b.attributes.name ? 1 : -1;
+}
 
       
   return (
@@ -110,7 +110,7 @@ async function handleDelete(id) {
         {products.map( (product) => {
           const {id, attributes} = product;        
           
-          // products.sort(sortOut);
+          products.sort(sortOut);
           
           return (
             <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} updateSum={getProducts}/>
