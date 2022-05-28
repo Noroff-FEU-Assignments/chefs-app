@@ -46,7 +46,7 @@ function Recipes() {
     setSearch(searchValue);
       const filteredData = recipes.filter( (recipe) => {
       if (recipe.attributes.name.toLowerCase().includes(search)) {
-        return true 
+        return true;
         }   
       })
       

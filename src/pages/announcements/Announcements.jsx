@@ -42,6 +42,7 @@ function Announcement() {
       console.log(error)
     }
     showMessage = <SystemMessage content={`Your announcement is published`} type={"message success"} />;
+    reset();
   };
 
 
