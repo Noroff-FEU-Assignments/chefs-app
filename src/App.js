@@ -6,8 +6,6 @@ import Contact from "./pages/contact/Contact.jsx";
 import Inventory from "./pages/inventory/Inventory.jsx";
 import EditRecipe from "./pages/editRecipe/EditRecipe.jsx";
 import { AuthProvider } from "./utilities/AuthContext.jsx";
-import Login from "./pages/login/Login.jsx";
-import LoginForm from "./pages/login/LoginForm.jsx";
 import Messages from "./pages/messages/Messages.jsx";
 import NewInventoryItem from "./pages/newInventoryItem/NewInventoryItem.jsx";
 import NewRecipe from "./pages/newRecipe/NewRecipe.jsx";
@@ -23,7 +21,6 @@ function App() {
 
   return (
     <>
-    {/* <PriceContextProvider> */}
     <AuthProvider>
       <Router>
         <Navigation />
@@ -44,7 +41,6 @@ function App() {
         <Footer />
       </Router>
     </AuthProvider>  
-    {/* </PriceContextProvider> */}
     </>
   );
 }

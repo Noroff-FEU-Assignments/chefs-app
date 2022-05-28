@@ -17,11 +17,6 @@
     padding-left: 10px;
   }
 
-  // & input:focus {
-  //   padding: 5px;
-  //   border: 1px solid map-get($colours, "secondary");
-  // }
-
   & .search-icon {
     color: map-get($colours, "secondary");
     position: absolute;
@@ -57,15 +52,8 @@
   display: grid;
   grid-template-columns: 15% 85%;
   width: 90%;
-  // height: 40px;
-  // margin: 15px auto;
-  // box-shadow: 0 0 8px map-get($colours, "text");
-  // background-color: map-get($colours, "primary");
-  // border-radius: 10px;
   align-items: center;
   padding: 8px 3px;
-
-  // justify-items: center;
 
   & img {
     width: 25px;
@@ -78,7 +66,6 @@
     margin: 0;
     position: relative;
     grid-column: 2;
-    // margin-left: 1rem;
   }
 
   &:hover {
@@ -90,26 +77,10 @@
     position: absolute;
     width: 1px;
     height: 40px;
-    // margin-right: -10px;
     top: -8px;
     left: -10px;
     background-color: map-get($colours, "secondary");
   }
-
-  // & h4:after {
-  //   content: "";
-  //   position: absolute;
-  //   width: 1px;
-  //   height: 40px;
-  //   // margin-right: -10px;
-  //   top: -8px;
-  //   right: 0px;
-  //   background-color: map-get($colours, "secondary");
-  // }
-
-  
-
-  
 }
 
 .pen-icon {
@@ -130,25 +101,11 @@
       border-radius: 5px;
       box-shadow: 0 0 4px map-get($colours, "text");
     }
-  
-    // & .search-icon {
-    //   border: 1px solid map-get($colours, "secondary");
-    //   border-radius: 5px;
-    //   box-shadow: 0 0 4px map-get($colours, "text");
-    // }
   }
   
 
   .link-container {
     width: 70%;
-    // display: grid;
-    // grid-template-columns: 90% 10%;
-    // align-items: center;
-    // box-shadow: 0 0 8px map-get($colours, "text");
-    // background-color: map-get($colours, "primary");
-    // border-radius: 10px;
-    // height: 40px;
-    // margin: 15px auto;
   }
 
 }

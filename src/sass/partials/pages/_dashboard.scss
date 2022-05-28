@@ -63,7 +63,6 @@
     width: 85%;
     color: map-get($colours, "text");
     border: 1px solid hsl(358, 61%, 85%);
-    // border: 1px solid map-get($colours, "text");
     border-radius: 8px;
     padding: 3px 0;
     font-size: 1.1rem;
@@ -114,8 +113,6 @@
 
   & label {
     display: flex;
-    // grid-template-rows: 1;
-    // grid-template-columns: 5% 85% 10%;
     align-items: center;
   }
 
@@ -136,11 +133,9 @@
 .announcements-item {
   width: 80%;
   margin: 10px auto 20px auto;
-  // border-bottom: 3px solid hsl(358, 61%, 94%);
   border-radius: 7px;
   padding: 6px 0;
   box-shadow: 2px 2px 4px hsl(358, 61%, 70%);
-  // box-shadow: 1px 1px 3px hsl(358, 61%, 80%);
 
   & .announcements-title {
     font-size: 1.1rem;

@@ -15,6 +15,7 @@ import axios from "axios";
 let showMessage = "";
 const url = api + "/products";
 
+//Form validation and options
 let unitChoice = ["g", "kg", "ml", "l", "bag", "stk", "handfull"];
 let areaChoice = ["Walk_in_fridge", "Walk_in_freezer", "Fridge_1", "Fridge_2", "Freezer_1", "Freezer_2"]
 const schema = yup.object().shape({
@@ -31,14 +32,13 @@ function NewInventoryItem() {
   const [productPrice, setProductPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
 
-
   const { register, handleSubmit, setValue, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
 
+  //Handling the product's final price
   useEffect( () => {
     let finalPrice = 0
-
     if(productPrice !== 0) {
       if(discount === 0) {
         finalPrice = productPrice;
@@ -50,8 +50,8 @@ function NewInventoryItem() {
   }, [productPrice, discount, setValue]);
 
 
+  // Adding the new item after authorization check
   const [auth, setAuth] = useContext(AuthContext);
-
   async function onSubmit(data) {
     try {
       const response = await axios.post(url,
@@ -61,7 +61,6 @@ function NewInventoryItem() {
           area: data.area,
           price: data.finalprice
         }},
-
         { headers: {
           Authorization: `Bearer ${auth.data.jwt}`,
         }}
@@ -75,9 +74,7 @@ function NewInventoryItem() {
       console.log(error);
       showMessage = <SystemMessage content={`Something wrong happened, login and try again`} type={"message error"} />;
     }
-
     reset();
-    console.log(data)
   };
 
   const unitOptions = unitChoice.map( (unit, key) => (
@@ -94,7 +91,6 @@ function NewInventoryItem() {
 
 
   function handleDiscount(event) {
-
     if(event.target.name === "price") {
       setProductPrice(event.target.value);
     }

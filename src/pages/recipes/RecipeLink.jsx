@@ -11,14 +11,12 @@ import { useContext } from "react";
 function RecipeLink({id, name}) {
   const [auth, setAuth] = useContext(AuthContext)
 
-
   let adminEdit = ""
-  if (auth) {
+  if (auth && auth.data.user.email === "admin@admin.com") {
     adminEdit = <Link to={`/recipes/details/${id}/edit-recipe/${id}`} className="edit-btn">
                   <FaPen className="pen-icon"/>
                 </Link>
   }
-
 
   return (
     <>

@@ -11,10 +11,12 @@ import { useContext } from "react";
 import AuthContext from "../../utilities/AuthContext.jsx";
 import axios from "axios";
 
-let showMessage = ""
 
+
+let showMessage = ""
 const url = api + "/recipes";
 
+// Form validation
 const schema = yup.object().shape({
   recipeTitle: yup.string().required("Recipe title").min(3, "Minimum 3 characters"),
   ingredients: yup.string().required("Write the recipe's ingredients").min(10, "Minimum 10 characters"),
@@ -22,14 +24,13 @@ const schema = yup.object().shape({
 })
 
 
-
 function NewRecipe() {
   const { register, handleSubmit, reset, formState: {errors}} = useForm({
     resolver: yupResolver(schema)
   });
 
+  // Adding new recipe after authorization check
   const [auth, setAuth] = useContext(AuthContext);
-
   async function onSubmit(data) {
     try {
       const response = await axios.post(url, 
@@ -48,22 +49,12 @@ function NewRecipe() {
         } else {
           showMessage = <SystemMessage content="Something went wrong" type={"message error"} />;
         }
-        console.log(response)
-      // console.log(response.AxiosError.response);
-      // if (!response) {
-      //   showMessage = <SystemMessage content="Something went wrong" type="message warning" />;
-      // }
 
     } catch(error) {
       console.log(error);
       showMessage = <SystemMessage content="Something went wrong" type="message warning" />
     }
-
-
-
-    console.log(data)
     reset();
-    
   };
 
 

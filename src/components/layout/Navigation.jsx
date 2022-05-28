@@ -96,7 +96,7 @@ function Navigation() {
     <>
       <header>
         <nav >
-          <NavLink to="/" id="logo">
+          <NavLink to="/" id="logo" onClick={() => setOpen(false)}>
             <img src={Logo} alt="Døgnvill logo" />
           </NavLink>
           <div className="user-burger">

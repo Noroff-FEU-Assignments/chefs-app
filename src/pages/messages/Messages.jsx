@@ -10,7 +10,6 @@ import axios from "axios";
 import AuthContext from "../../utilities/AuthContext.jsx";
 
 
-
 function Messages() {
   const messages_URL = api + "/messages";
 
@@ -19,8 +18,6 @@ function Messages() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filteredMessages, setFilteredMessages] = useState([]);
-  console.log(messages)
-
 
   useEffect( () => {
     async function getMessages() {
@@ -119,7 +116,6 @@ function Messages() {
           ) : (
               messages.map( (message) => {
                 const {id, attributes} = message
-                console.log(messages)
                 return (
                   <>    
                     <MessageAccordion key={id} name={attributes.chefs_name} title={attributes.title} message={attributes.message} subject={attributes.subject} deleteMessage={() => deleteMsg(id)}/>

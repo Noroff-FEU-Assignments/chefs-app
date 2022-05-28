@@ -29,7 +29,7 @@ function Inventory() {
     
 useEffect( () => {
   getProducts()
-}, [])
+})
 
 if(loading) {
   return <Spinner />;
@@ -90,11 +90,8 @@ function sortOut(a, b) {
       <tbody>
         {products.sort(sortOut).map( (product) => {
           const {id, attributes} = product;        
-          
-          // products.sort(sortOut);
-          
           return (
-            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} updateSum={getProducts}/>
+            <ProductRow key={id} productId={id} name={attributes.name} unit={attributes.unit} price={attributes.price} quantity={attributes.quantity} in_stock={attributes.in_stock} deleteRow={() => handleDelete(id)} />
           )
         })}
         <tr className="tr-summary">
@@ -103,7 +100,6 @@ function sortOut(a, b) {
         </tr>
       </tbody>
     </Table>
-      <button type="button" onClick={getProducts} id="updateTotalBtn">Update Total</button>
     </>
   )
 }

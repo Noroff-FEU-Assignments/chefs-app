@@ -17,7 +17,6 @@ function RecipeDetails() {
   const [auth, setAuth] = useContext(AuthContext)
   const navigate = useNavigate("/")
  
-
   const {id} = useParams();
 
   const detailsURL = api + "/recipes/" + id;
@@ -30,7 +29,6 @@ function RecipeDetails() {
         if (response.ok) {
           const results = await response.json();
           setDetails(results.data.attributes);
-          
         }
 
       } catch(error) {
@@ -42,8 +40,7 @@ function RecipeDetails() {
     }
     recipe();
   }, [detailsURL]);
-  
-  // console.log(details);
+
   if (loading) {
     return <Spinner />
   }
@@ -72,13 +69,12 @@ function RecipeDetails() {
 
 
   let adminButtons = ""
-  if (auth) {
+  if (auth && auth.data.user.email === "admin@admin.com") {
     adminButtons =  <div id="admin-buttons">
                       <Link to={`edit-recipe/${id}`} className="edit-btn">Edit <FaPen/></Link>
                       <button type="button" className="delete-btn" onClick={deleteRecipe}>Delete <FaTrash/></button>
                     </div>
   }
-
 
 
   return (

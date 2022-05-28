@@ -5,7 +5,7 @@ import AuthContext from "../../utilities/AuthContext.jsx";
 import { FaTrash } from "react-icons/fa";
 
 
-function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow, updateSum}) {
+function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow}) {
 
   const url = api + `/products/${productId}`;
   const [stock, setStock] = useState(in_stock);
@@ -17,7 +17,6 @@ function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow
     const newQuantity = Number(e.target.value);
     setStock(newQuantity * price);
     setMyQuantity(e.target.value);
-    updateSum();
   }
 
   function updateMainPrice(e) {
@@ -35,7 +34,7 @@ function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow
           price: newPrice,
         },
       });
-      // console.log(putResponse)
+
     } catch(error) {
       console.log(error);
     }
@@ -63,7 +62,6 @@ function ProductRow({productId, name, price, unit, quantity, in_stock, deleteRow
         <td className="td-name">{name}</td>
         <td className="td-quantity">
           <input type="number" onChange={ (e) => updateProduct(e) } value={myQuantity}  />
-          {/* <input type="number" onChange={ (e) => updateProduct(e); {updateSum}} value={myQuantity}  /> */}
         </td>
         <td className="td-unit">{unit}</td>
         {priceData}

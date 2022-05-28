@@ -11,14 +11,12 @@ a {
 
 // Main page title
 h1 {
-  font-family: $font-extra-3;
+  font-family: $font-secondary;
   text-transform: uppercase;
-  // font-weight: 500;
   letter-spacing: .1rem;
   text-align: center;
   margin: 20px auto 10px auto;
   color: map-get($colours, "text");
-  // border-bottom: 1px solid map-get($colours, "secondary");
   width: 80%;
   position: relative;
   font-size: 2rem;
@@ -35,7 +33,6 @@ h1 {
     border-width: 2px;
     border-color: map-get($colours, "secondary");
     border-image-source: radial-gradient(circle 150px, #BA2126,  #FFF );
-    // border-image-source: radial-gradient(circle 200px, #BA2126,  #FFFCE8, #4c362c);
   }
 }
 
@@ -53,8 +50,7 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     color: map-get($colours, "primary");
-    font-family: $font-extra-3;
-    // font-family: $font-secondary;
+    font-family: $font-secondary;
     font-size: 2.6rem;
     letter-spacing: .15rem;
     width: 100%;
@@ -64,14 +60,13 @@ h1 {
 
 
 .page-sub-heading {
-  font-family: $font-extra-3;
+  font-family: $font-secondary;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .1rem;
   text-align: left;
   margin: 0px auto 20px auto;
   color: map-get($colours, "text");
-  // border-bottom: 1px solid map-get($colours, "text");
   width: 80%;
   position: relative;
   font-size: 1.6rem;
@@ -100,16 +95,12 @@ h1 {
     width: 100%;
   }
 
-
-
   .page-sub-heading {
     font-size: 1.8rem;
-    // font-weight: 600;
   
     &::after {
       border-width: 2px;
       border-image-source: radial-gradient(circle 150px, #BA2126,  #FFF );
-      // border-image-source: radial-gradient(circle 200px, #BA2126,  #FFFCE8, #4c362c);
     }
   }
 }

@@ -1,12 +1,9 @@
 footer {
   background-color: map-get($colours, "secondary");
   color: map-get($colours, "light-primary");
-  // display: flex;
-  // flex-direction: column;
   gap: 1rem;
   text-align: center;
   padding: 10px 0;
-  // margin-top: 2rem;
 }
 
 #social-media-group {

@@ -111,9 +111,7 @@ function PrepList({}) {
           <Button id="prepListBtn" type="submit">Add</Button>
       </Form>    
       
-        {prepItems.map( (item) => {
-          prepItems.sort(sortPreps);
-
+        {prepItems.sort(sortPreps).map( (item) => {
           return (
             <div key={item.id} className="prep-list-item">
                 <div style={{textDecoration: item.attributes.done || item.isDoneLocal ? "line-through" : "", textDecorationColor: item.attributes.done || item.isDoneLocal ? "#BA2126" : ""}}

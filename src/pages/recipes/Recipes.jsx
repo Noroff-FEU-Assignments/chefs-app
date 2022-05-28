@@ -8,15 +8,12 @@ import SystemMessage from "../../utilities/SystemMessage.jsx";
 import { FaSearch } from "react-icons/fa";
 
 
-
 function Recipes() { 
   const url = api + "/recipes";
-
   const [recipes, setRecipe] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filteredRecipes, setFilteredRecipes] = useState([]);
-  console.log(filteredRecipes);
 
   useEffect( () => {
     async function getRecipes() {
@@ -25,7 +22,6 @@ function Recipes() {
 
         if(response.ok) {
           const results = await response.json();
-          // console.log(results);
           setRecipe(results.data);
         }
 
@@ -86,16 +82,12 @@ function Recipes() {
                 return (
                   <RecipeLink key={id} id={id} name={attributes.name}/>
                 )
-              })
-            
+              })        
             )
       } 
-      </div>
-      
+      </div>    
     </>
   )
-  
-  
 }
 
 export default Recipes

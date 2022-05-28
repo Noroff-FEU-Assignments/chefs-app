@@ -91,7 +91,7 @@ function Checklist() {
 // Adding a routine if an admin is logged
   let addRoutineForm = "";
   if (auth && auth.data.user.email === "admin@admin.com") {
-    addRoutineForm = <Form onSubmit={handleSubmit} id="prepListForm" class="add-routine-form">
+    addRoutineForm = <Form onSubmit={handleSubmit} id="prepListForm" className="add-routine-form">
           <Form.Control type="text" value={value} id="prepListInput" onChange={handleInput}  placeholder="Add new routine" />
           <Button id="prepListBtn" type="submit">Add</Button>
       </Form>    
@@ -101,9 +101,8 @@ function Checklist() {
   return (
     <>
     <SubHeadingPage>Routines</SubHeadingPage>
-      {routines.map( (routine) => {
+      {routines.sort(sortRoutines).map( (routine) => {
         const {id, attributes} = routine;
-        routines.sort(sortRoutines)
         return(
           <Routine key={id} routineId={id} name={attributes.name} done={attributes.done} deleteRoutine={() => handleDelete(id)}/>
         )

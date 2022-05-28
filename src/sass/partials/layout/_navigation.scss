@@ -2,15 +2,8 @@
   display: none;
 }
 
-// .modal-content {
-//   background-color: transparent;
-//   border: none;
-// }
-
 nav {
   display: grid;
-  // position: sticky;
-  // top: 0;
   width: 100%;
   height: 180px;
   box-shadow: 0 0 8px map-get($colours, "text");
@@ -78,7 +71,6 @@ nav {
   }
 }
 
-
 #adminLinks {
   text-align: center;
   width: 100%;
@@ -101,7 +93,6 @@ nav {
   &::after {
     display: none;
   }
-
 }
 
 .dropdown-menu {
@@ -109,10 +100,6 @@ nav {
   background-color: map-get($colours, "primary");
   border: 1px solid map-get($colours, "secondary");
 }
-
-// #navbarDropdown {
-//   padding-bottom: 0;
-// }
 
 #circleArrowDown {
   color: map-get($colours, "secondary");
@@ -219,11 +206,8 @@ nav {
 
 
   nav {
-    // display: grid;
-    // position: relative;
     justify-items: center;
     grid-template-columns: 20% 65% 15%;
-    // width: 100%;
     height: 120px;
     box-shadow: 0 2px 8px map-get($colours, "text");
   
@@ -237,24 +221,15 @@ nav {
       position: relative;
       grid-column: 2;
       grid-row: 1;
-      // display: flex;
       flex-direction: row;
       align-items: flex-end;
       width: 100%;
       top: 0px;
       border-radius: 0px;
-      // padding: 10px;
       box-shadow: none;
       background-color: transparent;
       transform: translateX(0%);
     }
-  
-    // & .nav-heading {
-    //   text-align: center;
-    //   color: map-get($colours, "text");
-    //   font-weight: bold;
-    //   margin-top: 0px;
-    // }
   
     & .nav-link {
       position: relative;
@@ -264,7 +239,6 @@ nav {
       padding-bottom: 0px;
     }
 
-    // ! MOVE TO DESKTOP AFTER DONE
     & .nav-link:hover {
       color: map-get($colours, "text");
     }
@@ -286,7 +260,6 @@ nav {
       visibility: visible;
       transform: scaleX(1);
     }
-    // ! ------------------------------------
 
     .nav-link.active {
       font-weight: bold;
@@ -295,7 +268,6 @@ nav {
     }
   }
   
-
   #adminLinks {
     display: flex;
     align-items: flex-end;
@@ -346,10 +318,6 @@ nav {
     width: 14rem;
   }
 
-  // #navbarDropdown {
-  //     padding-bottom: 0;
-  //   }
-
   .external-links-desktop {
     position: fixed;
     top: 180px; 
@@ -380,12 +348,10 @@ nav {
       transition: left .3s ease-out;
     }
 
-    // ! MOVE TO DESKTOP AFTER DONE
     & a:hover {
       left: 100px;
       color: map-get($colours, "text");
     }
-    // ! ----------------------------
   }
 
   #externalLinksHeading {
@@ -403,21 +369,12 @@ nav {
   }
   
   #logo {
-    // display: block;
-    // width: 200px;
     margin: auto 0px;
     padding-top: 20px;
     grid-column: 1;
-  
-    // & img {
-    //   width: 100%;
-    // }
   }
 
   .user-burger {
-    // display: flex;
-    // justify-content: space-between;
-    // align-items: center;
     width: 100%;
     margin: 0px auto;
     grid-column: 3;
@@ -431,11 +388,8 @@ nav {
     
   
     & #userFigure {
-      // border: 1px solid map-get($colours, "text");
-      // background-color: white;
       position: absolute;
       left: -30px;
-      // padding: 10px;
       height: 60px;
       width: 60px;
     }
@@ -445,20 +399,10 @@ nav {
     }
     
     & #messageIcon {
-      // position: absolute;
       top: -10px;
       left: 10px;
       font-size: 1.6rem;
-      // color: map-get($colours, "details")
     }
-
-    // & #loginLink {
-    //   display: inline-block;
-    //   margin: 0px 40px;
-    //   padding-top: 20px;
-    //   color: map-get($colours, "light-primary");
-      
-    // }
 
     & #loginBtn, #loggedBtn {
       display: block;
@@ -470,16 +414,12 @@ nav {
       color: map-get($colours, "light-primary");
       background-color: transparent;
       border: none;
-      // transform: scale(0%);
       transition: transform .2s ease-in;
-      // box-shadow: none;
     }
 
     & #loginBtn:hover {
       cursor: pointer;
-      // font-weight: 600;
       transform: scale(108%);
-      // font-size: 1.5rem;
     }
 
     & #loginBtn:focus {
@@ -492,16 +432,4 @@ nav {
       margin-left: 1.4rem;
     }
   }
-}
-
-
-
-@media only screen and (min-width: 1400px) {
-
-
-
-
-
-
-
 }

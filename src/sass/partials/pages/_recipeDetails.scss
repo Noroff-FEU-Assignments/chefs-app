@@ -36,17 +36,6 @@
 #instructions {
   border-top: 1px solid map-get($colours, "secondary");
   padding-top: 3rem;
-  // & ol li::before {
-  //   content: counter(li); 
-  //   color: map-get($colours, "secondary");
-  //   display: inline-block; 
-  //   width: 1em; 
-  //   margin-left: -1.5em;
-  //   margin-right: 0.5em; 
-  //   text-align: right; 
-  //   direction: rtl
-  // }
-
 
   & ol {
     list-style: none;
@@ -64,8 +53,6 @@
     width: 1.4rem;
     margin-left: -1rem;
   }
-
-  
 }
 
 
@@ -86,7 +73,6 @@
     color: #fff;
   }
 
-
   & .edit-btn {
     background-color: map-get($colours, "details");
     text-align: center;
@@ -97,8 +83,6 @@
   & .delete-btn {
     background-color: map-get($colours, "secondary");
   }
-
-
 }
 
 
@@ -125,9 +109,7 @@
       padding-top: 0rem;
       padding-left: 2rem;
     }
-
 }
-
 
 #admin-buttons {
   margin: 150px auto 10px auto;
@@ -145,7 +127,6 @@
     box-shadow: 0 0 8px map-get($colours, "text");
     color: #fff;
   }
-
 
   & .edit-btn {
     background-color: map-get($colours, "details");
