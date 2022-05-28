@@ -28,6 +28,7 @@ function Navigation() {
       navigate("/");
       setAuth(null);
       localStorage.clear();
+      setModalShow(false)
     }
   }
 
