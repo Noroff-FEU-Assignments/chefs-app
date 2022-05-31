@@ -22,15 +22,6 @@ the functionalities from everywhere. The future plan for the app includes:
 - [React Bootstrap](https://react-bootstrap.github.io/)
 - [Sass](https://sass-lang.com/)
 - [Strapi](https://strapi.io/)
-- NPM packages
-  - [React Hook Form](https://react-hook-form.com/)
-  - [React Router Dom](https://v5.reactrouter.com/web/guides/quick-start)
-  - [React Helmet](https://www.npmjs.com/package/react-helmet)
-  - [React Icons](https://react-icons.github.io/react-icons/)
-  - [React Marked](https://www.npmjs.com/package/marked-react)
-  - [Yup](https://www.npmjs.com/package/yup)
-  - [Axios](https://axios-http.com/docs/intro)
-
 
 ## Getting Started
 
