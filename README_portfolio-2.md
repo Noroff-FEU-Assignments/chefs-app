@@ -1,4 +1,4 @@
-# JS Frameworks
+# Chefs app
 
 ![image](./src/images/chefs-ap_sc.jpg)
 
