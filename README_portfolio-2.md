@@ -6,7 +6,7 @@ Web-app for a restaurant to help the kitchen employees in their daily tasks
 
 ## Description
 
-For now the app will help the chefs to gather their routines, prep-list, recipes and inventory in one place. They can send messages to the administration choosing subject between "budget enquiry" or "other" and the admin can send an announcement to them. Everything is connected to the api and the headchef can have control of
+For now the app will help the chefs to gather their routines, prep-list, recipes and inventory in one place. They can send messages to the administration choosing subject between "budget enquiry" or "other" and the admin can send an announcement to them. Beside sending announcements, the admin user has the rights to add/edit/delete inventory products and recipes. Everything is connected to the api and the headchef can have control of
 the functionalities from everywhere. The future plan for the app includes:
 - Private api and dedicated database so that it can be used to more than one restaurant.
 - Integrations of the external applications/links with functionalities of:
